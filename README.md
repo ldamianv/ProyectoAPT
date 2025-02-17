@@ -1,2 +1,3 @@
 # ProyectoAPT
-Proyecto de Pagina web para manejo de operaciones
+Proyecto de Pagina web para manejo de operaciones de canete
+  
