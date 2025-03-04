@@ -104,6 +104,9 @@ header {
   flex-grow: 1;
   text-align: left;
   padding-left: 1rem;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas por defecto */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
 }
 
 .header-controls {
@@ -159,6 +162,23 @@ header {
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* Estilo para el botón de música */
+.music-toggle {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.music-toggle:hover {
+  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .sidebar {
   width: 200px;
   background-color: var(--card-bg);
@@ -172,7 +192,7 @@ header {
   flex-direction: column;
   padding-top: 80px;
   padding-bottom: 140px;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 2px 0 10px var(--shadow);
   z-index: 900;
 }
@@ -499,33 +519,60 @@ header {
 
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block;
+    display: block; /* Mostrar el botón de menú en móviles */
   }
+
   .sidebar {
-    width: 0;
-    overflow: hidden;
+    width: 0; /* Ocultar el sidebar por defecto */
+    transform: translateX(-100%); /* Moverlo fuera de la pantalla */
+    transition: transform 0.3s ease-in-out; /* Animación suave */
   }
+
   .sidebar.active {
-    width: 200px;
-    padding-bottom: 140px;
+    width: 200px; /* Mostrar el sidebar con un ancho adecuado */
+    transform: translateX(0); /* Moverlo a la vista */
   }
+
   .container {
-    margin-left: 0;
+    margin-left: 0; /* Eliminar el margen para el contenido principal */
+    padding: 1rem; /* Reducir el padding para más espacio */
   }
+
   .container.sidebar-active {
-    margin-left: 200px;
+    margin-left: 200px; /* Ajustar el margen cuando el sidebar está activo */
   }
+
   .header-title {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Reducir el tamaño del título */
+    white-space: normal; /* Permitir que el texto se divida en varias líneas */
+    line-height: 1.2; /* Ajustar el interlineado */
+    padding-left: 0.5rem; /* Reducir el padding */
   }
+
   #search-bar {
-    width: 100px;
+    width: 100px; /* Reducir el ancho de la barra de búsqueda */
   }
+
   #search-bar:focus {
-    width: 120px;
+    width: 120px; /* Ajustar el ancho cuando está enfocado */
   }
-  .theme-toggle {
-    font-size: 1.2rem;
+
+  .theme-toggle,
+  .music-toggle {
+    font-size: 1.2rem; /* Reducir el tamaño de los botones */
+  }
+
+  .header-controls {
+    gap: 0.5rem; /* Reducir el espacio entre los controles */
+  }
+
+  .logo-container {
+    width: 140px; /* Reducir el tamaño del contenedor del logo */
+    left: 5px; /* Ajustar la posición */
+  }
+
+  .logo-container img {
+    max-width: 120px; /* Reducir el tamaño del logo */
   }
 }
 
