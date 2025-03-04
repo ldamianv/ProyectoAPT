@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SISTEMA DE GESTIÓN DE APT-CAÑETE - DISTRIBUCIÓN CAÑETE - SUPPLY CHAIN</title>
-  <link rel="stylesheet" href="SistemaEstilo.css">
+  <link rel="stylesheet" href="/ProyectoAPT/SistemaEstilo.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -12,7 +12,7 @@
   <div class="particles"></div>
   <header>
     <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
-    <span class="header-title">SISTEMA DE REGISTRO DE APT CAÑETE - SUPPLY CHAIN</span>
+    <span class="header-title">SISTEMA DE GESTIÓN DE APT-CAÑETE - DISTRIBUCIÓN CAÑETE - SUPPLY CHAIN</span>
     <div class="header-controls">
       <div class="search-container">
         <input type="text" id="search-bar" placeholder="Buscar reportes..." aria-label="Buscar">
@@ -20,6 +20,10 @@
       </div>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
         <i class="fas fa-sun"></i>
+      </button>
+      <!-- Botón para controlar la música -->
+      <button class="music-toggle" onclick="toggleMusic()" aria-label="Controlar música">
+        <i class="fas fa-volume-up"></i>
       </button>
     </div>
   </header>
@@ -43,7 +47,7 @@
       </ul>
     </div>
     <div class="logo-container">
-      <img src="imagenes/LogoAnimado.gif" alt="Logo Softys" width="180" height="90">
+      <img src="/ProyectoAPT/imagenes/LogoAnimado.gif" alt="Logo Softys" width="180" height="90">
     </div>
   </nav>
 
@@ -84,8 +88,35 @@
     </div>
   </div>
 
+  <!-- Elemento de audio -->
+  <audio id="backgroundMusic" loop>
+    <source src="/ProyectoAPT/audio/background-music.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
 
+  <footer class="footer">
+    <p>Creado por [Tu Nombre] con la colaboración de Grok (xAI) - Distribución Cañete - Supply Chain - 2025</p>
+  </footer>
 
-  <script src="SistemaDinamico.js" defer></script>
+  <script src="/ProyectoAPT/SistemaDinamico.js" defer></script>
+  <!-- Script para controlar la música -->
+  <script>
+    const audio = document.getElementById('backgroundMusic');
+    const musicToggle = document.querySelector('.music-toggle i');
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        musicToggle.classList.remove('fa-volume-up');
+        musicToggle.classList.add('fa-volume-mute');
+      } else {
+        audio.play();
+        musicToggle.classList.remove('fa-volume-mute');
+        musicToggle.classList.add('fa-volume-up');
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
 </body>
 </html>
