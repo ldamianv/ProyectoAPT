@@ -45,7 +45,7 @@
     container.innerHTML = filteredCards.map(card => `
       <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
         <div class="card-image-container">
-          <img src="imagenes/${card.img}" alt="${card.title}" width="250" height="150">
+          <img src="/ProyectoAPT/imagenes/${card.img}" alt="${card.title}" width="250" height="150">
         </div>
         <h3>${card.title}</h3>
         <p>${card.desc}</p>
@@ -121,7 +121,6 @@
     }
   }
 
-  // Función de búsqueda
   function setupSearch() {
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('input', () => {
@@ -151,7 +150,7 @@
       responsible: document.getElementById('trasladosResponsible').value,
       details: document.getElementById('trasladosDetails').value
     };
-    fetch('https://script.google.com/macros/s/AKfycbwwD52B9UjSUvo06j-v1MDp1vIrISOBfbv5D1sitpVjSgyPE8SIuxZ-V3feq-gjudY42g/exec', {
+    fetch('https://script.google.com/a/macros/softys.com/s/AKfycbwwD52B9UjSUvo06j-v1MDp1vIrISOBfbv5D1sitpVjSgyPE8SIuxZ-V3feq-gjudY42g/exec', {
       method: 'POST',
       body: JSON.stringify(data)
     })
