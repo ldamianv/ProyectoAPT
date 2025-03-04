@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SISTEMA DE GESTIÓN DE APT-CAÑETE - DISTRIBUCIÓN CAÑETE - SUPPLY CHAIN</title>
+  <link rel="stylesheet" href="SistemaEstilo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="dark-theme">
+  <div class="particles"></div>
+  <header>
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
+    <span class="header-title">SISTEMA DE REGISTRO DE APT CAÑETE - SUPPLY CHAIN</span>
+    <div class="header-controls">
+      <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Buscar reportes..." aria-label="Buscar">
+        <i class="fas fa-search search-icon"></i>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
+  </header>
+
+  <nav class="sidebar">
+    <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-expanded="false" aria-controls="perfiles-menu"><i class="fas fa-users"></i> Perfiles</button>
+    <div id="perfiles-menu" class="dropdown-content">
+      <ul>
+        <li><button data-section="cp" onclick="showSection('cp')"><i class="fas fa-building"></i> Control Patrimonial</button></li>
+        <li><button data-section="ad" onclick="showSection('ad')"><i class="fas fa-truck"></i> Asistente de Despachos</button></li>
+        <li><button data-section="am" onclick="showSection('am')"><i class="fas fa-warehouse"></i> Almacenero Montacarguista</button></li>
+        <li><button data-section="so" onclick="showSection('so')"><i class="fas fa-user-tie"></i> Supervisor de Operaciones</button></li>
+      </ul>
+    </div>
+    <button class="dropdown-btn" onclick="toggleDropdown('dashboard-menu')" aria-expanded="false" aria-controls="dashboard-menu"><i class="fas fa-chart-line"></i> Dashboard</button>
+    <div id="dashboard-menu" class="dropdown-content">
+      <ul>
+        <li><button data-section="reportes-generales" onclick="showSection('reportes-generales')"><i class="fas fa-file-alt"></i> Reportes Generales</button></li>
+        <li><button onclick="alert('Abrir Estadísticas')"><i class="fas fa-chart-bar"></i> Estadísticas</button></li>
+        <li><button onclick="alert('Abrir Configuración')"><i class="fas fa-cog"></i> Configuración</button></li>
+      </ul>
+    </div>
+    <div class="logo-container">
+      <img src="imagenes/LogoAnimado.gif" alt="Logo Softys" width="180" height="90">
+    </div>
+  </nav>
+
+  <main class="container">
+    <section id="cp" class="form-section active">
+      <h1>Reportes</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="ad" class="form-section">
+      <h1>Reportes</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="am" class="form-section">
+      <h1>Reportes</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="so" class="form-section">
+      <h1>Supervisor de Operaciones</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="reportes-generales" class="form-section">
+      <h1>Reportes Generales</h1>
+      <div class="card-container"></div>
+    </section>
+  </main>
+
+  <div id="trasladosModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeTrasladosModal()">×</span>
+      <h2>Registrar Traslados Interplantas</h2>
+      <form id="trasladosForm">
+        <input type="date" id="trasladosDate" name="date" required>
+        <input type="text" id="trasladosReport" name="report" placeholder="Reporte" required>
+        <input type="text" id="trasladosResponsible" name="responsible" placeholder="Responsable" required>
+        <input type="text" id="trasladosDetails" name="details" placeholder="Detalles">
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+
+
+  <script src="SistemaDinamico.js" defer></script>
+</body>
+</html>
