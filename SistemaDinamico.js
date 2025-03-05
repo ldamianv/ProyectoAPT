@@ -92,11 +92,9 @@
     const sidebar = document.querySelector('.sidebar');
     const container = document.querySelector('.container');
     const overlay = document.querySelector('.overlay');
-    const menuToggle = document.querySelector('.menu-toggle');
     sidebar.classList.toggle('active');
     container.classList.toggle('sidebar-active');
     overlay.classList.toggle('active');
-    menuToggle.classList.toggle('active');
 
     if (window.innerWidth <= 768) {
       document.querySelectorAll('.dropdown-content.active').forEach(dropdown => {
@@ -201,7 +199,6 @@
     document.querySelector('button[data-section="cp"]').classList.add('active');
     setupSearch();
 
-    // Abrir sidebar por defecto en escritorio
     if (window.innerWidth > 768) {
       toggleSidebar();
     }
