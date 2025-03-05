@@ -38,7 +38,7 @@ body {
   line-height: 1.6;
   position: relative;
   overflow-x: hidden;
-  background: linear-gradient(45deg, #1A1A1A, #2A3B4C); /* Gradiente más suave */
+  background: linear-gradient(45deg, #1A1A1A, #2A3B4C);
   background-size: 200% 200%;
   animation: gradientMove 10s ease infinite;
   transition: background 0.5s ease, color 0.5s ease;
@@ -86,9 +86,15 @@ header {
   background: none;
   border: none;
   color: var(--text);
-  font-size: 2rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .header-title {
@@ -97,7 +103,7 @@ header {
   letter-spacing: 0.5px;
   flex-grow: 1;
   text-align: left;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -106,7 +112,7 @@ header {
 .header-controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
   padding-right: 1rem;
 }
 
@@ -192,7 +198,7 @@ header {
   padding: 1rem;
   display: flex;
   align-items: center;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, background 0.3s ease;
 }
 
 .dropdown-btn i {
@@ -201,7 +207,7 @@ header {
 
 .dropdown-btn:hover {
   color: var(--text);
-  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .dropdown-content {
@@ -236,6 +242,7 @@ header {
 
 .dropdown-content li button:hover {
   color: var(--primary);
+  background: rgba(0, 163, 255, 0.1);
 }
 
 .dropdown-content li button.active {
