@@ -37,7 +37,6 @@ body {
   color: var(--text);
   line-height: 1.6;
   position: relative;
-  overflow-x: hidden;
   background: linear-gradient(45deg, #1A1A1A, #2A3B4C);
   background-size: 200% 200%;
   animation: gradientMove 10s ease infinite;
@@ -47,6 +46,10 @@ body {
 body.light-theme {
   background: var(--background);
   animation: none;
+}
+
+body.sidebar-open {
+  overflow: hidden; /* Evitar scroll vertical cuando el sidebar está abierto */
 }
 
 @keyframes gradientMove {
@@ -92,11 +95,11 @@ header {
   box-shadow: 0 2px 8px var(--shadow);
   z-index: 1000;
   display: flex;
-  flex-direction: column; /* Cambiado a columna para apilar elementos */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 60px; /* Ajustado para permitir más espacio */
+  min-height: 60px;
 }
 
 .menu-open {
@@ -185,7 +188,7 @@ header {
 }
 
 .sidebar {
-  width: 0;
+  width: 250px;
   background-color: var(--card-bg);
   color: var(--text);
   padding: 1rem;
@@ -203,7 +206,6 @@ header {
 }
 
 .sidebar.active {
-  width: 250px;
   transform: translateX(0);
 }
 
@@ -315,16 +317,18 @@ header {
 
 .container {
   margin-left: 0;
-  margin-top: 100px; /* Ajustado para el nuevo tamaño del header */
+  margin-top: 100px;
   padding: 1rem;
   min-height: calc(100vh - 100px);
   transition: transform 0.3s ease-in-out;
   position: relative;
   z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .container.sidebar-active {
-  transform: translateX(250px);
+  transform: translateX(250px); /* Desplazar completamente a la derecha */
 }
 
 .form-section {
@@ -547,10 +551,10 @@ header {
 
 @media (min-width: 769px) {
   header {
-    flex-direction: row; /* Volver a fila en escritorio */
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 60px; /* Volver a altura fija */
+    height: 60px;
   }
 
   .header-controls {
@@ -565,7 +569,7 @@ header {
 
   .container {
     margin-left: 200px;
-    margin-top: 60px; /* Ajustado para escritorio */
+    margin-top: 60px;
     min-height: calc(100vh - 60px);
   }
 
