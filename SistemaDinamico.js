@@ -83,9 +83,8 @@
       }
     });
 
-    // Cerrar sidebar en móviles después de seleccionar
     if (window.innerWidth <= 768) {
-      toggleSidebar();
+      toggleSidebar(); // Cierra el sidebar al seleccionar en móviles
     }
   }
 
@@ -105,7 +104,7 @@
 
   function createParticles() {
     const particlesContainer = document.querySelector('.particles');
-    const particleCount = 20; // Reducido para mejor rendimiento
+    const particleCount = 20;
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.classList.add('particle');
