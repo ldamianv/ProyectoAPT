@@ -10,9 +10,10 @@
 </head>
 <body class="dark-theme">
   <div class="particles"></div>
+  <div class="overlay" onclick="toggleSidebar()"></div> <!-- Overlay para cerrar el sidebar -->
   <header>
     <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Abrir menú lateral">
-      <i class="fas fa-bars"></i> <!-- Usamos Font Awesome para un ícono de hamburguesa más estilizado -->
+      <i class="fas fa-bars"></i>
     </button>
     <span class="header-title">APT Cañete</span>
     <div class="header-controls">
@@ -30,6 +31,9 @@
   </header>
 
   <nav class="sidebar">
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Cerrar menú lateral">
+      <i class="fas fa-times"></i>
+    </button>
     <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-expanded="false" aria-controls="perfiles-menu"><i class="fas fa-users"></i> Perfiles</button>
     <div id="perfiles-menu" class="dropdown-content">
       <ul>
