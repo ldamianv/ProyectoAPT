@@ -13,7 +13,7 @@
   <div class="overlay" onclick="toggleSidebar()"></div>
   <header>
     <button class="menu-open" onclick="toggleSidebar()" aria-label="Abrir menú lateral">
-      <i class="fas fa-bars"></i> <!-- Botón inicial para abrir el sidebar -->
+      <i class="fas fa-bars"></i>
     </button>
     <span class="header-title">APT Cañete</span>
     <div class="header-controls">
@@ -31,8 +31,8 @@
   </header>
 
   <nav class="sidebar">
-    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Cerrar menú lateral">
-      <i class="fas fa-bars"></i> <!-- Botón de hamburguesa dentro del sidebar -->
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Cerrar menú lateral">
+      <i class="fas fa-times"></i>
     </button>
     <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-expanded="false" aria-controls="perfiles-menu"><i class="fas fa-users"></i> Perfiles</button>
     <div id="perfiles-menu" class="dropdown-content">
