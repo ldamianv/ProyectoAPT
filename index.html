@@ -21,12 +21,6 @@
         <input type="text" id="search-bar" placeholder="Buscar reportes..." aria-label="Buscar">
         <i class="fas fa-search search-icon"></i>
       </div>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
-        <i class="fas fa-sun"></i>
-      </button>
-      <button class="music-toggle" onclick="toggleMusic()" aria-label="Controlar música">
-        <i class="fas fa-volume-up"></i>
-      </button>
     </div>
   </header>
 
@@ -79,47 +73,10 @@
     </section>
   </main>
 
-  <div id="trasladosModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeTrasladosModal()">×</span>
-      <h2>Registrar Traslados Interplantas</h2>
-      <form id="trasladosForm">
-        <input type="date" id="trasladosDate" name="date" required>
-        <input type="text" id="trasladosReport" name="report" placeholder="Reporte" required>
-        <input type="text" id="trasladosResponsible" name="responsible" placeholder="Responsable" required>
-        <input type="text" id="trasladosDetails" name="details" placeholder="Detalles">
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
-  </div>
-
-  <audio id="backgroundMusic" loop>
-    <source src="/ProyectoAPT/audio/background-music.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
-
   <footer class="footer">
-    <p>Creado por Luis Damian y el equipo de Supply Chain -Todos lo derechos reservados 2025</p>
+    <p>Creado por Luis Damian y el equipo de Supply Chain -Todos los derechos reservados 2025</p>
   </footer>
 
   <script src="/ProyectoAPT/SistemaDinamico.js" defer></script>
-  <script>
-    const audio = document.getElementById('backgroundMusic');
-    const musicToggle = document.querySelector('.music-toggle i');
-    let isPlaying = false;
-
-    function toggleMusic() {
-      if (isPlaying) {
-        audio.pause();
-        musicToggle.classList.remove('fa-volume-up');
-        musicToggle.classList.add('fa-volume-mute');
-      } else {
-        audio.play();
-        musicToggle.classList.remove('fa-volume-mute');
-        musicToggle.classList.add('fa-volume-up');
-      }
-      isPlaying = !isPlaying;
-    }
-  </script>
 </body>
 </html>
