@@ -92,9 +92,11 @@
     const sidebar = document.querySelector('.sidebar');
     const container = document.querySelector('.container');
     const overlay = document.querySelector('.overlay');
+    const body = document.body;
     sidebar.classList.toggle('active');
     container.classList.toggle('sidebar-active');
     overlay.classList.toggle('active');
+    body.classList.toggle('sidebar-open'); // Controlar el overflow del body
 
     if (window.innerWidth <= 768) {
       document.querySelectorAll('.dropdown-content.active').forEach(dropdown => {
