@@ -91,8 +91,10 @@
   function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const container = document.querySelector('.container');
+    const overlay = document.querySelector('.overlay');
     sidebar.classList.toggle('active');
     container.classList.toggle('sidebar-active');
+    overlay.classList.toggle('active');
 
     if (window.innerWidth <= 768) {
       document.querySelectorAll('.dropdown-content.active').forEach(dropdown => {
