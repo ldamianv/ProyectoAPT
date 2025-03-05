@@ -65,6 +65,21 @@ body.light-theme {
   z-index: 0;
 }
 
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 899; /* Debajo del sidebar pero encima del contenido */
+}
+
+.overlay.active {
+  display: block;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -186,6 +201,22 @@ header {
   transform: translateX(0);
 }
 
+.sidebar-close {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  align-self: flex-end;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.sidebar-close:hover {
+  color: var(--primary);
+}
+
 .dropdown-btn {
   background: none;
   border: none;
@@ -280,13 +311,13 @@ header {
   margin-top: 60px;
   padding: 1rem;
   min-height: calc(100vh - 60px);
-  transition: margin-left 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   position: relative;
   z-index: 1;
 }
 
 .container.sidebar-active {
-  margin-left: 250px;
+  transform: translateX(250px);
 }
 
 .form-section {
@@ -298,8 +329,8 @@ header {
 }
 
 .form-section h1 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
   color: var(--primary);
   font-weight: 600;
   text-align: center;
@@ -308,20 +339,20 @@ header {
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  padding: 0 1rem;
+  gap: 1.5rem;
+  padding: 0 0.5rem;
 }
 
 .card {
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
   animation: cardFadeIn 0.5s ease forwards;
   opacity: 0;
-  min-height: 300px;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -346,7 +377,7 @@ header {
 .card:nth-child(6) { animation-delay: 0.6s; }
 
 .card-image-container {
-  height: 150px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,14 +392,14 @@ header {
 }
 
 .card h3 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 0.5rem 0;
   color: var(--primary);
 }
 
 .card p {
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin: 0.5rem 0;
   opacity: 0.8;
 }
@@ -376,13 +407,14 @@ header {
 .card a {
   display: inline-block;
   margin-top: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   background: var(--primary);
   color: var(--text);
   text-decoration: none;
   border-radius: 8px;
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 0.9rem;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -458,11 +490,11 @@ header {
   }
 
   #search-bar {
-    width: 120px;
+    width: 100px;
   }
 
   #search-bar:focus {
-    width: 150px;
+    width: 130px;
   }
 
   .theme-toggle, .music-toggle {
@@ -484,6 +516,7 @@ header {
 
   .dropdown-content li button {
     font-size: 0.9rem;
+    padding: 1rem; /* Más espaciado para facilitar el toque */
   }
 
   .card-container {
@@ -492,7 +525,7 @@ header {
   }
 
   .card {
-    min-height: 250px;
+    min-height: 220px;
   }
 
   .logo-container {
@@ -515,8 +548,20 @@ header {
     margin-left: 200px;
   }
 
+  .container.sidebar-active {
+    transform: translateX(0); /* No desplazamiento en escritorio */
+  }
+
   .menu-toggle {
     display: none;
+  }
+
+  .overlay {
+    display: none; /* Overlay no necesario en escritorio */
+  }
+
+  .sidebar-close {
+    display: none; /* Botón de cierre no necesario en escritorio */
   }
 }
 
