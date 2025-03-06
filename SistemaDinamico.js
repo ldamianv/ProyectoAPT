@@ -45,7 +45,7 @@
     container.innerHTML = filteredCards.map(card => `
       <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
         <div class="card-image-container">
-          <img src="ProyectoAPT/Imagenes/${card.img}" alt="${card.title}" width="250" height="150">
+          <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150">
         </div>
         <h3>${card.title}</h3>
         <p>${card.desc}</p>
