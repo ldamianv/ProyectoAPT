@@ -526,6 +526,7 @@ header {
     width: 0; /* Ocultar el sidebar por defecto */
     transform: translateX(-100%); /* Moverlo fuera de la pantalla */
     transition: transform 0.3s ease-in-out; /* Animación suave */
+    overflow: hidden;
   }
 
   .sidebar.active {
@@ -575,6 +576,13 @@ header {
     max-width: 120px; /* Reducir el tamaño del logo */
   }
 }
+  .dropdown-content {
+      display: none;
+    }
+  
+    .dropdown-content.active {
+      display: block;
+    }
 
 .particle {
   position: absolute;
