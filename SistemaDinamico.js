@@ -42,20 +42,18 @@
           card.desc.toLowerCase().includes(filter.toLowerCase()))
       : cards;
     
-    container.innerHTML = filteredCards.length === 0 
-      ? '<p style="text-align: center; color: var(--text);">No se encontraron resultados.</p>'
-      : filteredCards.map(card => `
-        <div class="card" role="article" aria-label="${card.title}" style="animation: cardFadeIn 0.5s ease forwards;">
-          <div class="card-image-container">
-            <img src="/ProyectoAPT/Imagenes/${card.img}" alt="${card.title}" width="250" height="150" loading="lazy">
-          </div>
-          <h3>${card.title}</h3>
-          <p>${card.desc}</p>
-          ${card.title === 'Traslados Interplantas' && sectionId === 'cp' 
-            ? `<a href="#" onclick="openTrasladosModal(); return false;">Registrar</a>` 
-            : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
+    container.innerHTML = filteredCards.map(card => `
+      <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
+        <div class="card-image-container">
+          <img src="imagenes/${card.img}" alt="${card.title}" width="250" height="150">
         </div>
-      `).join('');
+        <h3>${card.title}</h3>
+        <p>${card.desc}</p>
+        ${card.title === 'Traslados Interplantas' && sectionId === 'cp' 
+          ? `<a href="#" onclick="openTrasladosModal(); return false;">Registrar</a>` 
+          : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
+      </div>
+    `).join('');
 
     const cardElements = container.querySelectorAll('.card');
     cardElements.forEach((card, index) => {
@@ -82,33 +80,21 @@
         btn.classList.add('active');
       }
     });
-
-    if (window.innerWidth <= 768) {
-      toggleSidebar();
-    }
   }
 
   function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
-    const container = document.querySelector('.container');
-    const overlay = document.querySelector('.overlay');
-    const body = document.body;
     sidebar.classList.toggle('active');
-    container.classList.toggle('sidebar-active');
-    overlay.classList.toggle('active');
-    body.classList.toggle('sidebar-open'); // Controlar el overflow del body
+    document.querySelector('.container').classList.toggle('sidebar-active');
+  }
 
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll('.dropdown-content.active').forEach(dropdown => {
-        dropdown.classList.remove('active');
-        dropdown.previousElementSibling.setAttribute('aria-expanded', 'false');
-      });
-    }
+  function openMovimientoModal() {
+    alert('Abrir modal para registrar movimiento');
   }
 
   function createParticles() {
     const particlesContainer = document.querySelector('.particles');
-    const particleCount = 20;
+    const particleCount = 50;
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.classList.add('particle');
@@ -127,16 +113,15 @@
       body.classList.add('light-theme');
       themeButton.classList.remove('fa-sun');
       themeButton.classList.add('fa-moon');
-      localStorage.setItem('theme', 'light');
     } else {
       body.classList.remove('light-theme');
       body.classList.add('dark-theme');
       themeButton.classList.remove('fa-moon');
       themeButton.classList.add('fa-sun');
-      localStorage.setItem('theme', 'dark');
     }
   }
 
+  // Función de búsqueda
   function setupSearch() {
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('input', () => {
@@ -160,28 +145,20 @@
   }
 
   function saveTrasladosReport() {
-    const date = document.getElementById('trasladosDate').value;
-    const report = document.getElementById('trasladosReport').value;
-    const responsible = document.getElementById('trasladosResponsible').value;
-    if (!date || !report || !responsible) {
-      alert('Por favor, completa los campos obligatorios.');
-      return;
-    }
     const data = {
-      date,
-      report,
-      responsible,
+      date: document.getElementById('trasladosDate').value,
+      report: document.getElementById('trasladosReport').value,
+      responsible: document.getElementById('trasladosResponsible').value,
       details: document.getElementById('trasladosDetails').value
     };
-    fetch('https://script.google.com/a/macros/softys.com/s/AKfycbwwD52B9UjSUvo06j-v1MDp1vIrISOBfbv5D1sitpVjSgyPE8SIuxZ-V3feq-gjudY42g/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwwD52B9UjSUvo06j-v1MDp1vIrISOBfbv5D1sitpVjSgyPE8SIuxZ-V3feq-gjudY42g/exec', {
       method: 'POST',
       body: JSON.stringify(data)
     })
     .then(response => response.text())
     .then(result => {
-      const modalContent = document.querySelector('#trasladosModal .modal-content');
-      modalContent.insertAdjacentHTML('beforeend', `<p style="color: var(--primary);">${result}</p>`);
-      setTimeout(closeTrasladosModal, 2000);
+      alert(result);
+      closeTrasladosModal();
     })
     .catch(error => console.error('Error saving report:', error));
   }
@@ -194,21 +171,16 @@
   };
 
   document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') toggleTheme();
     renderCards('cp');
     createParticles();
     document.querySelector('button[data-section="cp"]').classList.add('active');
     setupSearch();
-
-    if (window.innerWidth > 768) {
-      toggleSidebar();
-    }
   });
 
   window.toggleDropdown = toggleDropdown;
   window.showSection = showSection;
   window.toggleSidebar = toggleSidebar;
+  window.openMovimientoModal = openMovimientoModal;
   window.toggleTheme = toggleTheme;
   window.openTrasladosModal = openTrasladosModal;
   window.closeTrasladosModal = closeTrasladosModal;
