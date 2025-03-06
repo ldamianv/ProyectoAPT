@@ -22,9 +22,7 @@
         <i class="fas fa-sun"></i>
       </button>
       <!-- Botón para controlar la música -->
-      <button class="music-toggle" onclick="toggleMusic()" aria-label="Controlar música">
-        <i class="fas fa-volume-up"></i>
-      </button>
+
     </div>
   </header>
 
@@ -89,10 +87,6 @@
   </div>
 
   <!-- Elemento de audio -->
-  <audio id="backgroundMusic" loop>
-    <source src="/ProyectoAPT/audio/background-music.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
 
   <footer class="footer">
     <p>Creado por Luis Damian - Supply Chain - 2025</p>
@@ -100,23 +94,6 @@
 
   <script src="SistemaDinamico.js" defer></script>
   <!-- Script para controlar la música -->
-  <script>
-    const audio = document.getElementById('backgroundMusic');
-    const musicToggle = document.querySelector('.music-toggle i');
-    let isPlaying = false;
 
-    function toggleMusic() {
-      if (isPlaying) {
-        audio.pause();
-        musicToggle.classList.remove('fa-volume-up');
-        musicToggle.classList.add('fa-volume-mute');
-      } else {
-        audio.play();
-        musicToggle.classList.remove('fa-volume-mute');
-        musicToggle.classList.add('fa-volume-up');
-      }
-      isPlaying = !isPlaying;
-    }
-  </script>
 </body>
 </html>
