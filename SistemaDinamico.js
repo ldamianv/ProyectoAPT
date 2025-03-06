@@ -1,7 +1,7 @@
 (function() {
   const sectionsData = {
     cp: [
-      { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "ProyectoAPT/Imagenes/Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1mnXtHfsSCU5d9nxdB6oosuiX6xkXXoanOVH3no43-YA/edit?usp=sharing" },
+      { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Imagenes/Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1mnXtHfsSCU5d9nxdB6oosuiX6xkXXoanOVH3no43-YA/edit?usp=sharing" },
       { title: "Control de Film", desc: "Registre el consumo de film en los despachos.", img: "Produccion.jpg", link: "#" },
       { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Ventas.jpeg", link: "#" },
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "Movimientos.jpeg", link: "#" },
@@ -45,7 +45,7 @@
     container.innerHTML = filteredCards.map(card => `
       <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
         <div class="card-image-container">
-          <img src="imagenes/${card.img}" alt="${card.title}" width="250" height="150">
+          <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150">
         </div>
         <h3>${card.title}</h3>
         <p>${card.desc}</p>
