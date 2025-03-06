@@ -625,3 +625,33 @@ header {
 #trasladosForm button:hover {
   background: var(--secondary);
 }
+
+
+/* Ajuste para evitar superposición en móviles */
+.sidebar {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.container {
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar-active .container {
+  margin-left: 200px;
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+  .container {
+    margin-left: 200px;
+  }
+}
+
