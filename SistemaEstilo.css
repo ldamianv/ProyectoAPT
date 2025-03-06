@@ -636,5 +636,8 @@ header {
 .footer {
   text-align: center; /* Centra el texto horizontalmente */
   padding: 1rem; /* Añade un poco de espacio interno */
-  position: fixed;
+  position: fixed; /* Fija el footer en la parte inferior (opcional) */
+  bottom: 0; /* Alinea el footer al fondo de la página */
+  left: 0; /* Asegura que abarque todo el ancho */
+  width: 100%; /* Ocupa todo el ancho disponible */
 }
