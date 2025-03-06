@@ -3,31 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Softys Cañete</title>
-  <link rel="stylesheet" href="/ProyectoAPT/SistemaEstilo.css">
+  <title>Softys Cañete </title>
+  <link rel="stylesheet" href="SistemaEstilo.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="dark-theme">
   <div class="particles"></div>
-  <div class="overlay" onclick="toggleSidebar()"></div>
   <header>
-    <button class="menu-open" onclick="toggleSidebar()" aria-label="Abrir menú lateral">
-      <i class="fas fa-bars"></i>
-    </button>
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
     <span class="header-title">APT Cañete</span>
     <div class="header-controls">
       <div class="search-container">
         <input type="text" id="search-bar" placeholder="Buscar reportes..." aria-label="Buscar">
         <i class="fas fa-search search-icon"></i>
       </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <i class="fas fa-sun"></i>
+      </button>
+      <!-- Botón para controlar la música -->
+      <button class="music-toggle" onclick="toggleMusic()" aria-label="Controlar música">
+        <i class="fas fa-volume-up"></i>
+      </button>
     </div>
   </header>
 
   <nav class="sidebar">
-    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Cerrar menú lateral">
-      <i class="fas fa-times"></i>
-    </button>
     <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-expanded="false" aria-controls="perfiles-menu"><i class="fas fa-users"></i> Perfiles</button>
     <div id="perfiles-menu" class="dropdown-content">
       <ul>
@@ -46,7 +47,7 @@
       </ul>
     </div>
     <div class="logo-container">
-      <img src="/ProyectoAPT/Imagenes/LogoAnimado.gif" alt="Logo Softys Cañete" width="180" height="90">
+      <img src="Imagenes/LogoAnimado.gif" alt="Logo Softys" width="180" height="90">
     </div>
   </nav>
 
@@ -73,10 +74,49 @@
     </section>
   </main>
 
+  <div id="trasladosModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeTrasladosModal()">×</span>
+      <h2>Registrar Traslados Interplantas</h2>
+      <form id="trasladosForm">
+        <input type="date" id="trasladosDate" name="date" required>
+        <input type="text" id="trasladosReport" name="report" placeholder="Reporte" required>
+        <input type="text" id="trasladosResponsible" name="responsible" placeholder="Responsable" required>
+        <input type="text" id="trasladosDetails" name="details" placeholder="Detalles">
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Elemento de audio -->
+  <audio id="backgroundMusic" loop>
+    <source src="/ProyectoAPT/audio/background-music.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
   <footer class="footer">
-    <p>Creado por Luis Damian y el equipo de Supply Chain -Todos los derechos reservados 2025</p>
+    <p>Creado por Luis Damian - Supply Chain - 2025</p>
   </footer>
 
-  <script src="/ProyectoAPT/SistemaDinamico.js" defer></script>
+  <script src="SistemaDinamico.js" defer></script>
+  <!-- Script para controlar la música -->
+  <script>
+    const audio = document.getElementById('backgroundMusic');
+    const musicToggle = document.querySelector('.music-toggle i');
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        musicToggle.classList.remove('fa-volume-up');
+        musicToggle.classList.add('fa-volume-mute');
+      } else {
+        audio.play();
+        musicToggle.classList.remove('fa-volume-mute');
+        musicToggle.classList.add('fa-volume-up');
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
 </body>
 </html>
