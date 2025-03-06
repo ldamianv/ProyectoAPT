@@ -1,4 +1,4 @@
-:root {
+::root {
   --primary: #00A3FF; /* Azul tecnológico para oscuro */
   --secondary: #007ACC; /* Azul más oscuro para hover */
   --shadow: rgba(0, 163, 255, 0.2); /* Sombra azul para oscuro */
@@ -184,13 +184,13 @@ header {
   background-color: var(--card-bg);
   color: var(--text);
   padding: 1rem;
-  height: calc(100vh - 60px); /* Resta la altura del header */
+  height: 100vh;
   position: fixed;
-  top: 60px; /* Comienza justo después del header */
+  top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  padding-top: 20px; /* Reducimos el padding-top, ya que ahora ajustamos con top */
+  padding-top: 80px;
   padding-bottom: 140px;
   transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 2px 0 10px var(--shadow);
@@ -288,7 +288,6 @@ header {
   border-radius: 8px;
   box-shadow: 0 -2px 8px var(--shadow);
   z-index: 950;
-  top: 60px; /* Asegura que no se superponga al header */
 }
 
 .logo-container img {
