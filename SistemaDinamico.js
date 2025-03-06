@@ -82,11 +82,12 @@
     });
   }
 
-  function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.toggle('active');
-    document.querySelector('.container').classList.toggle('sidebar-active');
-  }
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      const container = document.querySelector('.container');
+      sidebar.classList.toggle('active');
+      container.classList.toggle('sidebar-active');
+    }
 
   function openMovimientoModal() {
     alert('Abrir modal para registrar movimiento');
