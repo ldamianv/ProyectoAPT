@@ -310,6 +310,7 @@ header {
   transition: margin-left 0.3s ease-in-out;
   position: relative;
   z-index: 1;
+  margin-bottom: 20px; /* Añade espacio para el footer fijo */
 }
 
 .form-section {
