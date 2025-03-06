@@ -636,5 +636,5 @@ header {
 .footer {
   text-align: center; /* Centra el texto horizontalmente */
   padding: 1rem; /* Añade un poco de espacio interno */
-
+  position: fixed;
 }
