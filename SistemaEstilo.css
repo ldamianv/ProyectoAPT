@@ -636,11 +636,5 @@ header {
 .footer {
   text-align: center; /* Centra el texto horizontalmente */
   padding: 1rem; /* Añade un poco de espacio interno */
-  color: var(--text); /* Usa la variable de color de texto para consistencia con el tema */
-  background: var(--card-bg); /* Fondo consistente con las tarjetas */
-  position: fixed; /* Fija el footer en la parte inferior (opcional) */
-  bottom: 0; /* Alinea el footer al fondo de la página */
-  left: 0; /* Asegura que abarque todo el ancho */
-  width: 100%; /* Ocupa todo el ancho disponible */
-  z-index: 950; /* Asegura que esté por encima de otros elementos, pero debajo de modales */
+
 }
