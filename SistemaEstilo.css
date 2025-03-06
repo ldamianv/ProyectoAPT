@@ -1,33 +1,35 @@
 :root {
-  --primary: #00A3FF;
-  --secondary: #007ACC;
-  --shadow: rgba(0, 163, 255, 0.2);
+  --primary: #00A3FF; /* Azul tecnológico para oscuro */
+  --secondary: #007ACC; /* Azul más oscuro para hover */
+  --shadow: rgba(0, 163, 255, 0.2); /* Sombra azul para oscuro */
 }
 
+/* Tema oscuro (predeterminado, estilo Grok) */
 body.dark-theme {
-  --background: #1A1A1A;
-  --card-bg: #404040;
-  --text: #FFFFFF;
-  --modal-bg: #404040;
-  --input-bg: rgba(255, 255, 255, 0.1);
-  --input-text: #FFFFFF;
-  --header-bg: #1E2A3C;
-  --primary: #00A3FF;
-  --secondary: #007ACC;
-  --shadow: rgba(0, 163, 255, 0.2);
+  --background: #1A1A1A; /* Negro grisáceo */
+  --card-bg: #404040; /* Gris oscuro para tarjetas */
+  --text: #FFFFFF; /* Blanco para texto */
+  --modal-bg: #404040; /* Gris oscuro para modales */
+  --input-bg: rgba(255, 255, 255, 0.1); /* Fondo sutil para inputs */
+  --input-text: #FFFFFF; /* Texto blanco en inputs */
+  --header-bg: #1E2A3C; /* Azul oscuro para header */
+  --primary: #00A3FF; /* Azul vivo para botones y acentos */
+  --secondary: #007ACC; /* Azul más oscuro para hover */
+  --shadow: rgba(0, 163, 255, 0.2); /* Sombra azul */
 }
 
+/* Tema claro (Azul #005B9A y blanco, colores de tu empresa) */
 body.light-theme {
-  --background: #FFFFFF;
-  --card-bg: #E6F0FA;
-  --text: #333333;
-  --modal-bg: #FFFFFF;
-  --input-bg: rgba(0, 91, 154, 0.1);
-  --input-text: #333333;
-  --header-bg: #E6F0FA;
-  --primary: #005B9A;
-  --secondary: #003366;
-  --shadow: rgba(0, 0, 0, 0.1);
+  --background: #FFFFFF; /* Blanco para fondo */
+  --card-bg: #E6F0FA; /* Azul muy claro para tarjetas */
+  --text: #333333; /* Gris oscuro para texto */
+  --modal-bg: #FFFFFF; /* Blanco para modales */
+  --input-bg: rgba(0, 91, 154, 0.1); /* Azul #005B9A sutil para inputs */
+  --input-text: #333333; /* Texto gris oscuro en inputs */
+  --header-bg: #E6F0FA; /* Azul claro para header */
+  --primary: #005B9A; /* Azul medio oscuro para botones y acentos */
+  --secondary: #003366; /* Azul más oscuro para hover */
+  --shadow: rgba(0, 0, 0, 0.1); /* Sombra gris clara */
 }
 
 body {
@@ -38,15 +40,15 @@ body {
   line-height: 1.6;
   position: relative;
   overflow-x: hidden;
-  background: linear-gradient(45deg, var(--background), #0A2A4A);
+  background: linear-gradient(45deg, var(--background), #0A2A4A); /* Gradiente para oscuro */
   background-size: 200% 200%;
   animation: gradientMove 10s ease infinite;
   transition: background 0.5s ease, color 0.5s ease;
 }
 
 body.light-theme {
-  background: var(--background);
-  animation: none;
+  background: var(--background); /* Fondo blanco sólido para claro */
+  animation: none; /* Sin gradiente en claro */
 }
 
 @keyframes gradientMove {
@@ -102,9 +104,9 @@ header {
   flex-grow: 1;
   text-align: left;
   padding-left: 1rem;
-  white-space: nowrap;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas por defecto */
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
 }
 
 .header-controls {
@@ -160,6 +162,7 @@ header {
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* Estilo para el botón de música */
 .music-toggle {
   background: none;
   border: none;
@@ -357,8 +360,14 @@ header {
 }
 
 @keyframes cardFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card:nth-child(1) { animation-delay: 0.1s; }
@@ -510,72 +519,60 @@ header {
 
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block;
+    display: block; /* Mostrar el botón de menú en móviles */
   }
 
   .sidebar {
-    width: 250px;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    padding-top: 60px;
-    background-color: var(--card-bg);
-    z-index: 1000;
+    width: 0; /* Ocultar el sidebar por defecto */
+    transform: translateX(-100%); /* Moverlo fuera de la pantalla */
+    transition: transform 0.3s ease-in-out; /* Animación suave */
   }
 
   .sidebar.active {
-    transform: translateX(0);
+    width: 200px; /* Mostrar el sidebar con un ancho adecuado */
+    transform: translateX(0); /* Moverlo a la vista */
   }
 
   .container {
-    margin-left: 0;
-    padding: 1rem;
-    transition: margin-left 0.3s ease-in-out;
+    margin-left: 0; /* Eliminar el margen para el contenido principal */
+    padding: 1rem; /* Reducir el padding para más espacio */
   }
 
   .container.sidebar-active {
-    margin-left: 250px;
-  }
-
-  .dropdown-content {
-    padding-left: 1.5rem;
-  }
-
-  .dropdown-content li button {
-    font-size: 1.1rem;
-    padding: 0.75rem 0;
+    margin-left: 200px; /* Ajustar el margen cuando el sidebar está activo */
   }
 
   .header-title {
-    font-size: 1rem;
-    white-space: normal;
-    line-height: 1.2;
-    padding-left: 0.5rem;
+    font-size: 1rem; /* Reducir el tamaño del título */
+    white-space: normal; /* Permitir que el texto se divida en varias líneas */
+    line-height: 1.2; /* Ajustar el interlineado */
+    padding-left: 0.5rem; /* Reducir el padding */
   }
 
   #search-bar {
-    width: 100px;
+    width: 100px; /* Reducir el ancho de la barra de búsqueda */
   }
 
   #search-bar:focus {
-    width: 120px;
+    width: 120px; /* Ajustar el ancho cuando está enfocado */
   }
 
   .theme-toggle,
   .music-toggle {
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Reducir el tamaño de los botones */
   }
 
   .header-controls {
-    gap: 0.5rem;
+    gap: 0.5rem; /* Reducir el espacio entre los controles */
   }
 
   .logo-container {
-    width: 140px;
-    left: 5px;
+    width: 140px; /* Reducir el tamaño del contenedor del logo */
+    left: 5px; /* Ajustar la posición */
   }
 
   .logo-container img {
-    max-width: 120px;
+    max-width: 120px; /* Reducir el tamaño del logo */
   }
 }
 
@@ -590,9 +587,17 @@ header {
 }
 
 @keyframes float {
-  0% { transform: translateY(0); opacity: 0.3; }
-  50% { opacity: 0.5; }
-  100% { transform: translateY(-100vh); opacity: 0.3; }
+  0% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0.3;
+  }
 }
 
 #trasladosForm input {
@@ -620,4 +625,3 @@ header {
 #trasladosForm button:hover {
   background: var(--secondary);
 }
-
