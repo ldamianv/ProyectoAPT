@@ -84,10 +84,23 @@
 
   function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
+    const dropdowns = document.querySelectorAll('.dropdown-content');
+    const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+  
     sidebar.classList.toggle('active');
+  
+    // Si la barra lateral se está cerrando, ocultar todos los menús desplegables
+    if (!sidebar.classList.contains('active')) {
+      dropdowns.forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
+      dropdownButtons.forEach(btn => {
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  
     document.querySelector('.container').classList.toggle('sidebar-active');
-  }
-
+}
   function openMovimientoModal() {
     alert('Abrir modal para registrar movimiento');
   }
