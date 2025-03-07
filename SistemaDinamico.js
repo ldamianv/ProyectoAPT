@@ -3,13 +3,13 @@
     cp: [
       { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1mnXtHfsSCU5d9nxdB6oosuiX6xkXXoanOVH3no43-YA/edit?usp=sharing" },
       { title: "Control de Film", desc: "Registre el consumo de film en los despachos.", img: "ControlFilmx.jpg", link: "#" },
-      { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Ventas.jpeg", link: "#" },
+      { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Despachox.jpg", link: "#" },
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranelx.jpg", link: "#" },
       { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "ReporteCalidadx.jpg", link: "#" },
       { title: "Exportaciones", desc: "Registra las atenciones de exportaciones.", img: "Exportacionx.jpg", link: "#" }
     ],
     ad: [
-      { title: "Avance de Despachos", desc: "Consulta los traslados entre plantas.", img: "Traslados.jpeg", link: "#" },
+      { title: "Avance de Despachos", desc: "Consulta los traslados entre plantas.", img: "Trasladox.jpg", link: "#" },
       { title: "Reporte de Traslados Atendidos", desc: "Registre el número de unidades atendidas diariamente.", img: "Produccion.jpg", link: "#" },
       { title: "Liquidaciones", desc: "Registra las liquidaciones de los despachos.", img: "Ventas.jpeg", link: "#" }
     ],
