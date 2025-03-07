@@ -14,7 +14,7 @@
       { title: "Liquidaciones", desc: "Registra las liquidaciones de los despachos.", img: "Ventas.jpeg", link: "#" }
     ],
     am: [
-      { title: "FEFO", desc: "Registre los movimientos de productos.", img: "Traslados.jpeg", link: "#" },
+      { title: "FEFO", desc: "Registre los movimientos de productos.", img: "Fefox.jpg", link: "#" },
       { title: "Ingreso de Productos", desc: "Agrega nuevos productos al inventario.", img: "Produccion.jpg", link: "#" }
     ],
     so: [
