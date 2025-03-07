@@ -2,9 +2,9 @@
   const sectionsData = {
     cp: [
       { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Traslados.jpg", link: "https://docs.google.com/spreadsheets/d/1mnXtHfsSCU5d9nxdB6oosuiX6xkXXoanOVH3no43-YA/edit?usp=sharing" },
-      { title: "Control de Film", desc: "Registre el consumo de film en los despachos.", img: "Produccion.jpg", link: "#" },
+      { title: "Control de Film", desc: "Registre el consumo de film en los despachos.", img: "Control.jpg", link: "#" },
       { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Ventas.jpeg", link: "#" },
-      { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "Control.jeg", link: "#" },
+      { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranel.jeg", link: "#" },
       { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "Reporte.jpeg", link: "#" },
       { title: "Exportaciones", desc: "Registra las atenciones de exportaciones.", img: "KPI.jpg", link: "#" }
     ],
