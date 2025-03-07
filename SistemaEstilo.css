@@ -197,11 +197,16 @@ header {
 }
 
 body.dark-theme .sidebar {
-  background-color: #1E2A3C; /* Azul oscuro profundo para tema oscuro */
+  background-color: #1E2A3C; /* Azul oscuro profundo */
 }
 
 body.light-theme .sidebar {
-  background-color: #003366; /* Azul profundo para tema claro */
+  background-color: #003366; /* Azul profundo */
+  color: #FFFFFF; /* Texto blanco para mejor contraste */
+}
+
+body.light-theme .dropdown-content li button {
+  color: #FFFFFF; /* Botones en blanco */
 }
 
 .dropdown-btn {
