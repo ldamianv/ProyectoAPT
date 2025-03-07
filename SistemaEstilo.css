@@ -181,7 +181,6 @@ header {
 
 .sidebar {
   width: 200px;
-  background-color: var(--card-bg);
   color: var(--text);
   padding: 1rem;
   height: 100vh;
@@ -195,6 +194,14 @@ header {
   transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 2px 0 10px var(--shadow);
   z-index: 900;
+}
+
+body.dark-theme .sidebar {
+  background-color: #1E2A3C; /* Azul oscuro profundo para tema oscuro */
+}
+
+body.light-theme .sidebar {
+  background-color: #003366; /* Azul profundo para tema claro */
 }
 
 .dropdown-btn {
@@ -577,13 +584,14 @@ header {
     max-width: 120px; /* Reducir el tamaño del logo */
   }
 }
-  .dropdown-content {
-      display: none;
-    }
-  
-    .dropdown-content.active {
-      display: block;
-    }
+
+.dropdown-content {
+  display: none;
+}
+
+.dropdown-content.active {
+  display: block;
+}
 
 .particle {
   position: absolute;
@@ -634,6 +642,7 @@ header {
 #trasladosForm button:hover {
   background: var(--secondary);
 }
+
 .footer {
   text-align: center; /* Centra el texto horizontalmente */
   padding: 1rem; /* Añade un poco de espacio interno */
