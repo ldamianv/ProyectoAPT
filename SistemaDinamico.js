@@ -9,8 +9,8 @@
       { title: "Exportaciones", desc: "Registra las atenciones de exportaciones.", img: "Exportacionx.jpg", link: "#" }
     ],
     ad: [
-      { title: "Avance de Despachos", desc: "Consulta los traslados entre plantas.", img: "Trasladox.jpg", link: "#" },
-      { title: "Reporte de Traslados Atendidos", desc: "Registre el número de unidades atendidas diariamente.", img: "Produccion.jpg", link: "#" },
+      { title: "Avance de Despachos", desc: "Registre el avance de despachos.", img: "Despachox.jpg", link: "#" },
+      { title: "Reporte de Traslados Atendidos", desc: "Registre el número de unidades atendidas diariamente.", img: "Trasladox.jpg", link: "#" },
       { title: "Liquidaciones", desc: "Registra las liquidaciones de los despachos.", img: "Ventas.jpeg", link: "#" }
     ],
     am: [
