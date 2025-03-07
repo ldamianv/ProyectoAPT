@@ -18,8 +18,8 @@
       { title: "Ingreso de Productos", desc: "Agrega nuevos productos al inventario.", img: "Produccion.jpg", link: "#" }
     ],
     so: [
-      { title: "Informe Diario", desc: "Registre los movimientos de productos.", img: "Traslados.jpeg", link: "#" },
-      { title: "Ocupabilidad", desc: "Agrega nuevos productos al inventario.", img: "Produccion.jpg", link: "#" }
+      { title: "Informe Diario", desc: "Registre los movimientos de productos.", img: "Informex.jpg", link: "#" },
+      { title: "Ocupabilidad", desc: "Agrega nuevos productos al inventario.", img: "Ocupabilidadx.jpg", link: "#" }
     ],
     "reportes-generales": [
       { title: "Evolución de Ventas", desc: "Visualiza el progreso de las ventas.", img: "Ventas.jpeg", link: "#" },
