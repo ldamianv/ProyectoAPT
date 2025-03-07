@@ -44,6 +44,15 @@
         <li><button onclick="alert('Abrir Configuración')"><i class="fas fa-cog"></i> Configuración</button></li>
       </ul>
     </div>
+    <!-- Nueva sección: Nuestros Cumpleaños -->
+    <button class="dropdown-btn" onclick="toggleDropdown('birthdays-menu')" aria-expanded="false" aria-controls="birthdays-menu"><i class="fas fa-birthday-cake"></i> Nuestros Cumpleaños</button>
+    <div id="birthdays-menu" class="dropdown-content">
+      <ul id="birthdays-list">
+        <!-- Los cumpleaños se cargarán dinámicamente aquí -->
+        <li><span>Juan Pérez - 15 de Marzo</span></li>
+        <li><span>María López - 20 de Marzo</span></li>
+      </ul>
+    </div>
     <div class="logo-container">
       <img src="Imagenes/LogoAnimado.gif" alt="Logo Softys" width="180" height="90">
     </div>
