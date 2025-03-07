@@ -6,7 +6,7 @@
       { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Ventas.jpeg", link: "#" },
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranelx.jpg", link: "#" },
       { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "ReporteCalidadx.jpg", link: "#" },
-      { title: "Exportaciones", desc: "Registra las atenciones de exportaciones.", img: "Exportacion.jpg", link: "#" }
+      { title: "Exportaciones", desc: "Registra las atenciones de exportaciones.", img: "Exportacionx.jpg", link: "#" }
     ],
     ad: [
       { title: "Avance de Despachos", desc: "Consulta los traslados entre plantas.", img: "Traslados.jpeg", link: "#" },
