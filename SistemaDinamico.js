@@ -23,13 +23,13 @@
     ],
     "reportes-generales": [
       { title: "Evolución de Ventas", desc: "Visualiza el progreso de las ventas.", img: "Ventas.jpeg", link: "#" },
-      { title: "Costos de Estibaje", desc: "Registra los costos asociados al estibaje.", img: "Reporte.jpeg", link: "#" },
-      { title: "Tiempos de Atención", desc: "Mide los tiempos de atención de unidades.", img: "Traslados.jpeg", link: "#" },
+      { title: "Costos de Estibaje", desc: "Visualiza los costos asociados al estibaje.", img: "Estibajex.jpg", link: "#" },
+      { title: "Tiempos de Atención", desc: "Consulta los tiempos de atención de unidades.", img: "Traslados.jpeg", link: "#" },
       { title: "Descuentos Acumulados", desc: "Consulta los descuentos aplicados.", img: "KPI.jpg", link: "#" },
       { title: "Avance de Ocupabilidad", desc: "Evalúa la ocupación del almacén.", img: "Produccion.jpg", link: "#" },
       { title: "Reporte de Lento Movimiento", desc: "Identifica productos de lento movimiento.", img: "Movimientos.jpeg", link: "#" },
       { title: "Sloting", desc: "Optimiza la ubicación de productos.", img: "Reporte.jpeg", link: "#" },
-      { title: "Muestreo de Tarimas", desc: "Registra muestras de tarimas.", img: "Traslados.jpeg", link: "#" }
+      { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", link: "#" }
     ]
   };
 
