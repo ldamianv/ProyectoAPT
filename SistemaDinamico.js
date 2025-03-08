@@ -49,7 +49,7 @@
         </div>
         <h3>${card.title}</h3>
         <p>${card.desc}</p>
-        ${card.title === 'Traslados Interplantas' && sectionId === 'cp' 
+
           ? `<a href="#" onclick="openTrasladosModal(); return false;">Registrar</a>` 
           : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
       </div>
