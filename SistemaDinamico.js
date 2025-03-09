@@ -83,11 +83,10 @@
           html += '<div class="card-container">';
           html += monthCards.map((card, index) => `
             <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
-              <div class="card-image-container">
-                <img src="Imagenes/${card.img}" alt="${card.name}" width="250" height="150">
+              <div class="icon-container">
+                <i class="fas fa-birthday-cake"></i>
               </div>
-              <h3>${card.name}</h3>
-              <p>${card.date}</p>
+              <p>${card.date} - ${card.name}</p>
             </div>
           `).join('');
           html += '</div>';
