@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Softys Cañete </title>
+  <title>Softys Cañete</title>
   <link rel="stylesheet" href="SistemaEstilo.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -21,8 +21,6 @@
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
         <i class="fas fa-sun"></i>
       </button>
-      <!-- Botón para controlar la música -->
-
     </div>
   </header>
 
@@ -44,16 +42,15 @@
         <li><button onclick="alert('Abrir Configuración')"><i class="fas fa-cog"></i> Configuración</button></li>
       </ul>
     </div>
-    <!-- Nueva sección: Nuestros Cumpleaños -->
     <button class="dropdown-btn" onclick="toggleDropdown('birthdays-menu')" aria-expanded="false" aria-controls="birthdays-menu"><i class="fas fa-birthday-cake"></i> Nuestros Cumpleaños</button>
     <div id="birthdays-menu" class="dropdown-content">
       <ul id="birthdays-list">
-        <!-- Los cumpleaños se cargarán dinámicamente aquí -->
-        <li><span>Relacion</span></li>
+        <li><button data-section="birthdays" onclick="showSection('birthdays')"><i class="fas fa-users"></i> Relación</button></li>
         <li><span>Celebraciones</span></li>
       </ul>
     </div>
   </nav>
+
   <main class="container">
     <section id="cp" class="form-section active">
       <h1>Control Patrimonial</h1>
@@ -75,9 +72,11 @@
       <h1>Reportes Generales</h1>
       <div class="card-container"></div>
     </section>
-
+    <section id="birthdays" class="form-section">
+      <h1>Nuestros Cumpleaños</h1>
+      <div class="card-container"></div>
+    </section>
   </main>
-
 
   <div id="trasladosModal" class="modal">
     <div class="modal-content">
@@ -93,12 +92,7 @@
     </div>
   </div>
 
-  <!-- Elemento de audio -->
-
-
-
   <script src="SistemaDinamico.js" defer></script>
-  <!-- Script para controlar la música -->
-
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91d8d07369e3bae3',t:'MTc0MTUwNDg3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
