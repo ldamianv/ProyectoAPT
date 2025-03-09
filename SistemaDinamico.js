@@ -46,7 +46,7 @@
       { month: "Junio", name: "Hugo Chavez", date: "25-06", img: "cumpleanos.jpg" },
       { month: "Julio", name: "Florencio Vilca", date: "07-07", img: "cumpleanos.jpg" },
       { month: "Julio", name: "Josemaria Chumpitaz", date: "12-07", img: "cumpleanos.jpg" },
-      { month: "Julio", name: "Giancarlo Nolasko", date: "15-07", img: "cumpleanos.jpg" },
+      { month: "Julio", name: "Giancarlo Nolasco", date: "15-07", img: "cumpleanos.jpg" },
       { month: "Julio", name: "Luis Medina", date: "22-07", img: "cumpleanos.jpg" },
       { month: "Septiembre", name: "Miguel Pachas", date: "09-09", img: "cumpleanos.jpg" },
       { month: "Septiembre", name: "James Villanueva", date: "17-09", img: "cumpleanos.jpg" },
