@@ -79,16 +79,19 @@
       months.forEach(month => {
         const monthCards = filteredCards.filter(card => card.month === month);
         if (monthCards.length > 0) {
-          html += `<h2 style="color: var(--primary); margin-top: 2rem; font-size: 1.5rem; font-weight: 600;">${month}</h2>`;
+          html += `<h2>${month}</h2>`;
           html += '<div class="card-container">';
-          html += monthCards.map((card, index) => `
-            <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
-              <div class="icon-container">
-                <i class="fas fa-birthday-cake"></i>
+          html += monthCards.map((card, index) => {
+            const day = card.date.split('-')[0]; // Extraer el día (por ejemplo, "02" de "02-01")
+            return `
+              <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
+                <div class="day-circle">
+                  <span>${day}</span>
+                </div>
+                <p>${card.name.toUpperCase()}</p>
               </div>
-              <p>${card.date} - ${card.name}</p>
-            </div>
-          `).join('');
+            `;
+          }).join('');
           html += '</div>';
         }
       });
