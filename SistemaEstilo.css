@@ -16,8 +16,8 @@ body.dark-theme {
   --primary: #00A3FF; /* Azul vivo para botones y acentos */
   --secondary: #007ACC; /* Azul más oscuro para hover */
   --shadow: rgba(0, 163, 255, 0.2); /* Sombra azul */
-  --birthday-card-bg: #1E3A8A; /* Azul oscuro para tarjetas de cumpleaños */
-  --month-header-bg: #1E3A8A; /* Azul oscuro para encabezados de mes */
+  --birthday-card-bg: #1E3A8A; /* Azul oscuro para mini-tarjetas de cumpleaños */
+  --month-card-bg: #404040; /* Gris oscuro para tarjetas de mes */
   --divider-color: #87CEEB; /* Azul claro para líneas divisorias */
 }
 
@@ -33,8 +33,8 @@ body.light-theme {
   --primary: #005B9A; /* Azul medio oscuro para botones y acentos */
   --secondary: #003366; /* Azul más oscuro para hover */
   --shadow: rgba(0, 0, 0, 0.1); /* Sombra gris clara */
-  --birthday-card-bg: #005B9A; /* Azul medio oscuro para tarjetas de cumpleaños */
-  --month-header-bg: #E6F0FA; /* Azul claro para encabezados de mes */
+  --birthday-card-bg: #005B9A; /* Azul medio oscuro para mini-tarjetas de cumpleaños */
+  --month-card-bg: #E6F0FA; /* Azul claro para tarjetas de mes */
   --divider-color: #87CEEB; /* Azul claro para líneas divisorias */
 }
 
@@ -347,34 +347,120 @@ body.light-theme .sidebar {
   position: relative;
 }
 
-#birthdays h2 {
-  background: var(--month-header-bg); /* Azul claro en tema claro, azul oscuro en tema oscuro */
-  color: var(--text); /* Negro en tema claro, blanco en tema oscuro */
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  text-align: center;
-  margin: 2rem 0 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  position: relative;
-}
-
-#birthdays h2:after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: var(--divider-color); /* Azul claro */
-  margin-top: 0.5rem;
-}
-
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   padding: 0 1rem;
 }
 
+/* Tarjetas de mes */
+.month-card {
+  background: var(--month-card-bg); /* Gris oscuro o azul claro según tema */
+  border: 1px solid var(--divider-color); /* Borde azul claro */
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: cardFadeIn 0.5s ease forwards;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.month-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.month-card h3 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  color: var(--primary); /* Azul según tema */
+  font-weight: 600;
+}
+
+/* Contenedor de mini-tarjetas dentro de cada mes */
+.month-card .person-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Mini-tarjetas de colaboradores */
+.person-card {
+  min-height: 100px; /* Altura fija para compactar */
+  width: 150px; /* Ancho fijo para consistencia */
+  background: var(--birthday-card-bg); /* Azul oscuro o medio según tema */
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.person-card:hover {
+  border: 1px solid var(--secondary); /* Azul más oscuro al hacer hover */
+  background: var(--birthday-card-bg); /* Sin cambio de fondo por simplicidad */
+}
+
+.person-card .day-circle {
+  width: 30px;
+  height: 30px;
+  background: #FFFFFF; /* Círculo blanco */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.person-card .day-circle span {
+  font-size: 1rem;
+  color: #333333; /* Número negro */
+  font-weight: 600;
+}
+
+.person-card p {
+  font-size: 0.9rem;
+  color: #FFFFFF; /* Nombre en blanco */
+  margin: 0;
+  text-transform: uppercase; /* Para imitar el estilo de la imagen */
+  font-weight: 600;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.month-card:nth-child(1) { animation-delay: 0.1s; }
+.month-card:nth-child(2) { animation-delay: 0.2s; }
+.month-card:nth-child(3) { animation-delay: 0.3s; }
+.month-card:nth-child(4) { animation-delay: 0.4s; }
+.month-card:nth-child(5) { animation-delay: 0.5s; }
+.month-card:nth-child(6) { animation-delay: 0.6s; }
+.month-card:nth-child(7) { animation-delay: 0.7s; }
+.month-card:nth-child(8) { animation-delay: 0.8s; }
+.month-card:nth-child(9) { animation-delay: 0.9s; }
+.month-card:nth-child(10) { animation-delay: 1.0s; }
+.month-card:nth-child(11) { animation-delay: 1.1s; }
+.month-card:nth-child(12) { animation-delay: 1.2s; }
+
+/* Estilo para las otras tarjetas (no cumpleaños) */
 .card {
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -398,68 +484,6 @@ body.light-theme .sidebar {
   border: 1px solid var(--primary);
   background: radial-gradient(circle, rgba(0, 163, 255, 0.1) 0%, var(--card-bg) 70%);
 }
-
-/* Estilo específico para las tarjetas de cumpleaños */
-#birthdays .card {
-  min-height: 100px; /* Altura fija para compactar */
-  width: 150px; /* Ancho fijo para consistencia */
-  background: var(--birthday-card-bg); /* Azul oscuro o medio según tema */
-  border-radius: 8px;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-#birthdays .card:hover {
-  border: 1px solid var(--secondary); /* Azul más oscuro al hacer hover */
-  background: var(--birthday-card-bg); /* Sin cambio de fondo por simplicidad */
-}
-
-#birthdays .card .day-circle {
-  width: 30px;
-  height: 30px;
-  background: #FFFFFF; /* Círculo blanco */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-}
-
-#birthdays .card .day-circle span {
-  font-size: 1rem;
-  color: #333333; /* Número negro */
-  font-weight: 600;
-}
-
-#birthdays .card p {
-  font-size: 0.9rem;
-  color: #FFFFFF; /* Nombre en blanco */
-  margin: 0;
-  text-transform: uppercase; /* Para imitar el estilo de la imagen */
-  font-weight: 600;
-}
-
-@keyframes cardFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
-.card:nth-child(5) { animation-delay: 0.5s; }
-.card:nth-child(6) { animation-delay: 0.6s; }
 
 .card-image-container {
   height: 150px;
