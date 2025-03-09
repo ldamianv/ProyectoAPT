@@ -30,6 +30,29 @@
       { title: "Reporte de Lento Movimiento", desc: "Identifica productos de lento movimiento.", img: "Movimientos.jpeg", link: "#" },
       { title: "Sloting", desc: "Optimiza la ubicación de productos.", img: "Reporte.jpeg", link: "#" },
       { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", link: "#" }
+    ],
+    birthdays: [
+      { month: "Enero", name: "Luis Damián", date: "02-01", img: "cumpleanos.jpg" },
+      { month: "Febrero", name: "José Loza", date: "12-02", img: "cumpleanos.jpg" },
+      { month: "Febrero", name: "Juan Cossio", date: "21-02", img: "cumpleanos.jpg" },
+      { month: "Marzo", name: "Fabian Laura", date: "15-03", img: "cumpleanos.jpg" },
+      { month: "Marzo", name: "Alejandro Evangelista", date: "19-03", img: "cumpleanos.jpg" },
+      { month: "Abril", name: "Iomar Bendezú", date: "14-04", img: "cumpleanos.jpg" },
+      { month: "Mayo", name: "Jhon Gutierrez", date: "01-05", img: "cumpleanos.jpg" },
+      { month: "Mayo", name: "Johana Yactayo", date: "19-05", img: "cumpleanos.jpg" },
+      { month: "Mayo", name: "Carlos Barillas", date: "25-05", img: "cumpleanos.jpg" },
+      { month: "Mayo", name: "Manuel Magallanes", date: "31-05", img: "cumpleanos.jpg" },
+      { month: "Junio", name: "Julio Pachas", date: "01-06", img: "cumpleanos.jpg" },
+      { month: "Junio", name: "Hugo Chavez", date: "25-06", img: "cumpleanos.jpg" },
+      { month: "Julio", name: "Florencio Vilca", date: "07-07", img: "cumpleanos.jpg" },
+      { month: "Julio", name: "Josemaria Chumpitaz", date: "12-07", img: "cumpleanos.jpg" },
+      { month: "Julio", name: "Giancarlo Nolasko", date: "15-07", img: "cumpleanos.jpg" },
+      { month: "Julio", name: "Luis Medina", date: "22-07", img: "cumpleanos.jpg" },
+      { month: "Septiembre", name: "Miguel Pachas", date: "09-09", img: "cumpleanos.jpg" },
+      { month: "Septiembre", name: "James Villanueva", date: "17-09", img: "cumpleanos.jpg" },
+      { month: "Octubre", name: "Mario Magallanes", date: "18-10", img: "cumpleanos.jpg" },
+      { month: "Noviembre", name: "Jesus Llanos", date: "09-11", img: "cumpleanos.jpg" },
+      { month: "Diciembre", name: "Ener Cipriano", date: "12-12", img: "cumpleanos.jpg" }
     ]
   };
 
@@ -38,27 +61,58 @@
     const cards = sectionsData[sectionId] || [];
     const filteredCards = filter 
       ? cards.filter(card => 
-          card.title.toLowerCase().includes(filter.toLowerCase()) || 
-          card.desc.toLowerCase().includes(filter.toLowerCase()))
+          card.title?.toLowerCase().includes(filter.toLowerCase()) || 
+          card.desc?.toLowerCase().includes(filter.toLowerCase()) ||
+          card.name?.toLowerCase().includes(filter.toLowerCase()) || 
+          card.month?.toLowerCase().includes(filter.toLowerCase()))
       : cards;
-    
-    container.innerHTML = filteredCards.map(card => `
-      <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
-        <div class="card-image-container">
-          <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150">
-        </div>
-        <h3>${card.title}</h3>
-        <p>${card.desc}</p>
-        ${card.title === 'Traslados Interplantas' && sectionId === 'cp' 
-          ? `<a href="#" onclick="openTrasladosModal(); return false;">Registrar</a>` 
-          : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
-      </div>
-    `).join('');
 
-    const cardElements = container.querySelectorAll('.card');
-    cardElements.forEach((card, index) => {
-      card.style.animationDelay = `${index * 0.1}s`;
-    });
+    if (sectionId === 'birthdays') {
+      // Lista de meses en orden
+      const months = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+      ];
+
+      // Agrupar cumpleaños por mes
+      let html = '';
+      months.forEach(month => {
+        const monthCards = filteredCards.filter(card => card.month === month);
+        if (monthCards.length > 0) {
+          html += `<h2 style="color: var(--primary); margin-top: 2rem; font-size: 1.5rem; font-weight: 600;">${month}</h2>`;
+          html += '<div class="card-container">';
+          html += monthCards.map((card, index) => `
+            <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
+              <div class="card-image-container">
+                <img src="Imagenes/${card.img}" alt="${card.name}" width="250" height="150">
+              </div>
+              <h3>${card.name}</h3>
+              <p>${card.date}</p>
+            </div>
+          `).join('');
+          html += '</div>';
+        }
+      });
+      container.innerHTML = html;
+    } else {
+      container.innerHTML = filteredCards.map(card => `
+        <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
+          <div class="card-image-container">
+            <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150">
+          </div>
+          <h3>${card.title}</h3>
+          <p>${card.desc}</p>
+          ${card.title === 'Traslados Interplantas' && sectionId === 'cp' 
+            ? `<a href="#" onclick="openTrasladosModal(); return false;">Registrar</a>` 
+            : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
+        </div>
+      `).join('');
+
+      const cardElements = container.querySelectorAll('.card');
+      cardElements.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+    }
   }
 
   function toggleDropdown(menuId) {
@@ -89,7 +143,6 @@
   
     sidebar.classList.toggle('active');
   
-    // Si la barra lateral se está cerrando, ocultar todos los menús desplegables
     if (!sidebar.classList.contains('active')) {
       dropdowns.forEach(dropdown => {
         dropdown.classList.remove('active');
@@ -100,7 +153,8 @@
     }
   
     document.querySelector('.container').classList.toggle('sidebar-active');
-}
+  }
+
   function openMovimientoModal() {
     alert('Abrir modal para registrar movimiento');
   }
@@ -134,7 +188,6 @@
     }
   }
 
-  // Función de búsqueda
   function setupSearch() {
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('input', () => {
