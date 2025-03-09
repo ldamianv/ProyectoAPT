@@ -335,6 +335,25 @@ body.light-theme .sidebar {
   text-align: center;
 }
 
+/* Estilo específico para la sección de cumpleaños */
+#birthdays {
+  background: url('https://www.transparenttextures.com/patterns/confetti.png') repeat, var(--background);
+  background-size: 200px 200px;
+  background-opacity: 0.2;
+  position: relative;
+}
+
+#birthdays h2 {
+  background: #1E3A8A; /* Azul oscuro como en la figura */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 2rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -364,6 +383,46 @@ body.light-theme .sidebar {
   box-shadow: 0 8px 20px var(--shadow);
   border: 1px solid var(--primary);
   background: radial-gradient(circle, rgba(0, 163, 255, 0.1) 0%, var(--card-bg) 70%);
+}
+
+/* Estilo específico para las tarjetas de cumpleaños */
+#birthdays .card {
+  min-height: 150px; /* Más compacta */
+  background: linear-gradient(180deg, #FFFFFF, #E6F0FA); /* Gradiente blanco a azul claro */
+  border: 1px solid #87CEEB; /* Borde azul suave */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#birthdays .card:hover {
+  border: 1px solid var(--secondary);
+  background: linear-gradient(180deg, #E6F0FA, #D1E3FA); /* Gradiente más oscuro al hacer hover */
+}
+
+#birthdays .card .icon-container {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+#birthdays .card .icon-container i {
+  color: white;
+  font-size: 1.2rem;
+}
+
+#birthdays .card p {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0;
+  opacity: 1; /* Sin opacidad para mayor claridad */
 }
 
 @keyframes cardFadeIn {
