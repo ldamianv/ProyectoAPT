@@ -16,6 +16,9 @@ body.dark-theme {
   --primary: #00A3FF; /* Azul vivo para botones y acentos */
   --secondary: #007ACC; /* Azul más oscuro para hover */
   --shadow: rgba(0, 163, 255, 0.2); /* Sombra azul */
+  --birthday-card-bg: #1E3A8A; /* Azul oscuro para tarjetas de cumpleaños */
+  --month-header-bg: #1E3A8A; /* Azul oscuro para encabezados de mes */
+  --divider-color: #87CEEB; /* Azul claro para líneas divisorias */
 }
 
 /* Tema claro (Azul #005B9A y blanco, colores de tu empresa) */
@@ -30,6 +33,9 @@ body.light-theme {
   --primary: #005B9A; /* Azul medio oscuro para botones y acentos */
   --secondary: #003366; /* Azul más oscuro para hover */
   --shadow: rgba(0, 0, 0, 0.1); /* Sombra gris clara */
+  --birthday-card-bg: #005B9A; /* Azul medio oscuro para tarjetas de cumpleaños */
+  --month-header-bg: #E6F0FA; /* Azul claro para encabezados de mes */
+  --divider-color: #87CEEB; /* Azul claro para líneas divisorias */
 }
 
 body {
@@ -337,27 +343,35 @@ body.light-theme .sidebar {
 
 /* Estilo específico para la sección de cumpleaños */
 #birthdays {
-  background: url('https://www.transparenttextures.com/patterns/confetti.png') repeat, var(--background);
-  background-size: 200px 200px;
-  background-opacity: 0.2;
+  background: var(--background); /* Fondo blanco o gradiente según tema */
   position: relative;
 }
 
 #birthdays h2 {
-  background: #1E3A8A; /* Azul oscuro como en la figura */
-  color: white;
+  background: var(--month-header-bg); /* Azul claro en tema claro, azul oscuro en tema oscuro */
+  color: var(--text); /* Negro en tema claro, blanco en tema oscuro */
   padding: 0.5rem 1rem;
   border-radius: 8px;
   text-align: center;
-  margin: 2rem 0 1rem;
+  margin: 2rem 0 0.5rem;
   font-size: 1.5rem;
   font-weight: 600;
+  position: relative;
+}
+
+#birthdays h2:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--divider-color); /* Azul claro */
+  margin-top: 0.5rem;
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
   padding: 0 1rem;
 }
 
@@ -387,25 +401,27 @@ body.light-theme .sidebar {
 
 /* Estilo específico para las tarjetas de cumpleaños */
 #birthdays .card {
-  min-height: 150px; /* Más compacta */
-  background: linear-gradient(180deg, #FFFFFF, #E6F0FA); /* Gradiente blanco a azul claro */
-  border: 1px solid #87CEEB; /* Borde azul suave */
+  min-height: 100px; /* Altura fija para compactar */
+  width: 150px; /* Ancho fijo para consistencia */
+  background: var(--birthday-card-bg); /* Azul oscuro o medio según tema */
+  border-radius: 8px;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  text-align: center;
 }
 
 #birthdays .card:hover {
-  border: 1px solid var(--secondary);
-  background: linear-gradient(180deg, #E6F0FA, #D1E3FA); /* Gradiente más oscuro al hacer hover */
+  border: 1px solid var(--secondary); /* Azul más oscuro al hacer hover */
+  background: var(--birthday-card-bg); /* Sin cambio de fondo por simplicidad */
 }
 
-#birthdays .card .icon-container {
-  width: 40px;
-  height: 40px;
-  background: var(--primary);
+#birthdays .card .day-circle {
+  width: 30px;
+  height: 30px;
+  background: #FFFFFF; /* Círculo blanco */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -413,16 +429,18 @@ body.light-theme .sidebar {
   margin-bottom: 0.5rem;
 }
 
-#birthdays .card .icon-container i {
-  color: white;
-  font-size: 1.2rem;
+#birthdays .card .day-circle span {
+  font-size: 1rem;
+  color: #333333; /* Número negro */
+  font-weight: 600;
 }
 
 #birthdays .card p {
-  font-size: 1rem;
-  color: var(--text);
+  font-size: 0.9rem;
+  color: #FFFFFF; /* Nombre en blanco */
   margin: 0;
-  opacity: 1; /* Sin opacidad para mayor claridad */
+  text-transform: uppercase; /* Para imitar el estilo de la imagen */
+  font-weight: 600;
 }
 
 @keyframes cardFadeIn {
