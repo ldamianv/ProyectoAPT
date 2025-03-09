@@ -74,26 +74,28 @@
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
       ];
 
-      // Agrupar cumpleaños por mes
+      // Generar una tarjeta por mes
       let html = '';
-      months.forEach(month => {
+      months.forEach((month, monthIndex) => {
         const monthCards = filteredCards.filter(card => card.month === month);
-        if (monthCards.length > 0) {
-          html += `<h2>${month}</h2>`;
-          html += '<div class="card-container">';
-          html += monthCards.map((card, index) => {
-            const day = card.date.split('-')[0]; // Extraer el día (por ejemplo, "02" de "02-01")
-            return `
-              <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
-                <div class="day-circle">
-                  <span>${day}</span>
-                </div>
-                <p>${card.name.toUpperCase()}</p>
-              </div>
-            `;
-          }).join('');
-          html += '</div>';
-        }
+        html += `
+          <div class="month-card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${monthIndex * 0.1}s;">
+            <h3>${month}</h3>
+            <div class="person-cards">
+              ${monthCards.map((card, index) => {
+                const day = card.date.split('-')[0]; // Extraer el día (por ejemplo, "02" de "02-01")
+                return `
+                  <div class="person-card">
+                    <div class="day-circle">
+                      <span>${day}</span>
+                    </div>
+                    <p>${card.name.toUpperCase()}</p>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
       });
       container.innerHTML = html;
     } else {
