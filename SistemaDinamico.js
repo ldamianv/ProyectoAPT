@@ -14,7 +14,7 @@
       { title: "Liquidaciones", desc: "Registra las liquidaciones de los despachos.", img: "Ventas.jpeg", link: "#" }
     ],
     am: [
-      { title: "FEFO", desc: "Registre los movimientos de productos.", img: "Fefox.jpg", link: "#" },
+      { title: "FEFO", desc: "Registra la rotación de productos por fecha de vencimiento.", img: "Fefox.jpg", link: "#" },
       { title: "Ingreso de Productos", desc: "Agrega nuevos productos al inventario.", img: "Produccion.jpg", link: "#" }
     ],
     so: [
@@ -240,11 +240,150 @@
     }
   };
 
+  // URL del Google Apps Script (usando la URL que me enviaste)
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybKLAxQy4AaRM-qIYxnPM7sYrLD8MnglCIyV0rW-jc6hHRrPuzeVilaqsTvM1A5Z52/exec";
+
+  // Variables globales para almacenar los datos de FEFO
+  let locationsData = [];
+  let materialsData = {};
+  let originalData = [];
+
+  // Cargar datos del almacén
+  async function loadFefoData() {
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL);
+      if (!response.ok) {
+        throw new Error("No se pudo cargar los datos del Google Sheet");
+      }
+      const data = await response.json();
+      locationsData = data.locations;
+      materialsData = data.materials;
+      originalData = JSON.parse(JSON.stringify(locationsData)); // Copia profunda para descartar cambios
+      renderFefoRegisterTable();
+      applyFilters(); // Aplicar filtros iniciales
+    } catch (error) {
+      console.error("Error al cargar los datos:", error);
+      alert("Error al cargar los datos del almacén");
+    }
+  }
+
+  // Mostrar el contenido de FEFO al hacer clic en "Ver Detalles"
+  function showFefoContent() {
+    const fefoContent = document.getElementById("fefoContent");
+    fefoContent.style.display = fefoContent.style.display === "none" ? "block" : "none";
+    showTab("fefo-register");
+  }
+
+  // Cambiar entre pestañas
+  function showTab(tabId) {
+    document.querySelectorAll(".tab-content").forEach(tab => {
+      tab.classList.remove("active");
+      tab.style.display = "none";
+    });
+    document.querySelectorAll(".tab-button").forEach(button => {
+      button.classList.remove("active");
+    });
+    const selectedTab = document.getElementById(tabId);
+    selectedTab.style.display = "block";
+    selectedTab.classList.add("active");
+    const selectedButton = document.querySelector(`button[onclick="showTab('${tabId}')"]`);
+    selectedButton.classList.add("active");
+
+    if (tabId === "fefo-register") {
+      renderFefoRegisterTable();
+    }
+  }
+
+  // Renderizar la tabla editable en la pestaña Registro
+  function renderFefoRegisterTable() {
+    const tableBody = document.querySelector("#fefoRegisterTable tbody");
+    const filterBlock = document.getElementById("filter-block").value;
+    const filterSku = document.getElementById("filter-sku").value.toUpperCase();
+
+    let filteredData = locationsData;
+    if (filterBlock) {
+      filteredData = filteredData.filter(row => row.ubicacion.startsWith(filterBlock));
+    }
+    if (filterSku) {
+      filteredData = filteredData.filter(row => row.codigo && row.codigo.toUpperCase().includes(filterSku));
+    }
+
+    let html = "";
+    filteredData.forEach((row, index) => {
+      const globalIndex = locationsData.indexOf(row); // Índice global para guardar cambios
+      html += `
+        <tr>
+          <td>${row.ubicacion}</td>
+          <td><input type="text" value="${row.codigo || ''}" onchange="updateField(${globalIndex}, 'codigo', this.value)"></td>
+          <td><input type="text" value="${row.material || ''}" id="material-${globalIndex}" onchange="updateField(${globalIndex}, 'material', this.value)"></td>
+          <td><input type="number" value="${row.cantidad}" onchange="updateField(${globalIndex}, 'cantidad', this.value)"></td>
+          <td><input type="date" value="${row.fechaProduccion}" onchange="updateField(${globalIndex}, 'fechaProduccion', this.value)"></td>
+          <td><textarea onchange="updateField(${globalIndex}, 'observaciones', this.value)">${row.observaciones}</textarea></td>
+        </tr>
+      `;
+    });
+    tableBody.innerHTML = html;
+  }
+
+  // Actualizar un campo y autocompletar el Material si se cambia el Código
+  function updateField(index, field, value) {
+    locationsData[index][field] = value;
+    if (field === "codigo") {
+      const materialInput = document.getElementById(`material-${index}`);
+      materialInput.value = materialsData[value] || "";
+      locationsData[index].material = materialsData[value] || "";
+    }
+  }
+
+  // Aplicar filtros
+  function applyFilters() {
+    renderFefoRegisterTable();
+  }
+
+  // Guardar cambios en el Google Sheet
+  async function saveChanges() {
+    try {
+      for (let i = 0; i < locationsData.length; i++) {
+        const row = locationsData[i];
+        const originalRow = originalData[i];
+        if (JSON.stringify(row) !== JSON.stringify(originalRow)) {
+          const data = {
+            rowIndex: i,
+            codigo: row.codigo,
+            material: row.material,
+            cantidad: parseInt(row.cantidad) || 0,
+            fechaProduccion: row.fechaProduccion,
+            observaciones: row.observaciones
+          };
+          const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" }
+          });
+          if (!response.ok) throw new Error("Error al guardar los cambios");
+        }
+      }
+      originalData = JSON.parse(JSON.stringify(locationsData)); // Actualizar la copia original
+      alert("Cambios guardados con éxito");
+    } catch (error) {
+      console.error("Error al guardar los cambios:", error);
+      alert("Error al guardar los cambios");
+    }
+  }
+
+  // Descartar cambios
+  function discardChanges() {
+    locationsData = JSON.parse(JSON.stringify(originalData));
+    renderFefoRegisterTable();
+    alert("Cambios descartados");
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     renderCards('cp');
     createParticles();
     document.querySelector('button[data-section="cp"]').classList.add('active');
     setupSearch();
+    loadFefoData(); // Añadido para cargar los datos de FEFO
   });
 
   window.toggleDropdown = toggleDropdown;
@@ -255,141 +394,10 @@
   window.openTrasladosModal = openTrasladosModal;
   window.closeTrasladosModal = closeTrasladosModal;
   window.saveTrasladosReport = saveTrasladosReport;
+  window.showFefoContent = showFefoContent; // Añadido para la función FEFO
+  window.showTab = showTab; // Añadido para la función de pestañas
+  window.updateField = updateField; // Añadido para la actualización de campos
+  window.applyFilters = applyFilters; // Añadido para los filtros
+  window.saveChanges = saveChanges; // Añadido para guardar cambios
+  window.discardChanges = discardChanges; // Añadido para descartar cambios
 })();
-// URL del Google Apps Script (usando la URL que me enviaste)
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybKLAxQy4AaRM-qIYxnPM7sYrLD8MnglCIyV0rW-jc6hHRrPuzeVilaqsTvM1A5Z52/exec";
-
-// Variables globales para almacenar los datos de FEFO
-let locationsData = [];
-let materialsData = {};
-let originalData = [];
-
-// Cargar datos del almacén
-async function loadFefoData() {
-  try {
-    const response = await fetch(GOOGLE_SCRIPT_URL);
-    if (!response.ok) {
-      throw new Error("No se pudo cargar los datos del Google Sheet");
-    }
-    const data = await response.json();
-    locationsData = data.locations;
-    materialsData = data.materials;
-    originalData = JSON.parse(JSON.stringify(locationsData)); // Copia profunda para descartar cambios
-    renderFefoRegisterTable();
-    applyFilters(); // Aplicar filtros iniciales
-  } catch (error) {
-    console.error("Error al cargar los datos:", error);
-    alert("Error al cargar los datos del almacén");
-  }
-}
-
-// Mostrar el contenido de FEFO al hacer clic en "Ver Detalles"
-function showFefoContent() {
-  const fefoContent = document.getElementById("fefoContent");
-  fefoContent.style.display = fefoContent.style.display === "none" ? "block" : "none";
-  showTab("fefo-register");
-}
-
-// Cambiar entre pestañas
-function showTab(tabId) {
-  document.querySelectorAll(".tab-content").forEach(tab => {
-    tab.classList.remove("active");
-    tab.style.display = "none";
-  });
-  document.querySelectorAll(".tab-button").forEach(button => {
-    button.classList.remove("active");
-  });
-  const selectedTab = document.getElementById(tabId);
-  selectedTab.style.display = "block";
-  selectedTab.classList.add("active");
-  const selectedButton = document.querySelector(`button[onclick="showTab('${tabId}')"]`);
-  selectedButton.classList.add("active");
-
-  if (tabId === "fefo-register") {
-    renderFefoRegisterTable();
-  }
-}
-
-// Renderizar la tabla editable en la pestaña Registro
-function renderFefoRegisterTable() {
-  const tableBody = document.querySelector("#fefoRegisterTable tbody");
-  const filterBlock = document.getElementById("filter-block").value;
-  const filterSku = document.getElementById("filter-sku").value.toUpperCase();
-
-  let filteredData = locationsData;
-  if (filterBlock) {
-    filteredData = filteredData.filter(row => row.ubicacion.startsWith(filterBlock));
-  }
-  if (filterSku) {
-    filteredData = filteredData.filter(row => row.codigo && row.codigo.toUpperCase().includes(filterSku));
-  }
-
-  let html = "";
-  filteredData.forEach((row, index) => {
-    const globalIndex = locationsData.indexOf(row); // Índice global para guardar cambios
-    html += `
-      <tr>
-        <td>${row.ubicacion}</td>
-        <td><input type="text" value="${row.codigo || ''}" onchange="updateField(${globalIndex}, 'codigo', this.value)"></td>
-        <td><input type="text" value="${row.material || ''}" id="material-${globalIndex}" onchange="updateField(${globalIndex}, 'material', this.value)"></td>
-        <td><input type="number" value="${row.cantidad}" onchange="updateField(${globalIndex}, 'cantidad', this.value)"></td>
-        <td><input type="date" value="${row.fechaProduccion}" onchange="updateField(${globalIndex}, 'fechaProduccion', this.value)"></td>
-        <td><textarea onchange="updateField(${globalIndex}, 'observaciones', this.value)">${row.observaciones}</textarea></td>
-      </tr>
-    `;
-  });
-  tableBody.innerHTML = html;
-}
-
-// Actualizar un campo y autocompletar el Material si se cambia el Código
-function updateField(index, field, value) {
-  locationsData[index][field] = value;
-  if (field === "codigo") {
-    const materialInput = document.getElementById(`material-${index}`);
-    materialInput.value = materialsData[value] || "";
-    locationsData[index].material = materialsData[value] || "";
-  }
-}
-
-// Aplicar filtros
-function applyFilters() {
-  renderFefoRegisterTable();
-}
-
-// Guardar cambios en el Google Sheet
-async function saveChanges() {
-  try {
-    for (let i = 0; i < locationsData.length; i++) {
-      const row = locationsData[i];
-      const originalRow = originalData[i];
-      if (JSON.stringify(row) !== JSON.stringify(originalRow)) {
-        const data = {
-          rowIndex: i,
-          codigo: row.codigo,
-          material: row.material,
-          cantidad: parseInt(row.cantidad) || 0,
-          fechaProduccion: row.fechaProduccion,
-          observaciones: row.observaciones
-        };
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: { "Content-Type": "application/json" }
-        });
-        if (!response.ok) throw new Error("Error al guardar los cambios");
-      }
-    }
-    originalData = JSON.parse(JSON.stringify(locationsData)); // Actualizar la copia original
-    alert("Cambios guardados con éxito");
-  } catch (error) {
-    console.error("Error al guardar los cambios:", error);
-    alert("Error al guardar los cambios");
-  }
-}
-
-// Descartar cambios
-function discardChanges() {
-  locationsData = JSON.parse(JSON.stringify(originalData));
-  renderFefoRegisterTable();
-  alert("Cambios descartados");
-}
