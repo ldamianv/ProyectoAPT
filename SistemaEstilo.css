@@ -751,3 +751,117 @@ body.light-theme .sidebar {
   left: 0;
   width: 100%;
 }
+.fefo-content {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.fefo-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  background: #1A3C5A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tab-button:hover {
+  background: #25547A;
+}
+
+.tab-button.active {
+  background: #0F2A44;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.fefo-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.fefo-filters label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.fefo-filters select,
+.fefo-filters input {
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.fefo-register table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+}
+
+.fefo-register th,
+.fefo-register td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.fefo-register th {
+  background: var(--primary);
+  color: white;
+}
+
+.fefo-register input,
+.fefo-register textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.fefo-register textarea {
+  resize: vertical;
+  min-height: 50px;
+}
+
+.fefo-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.fefo-actions button {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.fefo-actions button:hover {
+  background: var(--primary-hover);
+}
