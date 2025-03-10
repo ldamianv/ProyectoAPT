@@ -68,13 +68,11 @@
       : cards;
 
     if (sectionId === 'birthdays') {
-      // Lista de meses en orden
       const months = [
         "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
       ];
 
-      // Generar una tarjeta por mes
       let html = '';
       months.forEach((month, monthIndex) => {
         const monthCards = filteredCards.filter(card => card.month === month);
@@ -83,7 +81,7 @@
             <h3>${month}</h3>
             <div class="person-cards">
               ${monthCards.map((card, index) => {
-                const day = card.date.split('-')[0]; // Extraer el día (por ejemplo, "02" de "02-01")
+                const day = card.date.split('-')[0];
                 return `
                   <div class="person-card">
                     <div class="day-circle">
@@ -133,6 +131,10 @@
     document.getElementById(sectionId).classList.add('active');
     const searchValue = document.getElementById('search-bar').value;
     renderCards(sectionId, searchValue);
+
+    // Ocultar el contenido de FEFO al cambiar de sección
+    const fefoContent = document.getElementById('fefoContent');
+    fefoContent.style.display = 'none';
 
     document.querySelectorAll('.dropdown-content li button').forEach(btn => {
       btn.classList.remove('active');
@@ -242,15 +244,12 @@
     }
   };
 
-  // URL del Google Apps Script (usando la URL que me enviaste)
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybKLAxQy4AaRM-qIYxnPM7sYrLD8MnglCIyV0rW-jc6hHRrPuzeVilaqsTvM1A5Z52/exec";
 
-  // Variables globales para almacenar los datos de FEFO
   let locationsData = [];
   let materialsData = {};
   let originalData = [];
 
-  // Cargar datos del almacén
   async function loadFefoData() {
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL);
@@ -260,23 +259,24 @@
       const data = await response.json();
       locationsData = data.locations;
       materialsData = data.materials;
-      originalData = JSON.parse(JSON.stringify(locationsData)); // Copia profunda para descartar cambios
+      originalData = JSON.parse(JSON.stringify(locationsData));
       renderFefoRegisterTable();
-      applyFilters(); // Aplicar filtros iniciales
+      applyFilters();
     } catch (error) {
       console.error("Error al cargar los datos:", error);
       alert("Error al cargar los datos del almacén");
     }
   }
 
-  // Mostrar el contenido de FEFO al hacer clic en "Registrar"
   function showFefoContent() {
-    const fefoContent = document.getElementById("fefoContent");
-    fefoContent.style.display = fefoContent.style.display === "none" ? "block" : "none";
-    showTab("fefo-register");
+    const activeSection = document.querySelector('.form-section.active');
+    const fefoContent = document.getElementById('fefoContent');
+    if (activeSection.id === 'am') {
+      fefoContent.style.display = fefoContent.style.display === 'none' ? 'block' : 'none';
+      showTab('fefo-register');
+    }
   }
 
-  // Cambiar entre pestañas
   function showTab(tabId) {
     document.querySelectorAll(".tab-content").forEach(tab => {
       tab.classList.remove("active");
@@ -296,7 +296,6 @@
     }
   }
 
-  // Renderizar la tabla editable en la pestaña Registro
   function renderFefoRegisterTable() {
     const tableBody = document.querySelector("#fefoRegisterTable tbody");
     const filterBlock = document.getElementById("filter-block").value;
@@ -312,7 +311,7 @@
 
     let html = "";
     filteredData.forEach((row, index) => {
-      const globalIndex = locationsData.indexOf(row); // Índice global para guardar cambios
+      const globalIndex = locationsData.indexOf(row);
       html += `
         <tr>
           <td>${row.ubicacion}</td>
@@ -327,7 +326,6 @@
     tableBody.innerHTML = html;
   }
 
-  // Actualizar un campo y autocompletar el Material si se cambia el Código
   function updateField(index, field, value) {
     locationsData[index][field] = value;
     if (field === "codigo") {
@@ -337,12 +335,10 @@
     }
   }
 
-  // Aplicar filtros
   function applyFilters() {
     renderFefoRegisterTable();
   }
 
-  // Guardar cambios en el Google Sheet
   async function saveChanges() {
     try {
       for (let i = 0; i < locationsData.length; i++) {
@@ -365,7 +361,7 @@
           if (!response.ok) throw new Error("Error al guardar los cambios");
         }
       }
-      originalData = JSON.parse(JSON.stringify(locationsData)); // Actualizar la copia original
+      originalData = JSON.parse(JSON.stringify(locationsData));
       alert("Cambios guardados con éxito");
     } catch (error) {
       console.error("Error al guardar los cambios:", error);
@@ -373,7 +369,6 @@
     }
   }
 
-  // Descartar cambios
   function discardChanges() {
     locationsData = JSON.parse(JSON.stringify(originalData));
     renderFefoRegisterTable();
@@ -385,7 +380,7 @@
     createParticles();
     document.querySelector('button[data-section="cp"]').classList.add('active');
     setupSearch();
-    loadFefoData(); // Añadido para cargar los datos de FEFO
+    loadFefoData();
   });
 
   window.toggleDropdown = toggleDropdown;
@@ -396,10 +391,10 @@
   window.openTrasladosModal = openTrasladosModal;
   window.closeTrasladosModal = closeTrasladosModal;
   window.saveTrasladosReport = saveTrasladosReport;
-  window.showFefoContent = showFefoContent; // Añadido para la función FEFO
-  window.showTab = showTab; // Añadido para la función de pestañas
-  window.updateField = updateField; // Añadido para la actualización de campos
-  window.applyFilters = applyFilters; // Añadido para los filtros
-  window.saveChanges = saveChanges; // Añadido para guardar cambios
-  window.discardChanges = discardChanges; // Añadido para descartar cambios
+  window.showFefoContent = showFefoContent;
+  window.showTab = showTab;
+  window.updateField = updateField;
+  window.applyFilters = applyFilters;
+  window.saveChanges = saveChanges;
+  window.discardChanges = discardChanges;
 })();
