@@ -106,9 +106,11 @@
           </div>
           <h3>${card.title}</h3>
           <p>${card.desc}</p>
-          ${card.title === 'Traslados Interplantas' && sectionId === 'cp' 
-            ? `<a href="#" onclick="openTrasladosModal(); return false;">Registrar</a>` 
-            : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
+          ${card.title === 'FEFO' && sectionId === 'am' 
+            ? `<a href="#" onclick="showFefoContent(); return false;">Registrar</a>` 
+            : card.title === 'Traslados Interplantas' && sectionId === 'cp' 
+              ? `<a href="#" onclick="openTrasladosModal(); return false;">Registrar</a>` 
+              : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
         </div>
       `).join('');
 
@@ -267,7 +269,7 @@
     }
   }
 
-  // Mostrar el contenido de FEFO al hacer clic en "Ver Detalles"
+  // Mostrar el contenido de FEFO al hacer clic en "Registrar"
   function showFefoContent() {
     const fefoContent = document.getElementById("fefoContent");
     fefoContent.style.display = fefoContent.style.display === "none" ? "block" : "none";
