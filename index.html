@@ -2,67 +2,112 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Softys Cañete</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Dinámico</title>
   <link rel="stylesheet" href="SistemaEstilo.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="dark-theme">
+<body class="light-theme">
   <div class="particles"></div>
-  <header>
-    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
-    <span class="header-title">APT Cañete-Supply Chain</span>
-    <div class="header-controls">
-      <div class="search-container">
-        <input type="text" id="search-bar" placeholder="Buscar reportes..." aria-label="Buscar">
-        <i class="fas fa-search search-icon"></i>
-      </div>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
-        <i class="fas fa-sun"></i>
+  <div class="sidebar">
+    <div class="logo">
+      <img src="Imagenes/Logo.png" alt="Logo" width="40">
+      <span>Sistema Dinámico</span>
+    </div>
+    <button class="toggle-btn" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav>
+      <ul>
+        <li>
+          <button class="dropdown-btn" onclick="toggleDropdown('cp-menu')">
+            Control de Patio <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-content" id="cp-menu">
+            <li><button data-section="cp" onclick="showSection('cp')">Control de Patio</button></li>
+          </ul>
+        </li>
+        <li>
+          <button class="dropdown-btn" onclick="toggleDropdown('ad-menu')">
+            Atención de Despachos <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-content" id="ad-menu">
+            <li><button data-section="ad" onclick="showSection('ad')">Atención de Despachos</button></li>
+          </ul>
+        </li>
+        <li>
+          <button class="dropdown-btn" onclick="toggleDropdown('am-menu')">
+            Almacenero Montacarguista <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-content" id="am-menu">
+            <li><button data-section="am" onclick="showSection('am')">Almacenero Montacarguista</button></li>
+          </ul>
+        </li>
+        <li>
+          <button class="dropdown-btn" onclick="toggleDropdown('so-menu')">
+            Soporte Operativo <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-content" id="so-menu">
+            <li><button data-section="so" onclick="showSection('so')">Soporte Operativo</button></li>
+          </ul>
+        </li>
+        <li>
+          <button class="dropdown-btn" onclick="toggleDropdown('reportes-menu')">
+            Reportes Generales <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-content" id="reportes-menu">
+            <li><button data-section="reportes-generales" onclick="showSection('reportes-generales')">Reportes Generales</button></li>
+          </ul>
+        </li>
+        <li>
+          <button class="dropdown-btn" onclick="toggleDropdown('birthdays-menu')">
+            Cumpleaños <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-content" id="birthdays-menu">
+            <li><button data-section="birthdays" onclick="showSection('birthdays')">Cumpleaños</button></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container">
+    <header>
+      <button class="toggle-btn-mobile" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
       </button>
-    </div>
-  </header>
+      <input type="text" id="search-bar" placeholder="Buscar...">
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+      </button>
+    </header>
 
-  <nav class="sidebar">
-    <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-expanded="false" aria-controls="perfiles-menu"><i class="fas fa-users"></i> Perfiles</button>
-    <div id="perfiles-menu" class="dropdown-content">
-      <ul>
-        <li><button data-section="cp" onclick="showSection('cp')"><i class="fas fa-building"></i> Control Patrimonial</button></li>
-        <li><button data-section="ad" onclick="showSection('ad')"><i class="fas fa-truck"></i> Asistente de Despachos</button></li>
-        <li><button data-section="am" onclick="showSection('am')"><i class="fas fa-warehouse"></i> Almacenero Montacarguista</button></li>
-        <li><button data-section="so" onclick="showSection('so')"><i class="fas fa-user-tie"></i> Supervisor de Operaciones</button></li>
-      </ul>
-    </div>
-    <button class="dropdown-btn" onclick="toggleDropdown('dashboard-menu')" aria-expanded="false" aria-controls="dashboard-menu"><i class="fas fa-chart-line"></i> Dashboard</button>
-    <div id="dashboard-menu" class="dropdown-content">
-      <ul>
-        <li><button data-section="reportes-generales" onclick="showSection('reportes-generales')"><i class="fas fa-file-alt"></i> Reportes Generales</button></li>
-        <li><button onclick="alert('Abrir Estadísticas')"><i class="fas fa-chart-bar"></i> Estadísticas</button></li>
-        <li><button onclick="alert('Abrir Configuración')"><i class="fas fa-cog"></i> Configuración</button></li>
-      </ul>
-    </div>
-    <button class="dropdown-btn" onclick="toggleDropdown('birthdays-menu')" aria-expanded="false" aria-controls="birthdays-menu"><i class="fas fa-birthday-cake"></i> Nuestros Cumpleaños</button>
-    <div id="birthdays-menu" class="dropdown-content">
-      <ul id="birthdays-list">
-        <li><button data-section="birthdays" onclick="showSection('birthdays')"><i class="fas fa-users"></i> Relación</button></li>
-        <li><span>Celebraciones</span></li>
-      </ul>
-    </div>
-  </nav>
+    <main>
+      <section id="cp" class="form-section active">
+        <h2>Control de Patio</h2>
+        <div class="card-container"></div>
+      </section>
+      <section id="ad" class="form-section">
+        <h2>Atención de Despachos</h2>
+        <div class="card-container"></div>
+      </section>
+      <section id="am" class="form-section">
+        <h2>Almacenero Montacarguista</h2>
+        <div class="card-container"></div>
+      </section>
+      <section id="so" class="form-section">
+        <h2>Soporte Operativo</h2>
+        <div class="card-container"></div>
+      </section>
+      <section id="reportes-generales" class="form-section">
+        <h2>Reportes Generales</h2>
+        <div class="card-container"></div>
+      </section>
+      <section id="birthdays" class="form-section">
+        <h2>Cumpleaños</h2>
+        <div class="card-container"></div>
+      </section>
 
-  <main class="container">
-    <section id="cp" class="form-section active">
-      <h1>Control Patrimonial</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="ad" class="form-section">
-      <h1>Asistente Despacho</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="am" class="form-section">
-      <h1>Almacenero Montacarguista</h1>
-      <div class="card-container"></div>
       <div id="fefoContent" class="fefo-content" style="display: none;">
         <div class="fefo-tabs">
           <button class="tab-button active" onclick="showTab('fefo-register')">REGISTRO</button>
@@ -116,37 +161,27 @@
           </div>
         </div>
       </div>
-    </section>
-    <section id="so" class="form-section">
-      <h1>Supervisor Operaciones</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="reportes-generales" class="form-section">
-      <h1>Reportes Generales</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="birthdays" class="form-section">
-      <h1>Nuestros Cumpleaños</h1>
-      <div class="card-container"></div>
-    </section>
-  </main>
+    </main>
+  </div>
 
   <div id="trasladosModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeTrasladosModal()">×</span>
-      <h2>Registrar Traslados Interplantas</h2>
+      <span class="close" onclick="closeTrasladosModal()">&times;</span>
+      <h2>Registrar Traslado Interplantas</h2>
       <form id="trasladosForm">
-        <input type="date" id="trasladosDate" name="date" required>
-        <input type="text" id="trasladosReport" name="report" placeholder="Reporte" required>
-        <input type="text" id="trasladosResponsible" name="responsible" placeholder="Responsable" required>
-        <input type="text" id="trasladosDetails" name="details" placeholder="Detalles">
-        <button type="submit">Enviar</button>
+        <label for="trasladosDate">Fecha:</label>
+        <input type="date" id="trasladosDate" required>
+        <label for="trasladosReport">Reporte:</label>
+        <input type="text" id="trasladosReport" required>
+        <label for="trasladosResponsible">Responsable:</label>
+        <input type="text" id="trasladosResponsible" required>
+        <label for="trasladosDetails">Detalles:</label>
+        <textarea id="trasladosDetails" required></textarea>
+        <button type="submit">Guardar</button>
       </form>
     </div>
   </div>
 
-  <script src="SistemaDinamico.js" defer></script>
-  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91d8d07369e3bae3',t:'MTc0MTUwNDg3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91e199c54b61bf8b',t:'MTc0MTU5NzAwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91e4d92fce5a25a1',t:'MTc0MTYzMTA2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <script src="SistemaDinamico.js"></script>
+</body>
 </html>
