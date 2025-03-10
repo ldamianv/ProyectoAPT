@@ -63,6 +63,59 @@
     <section id="am" class="form-section">
       <h1>Almacenero Montacarguista</h1>
       <div class="card-container"></div>
+      <div id="fefoContent" class="fefo-content" style="display: none;">
+        <div class="fefo-tabs">
+          <button class="tab-button active" onclick="showTab('fefo-register')">REGISTRO</button>
+          <button class="tab-button" onclick="showTab('fefo-summary')">RESUMEN</button>
+          <button class="tab-button" onclick="showTab('fefo-visualization')">VISUALIZACIÓN</button>
+        </div>
+        <div id="fefo-register" class="tab-content">
+          <div class="fefo-register">
+            <div class="fefo-filters">
+              <label for="filter-block">Filtrar por Bloque:</label>
+              <select id="filter-block" onchange="applyFilters()">
+                <option value="">Todos</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="Z">Z</option>
+              </select>
+              <label for="filter-sku">Filtrar por SKU:</label>
+              <input type="text" id="filter-sku" placeholder="Escribe un SKU..." oninput="applyFilters()">
+            </div>
+            <table id="fefoRegisterTable">
+              <thead>
+                <tr>
+                  <th>Ubicación</th>
+                  <th>Código</th>
+                  <th>Material</th>
+                  <th>Cantidad</th>
+                  <th>Fecha de Producción</th>
+                  <th>Observaciones</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div class="fefo-actions">
+              <button onclick="saveChanges()">Guardar Cambios</button>
+              <button onclick="discardChanges()">Descartar Cambios</button>
+            </div>
+          </div>
+        </div>
+        <div id="fefo-summary" class="tab-content" style="display: none;">
+          <div class="fefo-summary">
+            <h2>Resumen de Ubicaciones (FEFO)</h2>
+          </div>
+        </div>
+        <div id="fefo-visualization" class="tab-content" style="display: none;">
+          <div class="fefo-visualization">
+            <h2>Visualización de Ubicaciones</h2>
+          </div>
+        </div>
+      </div>
     </section>
     <section id="so" class="form-section">
       <h1>Supervisor Operaciones</h1>
@@ -92,63 +145,8 @@
     </div>
   </div>
 
-  <!-- Contenedor de FEFO (se gestiona dinámicamente con JavaScript) -->
-  <div id="fefoContent" class="fefo-content" style="display: none;">
-    <div class="fefo-tabs">
-      <button class="tab-button active" onclick="showTab('fefo-register')">REGISTRO</button>
-      <button class="tab-button" onclick="showTab('fefo-summary')">RESUMEN</button>
-      <button class="tab-button" onclick="showTab('fefo-visualization')">VISUALIZACIÓN</button>
-    </div>
-    <div id="fefo-register" class="tab-content">
-      <div class="fefo-register">
-        <div class="fefo-filters">
-          <label for="filter-block">Filtrar por Bloque:</label>
-          <select id="filter-block" onchange="applyFilters()">
-            <option value="">Todos</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="Z">Z</option>
-          </select>
-          <label for="filter-sku">Filtrar por SKU:</label>
-          <input type="text" id="filter-sku" placeholder="Escribe un SKU..." oninput="applyFilters()">
-        </div>
-        <table id="fefoRegisterTable">
-          <thead>
-            <tr>
-              <th>Ubicación</th>
-              <th>Código</th>
-              <th>Material</th>
-              <th>Cantidad</th>
-              <th>Fecha de Producción</th>
-              <th>Observaciones</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <div class="fefo-actions">
-          <button onclick="saveChanges()">Guardar Cambios</button>
-          <button onclick="discardChanges()">Descartar Cambios</button>
-        </div>
-      </div>
-    </div>
-    <div id="fefo-summary" class="tab-content" style="display: none;">
-      <div class="fefo-summary">
-        <h2>Resumen de Ubicaciones (FEFO)</h2>
-      </div>
-    </div>
-    <div id="fefo-visualization" class="tab-content" style="display: none;">
-      <div class="fefo-visualization">
-        <h2>Visualización de Ubicaciones</h2>
-      </div>
-    </div>
-  </div>
-
   <script src="SistemaDinamico.js" defer></script>
   <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91d8d07369e3bae3',t:'MTc0MTUwNDg3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
   <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91e199c54b61bf8b',t:'MTc0MTU5NzAwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91e4d92fce5a25a1',t:'MTc0MTYzMTA2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
