@@ -757,7 +757,7 @@ body.light-theme .sidebar {
   margin-top: 2rem;
   padding: 1.5rem;
   background: var(--card-bg);
-  border-radius: 12px; /* Ajustado para coincidir con el diseño de las tarjetas */
+  border-radius: 12px;
   box-shadow: 0 4px 10px var(--shadow);
 }
 
@@ -830,14 +830,19 @@ body.light-theme .sidebar {
   border-collapse: collapse;
   background: var(--card-bg);
   box-shadow: 0 4px 10px var(--shadow);
+  font-size: 0.9rem; /* Reducir tamaño de fuente para compactar */
 }
 
 .fefo-register th,
 .fefo-register td {
-  padding: 0.75rem;
+  padding: 0.5rem; /* Reducir padding de 0.75rem a 0.5rem */
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text);
+}
+
+.fefo-register tr {
+  background: #FFFFFF; /* Fondo blanco para las filas */
 }
 
 .fefo-register th {
@@ -849,10 +854,10 @@ body.light-theme .sidebar {
 .fefo-register input,
 .fefo-register textarea {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  font-size: 1rem;
+  padding: 0.3rem; /* Reducir padding de 0.5rem a 0.3rem */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Borde más oscuro para contraste con blanco */
+  border-radius: 4px;
+  font-size: 0.85rem; /* Reducir tamaño de fuente */
   box-sizing: border-box;
   background: var(--input-bg);
   color: var(--input-text);
@@ -867,8 +872,16 @@ body.light-theme .sidebar {
 
 .fefo-register textarea {
   resize: vertical;
-  min-height: 50px;
+  min-height: 40px; /* Reducir altura mínima de 50px a 40px */
 }
+
+/* Anchos fijos para evitar distorsión */
+.fefo-register th:nth-child(1), .fefo-register td:nth-child(1) { width: 15%; } /* Ubicación */
+.fefo-register th:nth-child(2), .fefo-register td:nth-child(2) { width: 15%; } /* Código */
+.fefo-register th:nth-child(3), .fefo-register td:nth-child(3) { width: 25%; } /* Material */
+.fefo-register th:nth-child(4), .fefo-register td:nth-child(4) { width: 10%; } /* Cantidad */
+.fefo-register th:nth-child(5), .fefo-register td:nth-child(5) { width: 15%; } /* Fecha de Producción */
+.fefo-register th:nth-child(6), .fefo-register td:nth-child(6) { width: 20%; } /* Observaciones */
 
 .fefo-actions {
   margin-top: 1rem;
