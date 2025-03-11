@@ -235,7 +235,7 @@
       responsible: document.getElementById('trasladosResponsible').value,
       details: document.getElementById('trasladosDetails').value
     };
-    fetch('https://script.google.com/macros/s/AKfycbwEWMIJG9vCiJ23EFhuSOeZur527_imeI7eZgl9QBpVT1Cuv3UskzgAcrKcZ96AmE03/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbx8RhVg9pb70WJ9_POr3Q1MnYZMM6hRTHNtKTGsj2ndlYTHvQl1DZSSc0qUXKYaFIvV/exec', {
       method: 'POST',
       body: JSON.stringify(data)
     })
@@ -254,7 +254,7 @@
     }
   };
 
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEWMIJG9vCiJ23EFhuSOeZur527_imeI7eZgl9QBpVT1Cuv3UskzgAcrKcZ96AmE03/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8RhVg9pb70WJ9_POr3Q1MnYZMM6hRTHNtKTGsj2ndlYTHvQl1DZSSc0qUXKYaFIvV/exec";
 
   let locationsData = [];
   let materialsData = {};
