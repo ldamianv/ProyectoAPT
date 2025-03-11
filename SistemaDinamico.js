@@ -227,7 +227,7 @@
   function closeTrasladosModal() {
     document.getElementById('trasladosModal').style.display = 'none';
   }
-
+/*
   function saveTrasladosReport() {
     const data = {
       date: document.getElementById('trasladosDate').value,
@@ -246,7 +246,7 @@
     })
     .catch(error => console.error('Error saving report:', error));
   }
-
+*/
   window.onclick = function(event) {
     const modal = document.getElementById('trasladosModal');
     if (event.target === modal) {
