@@ -422,9 +422,7 @@
   window.toggleSidebar = toggleSidebar;
   window.openMovimientoModal = openMovimientoModal;
   window.toggleTheme = toggleTheme;
-  window.openTrasladosModal = openTrasladosModal;
-  window.closeTrasladosModal = closeTrasladosModal;
-  window.saveTrasladosReport = saveTrasladosReport;
+
   window.showFefoContent = showFefoContent;
   window.showTab = showTab;
   window.updateField = updateField;
