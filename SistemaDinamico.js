@@ -56,6 +56,17 @@
     ]
   };
 
+  // Mapa de meses para convertir números a abreviaturas
+  const monthMap = {
+    '01': 'ene', '02': 'feb', '03': 'mar', '04': 'abr', '05': 'may', '06': 'jun',
+    '07': 'jul', '08': 'ago', '09': 'sep', '10': 'oct', '11': 'nov', '12': 'dic'
+  };
+
+  function getMonthAbbreviation(month) {
+    const numMonth = month.toString().padStart(2, '0');
+    return monthMap[numMonth] || month.toLowerCase().slice(0, 3);
+  }
+
   function renderCards(sectionId, filter = '') {
     const container = document.querySelector(`#${sectionId} .card-container`);
     const cards = sectionsData[sectionId] || [];
@@ -132,7 +143,6 @@
     const searchValue = document.getElementById('search-bar').value;
     renderCards(sectionId, searchValue);
 
-    // Ocultar el contenido de FEFO al cambiar de sección
     const fefoContent = document.getElementById('fefoContent');
     fefoContent.style.display = 'none';
 
@@ -257,7 +267,27 @@
         throw new Error("No se pudo cargar los datos del Google Sheet");
       }
       const data = await response.json();
-      locationsData = data.locations;
+      locationsData = data.locations.map(row => {
+        // Transformar fechaProduccion a formato mes-año (por ejemplo, feb-2025)
+        if (row.fechaProduccion) {
+          let date;
+          // Si viene en formato día/mes/año (DD/MM/YYYY)
+          if (row.fechaProduccion.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+            const [day, month, year] = row.fechaProduccion.split('/');
+            row.fechaProduccion = `${getMonthAbbreviation(month)}-${year}`;
+          }
+          // Si viene en formato año-mes-día (YYYY-MM-DD)
+          else if (row.fechaProduccion.match(/^\d{4}-\d{2}-\d{2}$/)) {
+            const [year, month, day] = row.fechaProduccion.split('-');
+            row.fechaProduccion = `${getMonthAbbreviation(month)}-${year}`;
+          }
+          // Si ya está en mes-año (por ejemplo, feb-2025), lo dejamos como está
+          else if (row.fechaProduccion.match(/^[a-z]{3}-\d{4}$/i)) {
+            row.fechaProduccion = row.fechaProduccion.toLowerCase();
+          }
+        }
+        return row;
+      });
       materialsData = data.materials;
       originalData = JSON.parse(JSON.stringify(locationsData));
       renderFefoRegisterTable();
@@ -318,7 +348,7 @@
           <td><input type="text" value="${row.codigo || ''}" onchange="updateField(${globalIndex}, 'codigo', this.value)"></td>
           <td><input type="text" value="${row.material || ''}" id="material-${globalIndex}" onchange="updateField(${globalIndex}, 'material', this.value)"></td>
           <td><input type="number" value="${row.cantidad}" onchange="updateField(${globalIndex}, 'cantidad', this.value)"></td>
-          <td><input type="date" value="${row.fechaProduccion}" onchange="updateField(${globalIndex}, 'fechaProduccion', this.value)"></td>
+          <td><input type="text" value="${row.fechaProduccion || ''}" placeholder="mes-año (ej. feb-2025)" pattern="^[a-z]{3}-\\d{4}$" onchange="updateField(${globalIndex}, 'fechaProduccion', this.value.toLowerCase())"></td>
           <td><textarea onchange="updateField(${globalIndex}, 'observaciones', this.value)">${row.observaciones}</textarea></td>
         </tr>
       `;
@@ -347,25 +377,29 @@
         if (JSON.stringify(row) !== JSON.stringify(originalRow)) {
           const data = {
             rowIndex: i,
-            codigo: row.codigo,
-            material: row.material,
+            codigo: row.codigo || '',
+            material: row.material || '',
             cantidad: parseInt(row.cantidad) || 0,
-            fechaProduccion: row.fechaProduccion,
-            observaciones: row.observaciones
+            fechaProduccion: row.fechaProduccion || '',
+            observaciones: row.observaciones || ''
           };
+          console.log('Enviando datos:', data);
           const response = await fetch(GOOGLE_SCRIPT_URL, {
             method: "POST",
             body: JSON.stringify(data),
             headers: { "Content-Type": "application/json" }
           });
-          if (!response.ok) throw new Error("Error al guardar los cambios");
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Error al guardar los cambios: ${response.status} - ${errorText}`);
+          }
         }
       }
       originalData = JSON.parse(JSON.stringify(locationsData));
       alert("Cambios guardados con éxito");
     } catch (error) {
       console.error("Error al guardar los cambios:", error);
-      alert("Error al guardar los cambios");
+      alert(`Error al guardar los cambios: ${error.message}`);
     }
   }
 
