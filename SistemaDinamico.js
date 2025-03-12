@@ -1,7 +1,7 @@
 (function() {
   const sectionsData = {
     cp: [
-      { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1KnZfYkNolj9k9X3qIyj89ebLdXGW1w7CNQ5GV7lBHJg/edit?usp=sharing" },
+      { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1KnZfYkNolj9k9X3qIyj89ebLdXGW1w7CNQ5GV7lBHJg/edit?usp=sharing" }, // Actualizado enlace y eliminado modal
       { title: "Control de Film", desc: "Registre el consumo de film en los despachos.", img: "ControlFilmx.jpg", link: "#" },
       { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Despachox.jpg", link: "#" },
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranelx.jpg", link: "#" },
@@ -56,7 +56,6 @@
     ]
   };
 
-  // Mapa de meses para convertir números a abreviaturas
   const monthMap = {
     '01': 'ene', '02': 'feb', '03': 'mar', '04': 'abr', '05': 'may', '06': 'jun',
     '07': 'jul', '08': 'ago', '09': 'sep', '10': 'oct', '11': 'nov', '12': 'dic'
@@ -117,9 +116,7 @@
           <p>${card.desc}</p>
           ${card.title === 'FEFO' && sectionId === 'am' 
             ? `<a href="#" onclick="showFefoContent(); return false;">Registrar</a>` 
-            : card.title === 'Traslados Interplantas' && sectionId === 'cp' 
-              ? `<a href="#" onclick="openTrasladosModal(); return false;">Registrar</a>` 
-              : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
+            : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`} <!-- Eliminada lógica del modal -->
         </div>
       `).join('');
 
@@ -215,44 +212,6 @@
       }
     });
   }
-/*
-  function openTrasladosModal() {
-    document.getElementById('trasladosModal').style.display = 'flex';
-    document.getElementById('trasladosForm').onsubmit = function(e) {
-      e.preventDefault();
-      saveTrasladosReport();
-    };
-  }
-
-  function closeTrasladosModal() {
-    document.getElementById('trasladosModal').style.display = 'none';
-  }
-/*
-  function saveTrasladosReport() {
-    const data = {
-      date: document.getElementById('trasladosDate').value,
-      report: document.getElementById('trasladosReport').value,
-      responsible: document.getElementById('trasladosResponsible').value,
-      details: document.getElementById('trasladosDetails').value
-    };
-    fetch('https://script.google.com/macros/s/AKfycbx8RhVg9pb70WJ9_POr3Q1MnYZMM6hRTHNtKTGsj2ndlYTHvQl1DZSSc0qUXKYaFIvV/exec', {
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-    .then(response => response.text())
-    .then(result => {
-      alert(result);
-      closeTrasladosModal();
-    })
-    .catch(error => console.error('Error saving report:', error));
-  }
-*/
-  window.onclick = function(event) {
-    const modal = document.getElementById('trasladosModal');
-    if (event.target === modal) {
-      modal.style.display = 'none';
-    }
-  };
 
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8RhVg9pb70WJ9_POr3Q1MnYZMM6hRTHNtKTGsj2ndlYTHvQl1DZSSc0qUXKYaFIvV/exec";
 
@@ -268,20 +227,16 @@
       }
       const data = await response.json();
       locationsData = data.locations.map(row => {
-        // Transformar fechaProduccion a formato mes-año (por ejemplo, feb-2025)
         if (row.fechaProduccion) {
           let date;
-          // Si viene en formato día/mes/año (DD/MM/YYYY)
           if (row.fechaProduccion.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
             const [day, month, year] = row.fechaProduccion.split('/');
             row.fechaProduccion = `${getMonthAbbreviation(month)}-${year}`;
           }
-          // Si viene en formato año-mes-día (YYYY-MM-DD)
           else if (row.fechaProduccion.match(/^\d{4}-\d{2}-\d{2}$/)) {
             const [year, month, day] = row.fechaProduccion.split('-');
             row.fechaProduccion = `${getMonthAbbreviation(month)}-${year}`;
           }
-          // Si ya está en mes-año (por ejemplo, feb-2025), lo dejamos como está
           else if (row.fechaProduccion.match(/^[a-z]{3}-\d{4}$/i)) {
             row.fechaProduccion = row.fechaProduccion.toLowerCase();
           }
@@ -422,7 +377,6 @@
   window.toggleSidebar = toggleSidebar;
   window.openMovimientoModal = openMovimientoModal;
   window.toggleTheme = toggleTheme;
-
   window.showFefoContent = showFefoContent;
   window.showTab = showTab;
   window.updateField = updateField;
