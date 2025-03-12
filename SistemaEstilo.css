@@ -1,41 +1,39 @@
 :root {
-  --primary: #00A3FF; /* Azul tecnológico para oscuro */
-  --secondary: #007ACC; /* Azul más oscuro para hover */
-  --shadow: rgba(0, 163, 255, 0.2); /* Sombra azul para oscuro */
+  --primary: #00A3FF;
+  --secondary: #007ACC;
+  --shadow: rgba(0, 163, 255, 0.2);
 }
 
-/* Tema oscuro (predeterminado, estilo Grok) */
 body.dark-theme {
-  --background: #1A1A1A; /* Negro grisáceo */
-  --card-bg: #404040; /* Gris oscuro para tarjetas */
-  --text: #FFFFFF; /* Blanco para texto */
-  --modal-bg: #404040; /* Gris oscuro para modales */
-  --input-bg: rgba(255, 255, 255, 0.1); /* Fondo sutil para inputs */
-  --input-text: #FFFFFF; /* Texto blanco en inputs */
-  --header-bg: #1E2A3C; /* Azul oscuro para header */
-  --primary: #00A3FF; /* Azul vivo para botones y acentos */
-  --secondary: #007ACC; /* Azul más oscuro para hover */
-  --shadow: rgba(0, 163, 255, 0.2); /* Sombra azul */
-  --birthday-card-bg: #1E3A8A; /* Azul oscuro para mini-tarjetas de cumpleaños */
-  --month-card-bg: #404040; /* Gris oscuro para tarjetas de mes */
-  --divider-color: #87CEEB; /* Azul claro para líneas divisorias */
+  --background: #1A1A1A;
+  --card-bg: #404040;
+  --text: #FFFFFF;
+  --modal-bg: #404040;
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --input-text: #FFFFFF;
+  --header-bg: #1E2A3C;
+  --primary: #00A3FF;
+  --secondary: #007ACC;
+  --shadow: rgba(0, 163, 255, 0.2);
+  --birthday-card-bg: #1E3A8A;
+  --month-card-bg: #404040;
+  --divider-color: #87CEEB;
 }
 
-/* Tema claro (Azul #005B9A y blanco, colores de tu empresa) */
 body.light-theme {
-  --background: #FFFFFF; /* Blanco para fondo */
-  --card-bg: #E6F0FA; /* Azul muy claro para tarjetas */
-  --text: #333333; /* Gris oscuro para texto */
-  --modal-bg: #FFFFFF; /* Blanco para modales */
-  --input-bg: rgba(0, 91, 154, 0.1); /* Azul #005B9A sutil para inputs */
-  --input-text: #333333; /* Texto gris oscuro en inputs */
-  --header-bg: #E6F0FA; /* Azul claro para header */
-  --primary: #005B9A; /* Azul medio oscuro para botones y acentos */
-  --secondary: #003366; /* Azul más oscuro para hover */
-  --shadow: rgba(0, 0, 0, 0.1); /* Sombra gris clara */
-  --birthday-card-bg: #005B9A; /* Azul medio oscuro para mini-tarjetas de cumpleaños */
-  --month-card-bg: #E6F0FA; /* Azul claro para tarjetas de mes */
-  --divider-color: #87CEEB; /* Azul claro para líneas divisorias */
+  --background: #FFFFFF;
+  --card-bg: #E6F0FA;
+  --text: #333333;
+  --modal-bg: #FFFFFF;
+  --input-bg: rgba(0, 91, 154, 0.1);
+  --input-text: #333333;
+  --header-bg: #E6F0FA;
+  --primary: #005B9A;
+  --secondary: #003366;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --birthday-card-bg: #005B9A;
+  --month-card-bg: #E6F0FA;
+  --divider-color: #87CEEB;
 }
 
 body {
@@ -46,15 +44,15 @@ body {
   line-height: 1.6;
   position: relative;
   overflow-x: hidden;
-  background: linear-gradient(45deg, var(--background), #0A2A4A); /* Gradiente para oscuro */
+  background: linear-gradient(45deg, var(--background), #0A2A4A);
   background-size: 200% 200%;
   animation: gradientMove 10s ease infinite;
   transition: background 0.5s ease, color 0.5s ease;
 }
 
 body.light-theme {
-  background: var(--background); /* Fondo blanco sólido para claro */
-  animation: none; /* Sin gradiente en claro */
+  background: var(--background);
+  animation: none;
 }
 
 @keyframes gradientMove {
@@ -206,7 +204,7 @@ body.dark-theme .sidebar {
 }
 
 body.light-theme .sidebar {
-  background-color: #E6F0FA; /* Mismo color que el encabezado */
+  background-color: #E6F0FA;
 }
 
 .dropdown-btn {
@@ -341,9 +339,8 @@ body.light-theme .sidebar {
   text-align: center;
 }
 
-/* Estilo específico para la sección de cumpleaños */
 #birthdays {
-  background: var(--background); /* Fondo blanco o gradiente según tema */
+  background: var(--background);
   position: relative;
 }
 
@@ -354,10 +351,9 @@ body.light-theme .sidebar {
   padding: 0 1rem;
 }
 
-/* Tarjetas de mes */
 .month-card {
-  background: var(--month-card-bg); /* Gris oscuro o azul claro según tema */
-  border: 1px solid var(--divider-color); /* Borde azul claro */
+  background: var(--month-card-bg);
+  border: 1px solid var(--divider-color);
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
@@ -380,11 +376,10 @@ body.light-theme .sidebar {
 .month-card h3 {
   font-size: 1.5rem;
   margin: 0 0 1rem 0;
-  color: var(--primary); /* Azul según tema */
+  color: var(--primary);
   font-weight: 600;
 }
 
-/* Contenedor de mini-tarjetas dentro de cada mes */
 .month-card .person-cards {
   display: flex;
   flex-wrap: wrap;
@@ -392,11 +387,10 @@ body.light-theme .sidebar {
   justify-content: center;
 }
 
-/* Mini-tarjetas de colaboradores */
 .person-card {
-  min-height: 100px; /* Altura fija para compactar */
-  width: 150px; /* Ancho fijo para consistencia */
-  background: var(--birthday-card-bg); /* Azul oscuro o medio según tema */
+  min-height: 100px;
+  width: 150px;
+  background: var(--birthday-card-bg);
   border-radius: 8px;
   padding: 0.5rem;
   display: flex;
@@ -407,14 +401,14 @@ body.light-theme .sidebar {
 }
 
 .person-card:hover {
-  border: 1px solid var(--secondary); /* Azul más oscuro al hacer hover */
-  background: var(--birthday-card-bg); /* Sin cambio de fondo por simplicidad */
+  border: 1px solid var(--secondary);
+  background: var(--birthday-card-bg);
 }
 
 .person-card .day-circle {
   width: 30px;
   height: 30px;
-  background: #FFFFFF; /* Círculo blanco */
+  background: #FFFFFF;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -424,15 +418,15 @@ body.light-theme .sidebar {
 
 .person-card .day-circle span {
   font-size: 1rem;
-  color: #333333; /* Número negro */
+  color: #333333;
   font-weight: 600;
 }
 
 .person-card p {
   font-size: 0.9rem;
-  color: #FFFFFF; /* Nombre en blanco */
+  color: #FFFFFF;
   margin: 0;
-  text-transform: uppercase; /* Para imitar el estilo de la imagen */
+  text-transform: uppercase;
   font-weight: 600;
 }
 
@@ -460,7 +454,6 @@ body.light-theme .sidebar {
 .month-card:nth-child(11) { animation-delay: 1.1s; }
 .month-card:nth-child(12) { animation-delay: 1.2s; }
 
-/* Estilo para las otras tarjetas (no cumpleaños) */
 .card {
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -546,82 +539,6 @@ body.light-theme .sidebar {
 }
 
 .card a:hover {
-  background: var(--secondary);
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background: var(--modal-bg);
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 4px 20px var(--shadow);
-  position: relative;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5rem;
-  color: var(--text);
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.close:hover {
-  color: var(--primary);
-}
-
-.modal-content h2 {
-  color: var(--primary);
-}
-
-.modal-content button {
-  background: var(--primary);
-  color: var(--text);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  margin: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s ease;
-}
-
-.modal-content button::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
-}
-
-.modal-content button:hover::after {
-  width: 200%;
-  height: 200%;
-}
-
-.modal-content button:hover {
   background: var(--secondary);
 }
 
@@ -717,32 +634,6 @@ body.light-theme .sidebar {
   }
 }
 
-#trasladosForm input {
-  display: block;
-  width: 100%;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border: 1px solid var(--shadow);
-  border-radius: 5px;
-  background: var(--input-bg);
-  color: var(--input-text);
-}
-
-#trasladosForm button {
-  background: var(--primary);
-  color: var(--text);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#trasladosForm button:hover {
-  background: var(--secondary);
-}
-
 .footer {
   text-align: center;
   padding: 1rem;
@@ -752,7 +643,6 @@ body.light-theme .sidebar {
   width: 100%;
 }
 
-/* Estilos para las pestañas FEFO */
 .fefo-content {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -830,19 +720,19 @@ body.light-theme .sidebar {
   border-collapse: collapse;
   background: var(--card-bg);
   box-shadow: 0 4px 10px var(--shadow);
-  font-size: 0.9rem; /* Reducir tamaño de fuente para compactar */
+  font-size: 0.9rem;
 }
 
 .fefo-register th,
 .fefo-register td {
-  padding: 0.5rem; /* Reducir padding de 0.75rem a 0.5rem */
+  padding: 0.5rem;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text);
 }
 
 .fefo-register tr {
-  background: #FFFFFF; /* Fondo blanco para las filas */
+  background: #FFFFFF;
 }
 
 .fefo-register th {
@@ -854,10 +744,10 @@ body.light-theme .sidebar {
 .fefo-register input,
 .fefo-register textarea {
   width: 100%;
-  padding: 0.3rem; /* Reducir padding de 0.5rem a 0.3rem */
-  border: 1px solid rgba(0, 0, 0, 0.2); /* Borde más oscuro para contraste con blanco */
+  padding: 0.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  font-size: 0.85rem; /* Reducir tamaño de fuente */
+  font-size: 0.85rem;
   box-sizing: border-box;
   background: var(--input-bg);
   color: var(--input-text);
@@ -872,16 +762,15 @@ body.light-theme .sidebar {
 
 .fefo-register textarea {
   resize: vertical;
-  min-height: 40px; /* Reducir altura mínima de 50px a 40px */
+  min-height: 40px;
 }
 
-/* Anchos fijos para evitar distorsión */
-.fefo-register th:nth-child(1), .fefo-register td:nth-child(1) { width: 15%; } /* Ubicación */
-.fefo-register th:nth-child(2), .fefo-register td:nth-child(2) { width: 15%; } /* Código */
-.fefo-register th:nth-child(3), .fefo-register td:nth-child(3) { width: 25%; } /* Material */
-.fefo-register th:nth-child(4), .fefo-register td:nth-child(4) { width: 10%; } /* Cantidad */
-.fefo-register th:nth-child(5), .fefo-register td:nth-child(5) { width: 15%; } /* Fecha de Producción */
-.fefo-register th:nth-child(6), .fefo-register td:nth-child(6) { width: 20%; } /* Observaciones */
+.fefo-register th:nth-child(1), .fefo-register td:nth-child(1) { width: 15%; }
+.fefo-register th:nth-child(2), .fefo-register td:nth-child(2) { width: 15%; }
+.fefo-register th:nth-child(3), .fefo-register td:nth-child(3) { width: 25%; }
+.fefo-register th:nth-child(4), .fefo-register td:nth-child(4) { width: 10%; }
+.fefo-register th:nth-child(5), .fefo-register td:nth-child(5) { width: 15%; }
+.fefo-register th:nth-child(6), .fefo-register td:nth-child(6) { width: 20%; }
 
 .fefo-actions {
   margin-top: 1rem;
