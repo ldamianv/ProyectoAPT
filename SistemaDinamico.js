@@ -213,7 +213,7 @@
     });
   }
 
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8RhVg9pb70WJ9_POr3Q1MnYZMM6hRTHNtKTGsj2ndlYTHvQl1DZSSc0qUXKYaFIvV/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzq_I_PHfdW9HjmoTTOYHzKkj0LUe_paXz2V0U-0QwvnXPb50g87P7E8OW4szEOK4CX/exec";
 
   let locationsData = [];
   let materialsData = {};
