@@ -332,6 +332,7 @@
         if (JSON.stringify(row) !== JSON.stringify(originalRow)) {
           const data = {
             rowIndex: i,
+            ubicacion: row.ubicacion || '', // Agregar ubicacion
             codigo: row.codigo || '',
             material: row.material || '',
             cantidad: parseInt(row.cantidad) || 0,
@@ -343,20 +344,21 @@
             method: "POST",
             body: JSON.stringify(data),
             headers: { "Content-Type": "application/json" }
-          });
-          if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Error al guardar los cambios: ${response.status} - ${errorText}`);
+           });
+            const responseText = await response.text(); // Capturar respuesta para depurar
+            console.log('Respuesta del servidor:', responseText);
+            if (!response.ok) {
+              throw new Error(`Error al guardar los cambios: ${response.status} - ${responseText}`);
+            }
           }
         }
+        originalData = JSON.parse(JSON.stringify(locationsData));
+        alert("Cambios guardados con éxito");
+      } catch (error) {
+        console.error("Error al guardar los cambios:", error);
+        alert(`Error al guardar los cambios: ${error.message}`);
       }
-      originalData = JSON.parse(JSON.stringify(locationsData));
-      alert("Cambios guardados con éxito");
-    } catch (error) {
-      console.error("Error al guardar los cambios:", error);
-      alert(`Error al guardar los cambios: ${error.message}`);
     }
-  }
 
   function discardChanges() {
     locationsData = JSON.parse(JSON.stringify(originalData));
