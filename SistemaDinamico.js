@@ -61,7 +61,7 @@
         { title: "Tarjetas Verdes", desc: "Registra mejoras propuestas.", img: "tarjetas_verdes.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSf5ZFf_AvHH80JRAS12x6IZPOI_HoIYQG5TC9eVCGiiHNn24w/viewform" }
       ],
       "matriz-habilidades": [
-        { title: "Matriz de Habilidades", desc: "Evalúa las competencias del equipo.", img: "matriz_habilidades.jpg", link: "https://docs.google.com/spreadsheets/d/1oD5oajklPJOj99iKKMG_vqVF6WNCxwgEr0dPqKrniz8/edit?usp=sharing" }
+        { title: "Matriz de Habilidades", desc: "Evalúa las competencias del equipo.", img: "Matrizx.jpg", link: "https://docs.google.com/spreadsheets/d/1oD5oajklPJOj99iKKMG_vqVF6WNCxwgEr0dPqKrniz8/edit?usp=sharing" }
       ],
       "instructivos": [
         { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "instructivos.jpg", link: "#" }
