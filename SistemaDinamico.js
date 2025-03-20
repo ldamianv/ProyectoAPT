@@ -64,7 +64,7 @@
         { title: "Matriz de Habilidades", desc: "Evalúa las competencias del equipo.", img: "Matrizx.jpg", link: "https://docs.google.com/spreadsheets/d/1oD5oajklPJOj99iKKMG_vqVF6WNCxwgEr0dPqKrniz8/edit?usp=sharing" }
       ],
       "instructivos": [
-        { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "instructivos.jpg", link: "https://drive.google.com/drive/folders/1rc-Sj9Cd8hQKb9x7fYGjwfLnG5h4E98D?usp=sharing" }
+        { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "instructivos.jpg", link: "https://drive.google.com/drive/folders/1NgVabT7hPyVlT8XpnmQFcLTpDKCOGTBP?usp=sharing" }
       ]
     }
   };
