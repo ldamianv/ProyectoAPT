@@ -1,7 +1,7 @@
 (function() {
   const sectionsData = {
     cp: [
-      { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1KnZfYkNolj9k9X3qIyj89ebLdXGW1w7CNQ5GV7lBHJg/edit?usp=sharing" }, // Actualizado enlace y eliminado modal
+      { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1KnZfYkNolj9k9X3qIyj89ebLdXGW1w7CNQ5GV7lBHJg/edit?usp=sharing" },
       { title: "Control de Film", desc: "Registre el consumo de film en los despachos.", img: "ControlFilmx.jpg", link: "https://docs.google.com/spreadsheets/d/1SfJHz2OElh5yetJ_NDWTOysi1ctVMya69_VwJ_vGvXk/edit?usp=sharing" },
       { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Despachox.jpg", link: "#" },
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranelx.jpg", link: "#" },
@@ -54,7 +54,19 @@
       { month: "Octubre", name: "Mario Magallanes", date: "18-10", img: "cumpleanos.jpg" },
       { month: "Noviembre", name: "Jesus Llanos", date: "09-11", img: "cumpleanos.jpg" },
       { month: "Diciembre", name: "Ener Cipriano", date: "12-12", img: "cumpleanos.jpg" }
-    ]
+    ],
+    tpm: {
+      "tarjetas-tpm": [
+        { title: "Tarjetas Azules-Rojas", desc: "Registra incidencias críticas.", img: "tarjetas_azules_rojas.jpg", link: "#" },
+        { title: "Tarjetas Verdes", desc: "Registra mejoras propuestas.", img: "tarjetas_verdes.jpg", link: "#" }
+      ],
+      "matriz-habilidades": [
+        { title: "Matriz de Habilidades", desc: "Evalúa las competencias del equipo.", img: "matriz_habilidades.jpg", link: "#" }
+      ],
+      "instructivos": [
+        { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "instructivos.jpg", link: "#" }
+      ]
+    }
   };
 
   const monthMap = {
@@ -67,9 +79,14 @@
     return monthMap[numMonth] || month.toLowerCase().slice(0, 3);
   }
 
-  function renderCards(sectionId, filter = '') {
+  function renderCards(sectionId, filter = '', subsectionId = '') {
     const container = document.querySelector(`#${sectionId} .card-container`);
-    const cards = sectionsData[sectionId] || [];
+    let cards = sectionsData[sectionId] || [];
+    
+    if (subsectionId && typeof cards === 'object' && !Array.isArray(cards)) {
+      cards = cards[subsectionId] || [];
+    }
+
     const filteredCards = filter 
       ? cards.filter(card => 
           card.title?.toLowerCase().includes(filter.toLowerCase()) || 
@@ -117,7 +134,7 @@
           <p>${card.desc}</p>
           ${card.title === 'FEFO' && sectionId === 'am' 
             ? `<a href="#" onclick="showFefoContent(); return false;">Registrar</a>` 
-            : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`} <!-- Eliminada lógica del modal -->
+            : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
         </div>
       `).join('');
 
@@ -135,18 +152,18 @@
     btn.setAttribute('aria-expanded', dropdown.classList.contains('active'));
   }
 
-  function showSection(sectionId) {
+  function showSection(sectionId, subsectionId = '') {
     document.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
     const searchValue = document.getElementById('search-bar').value;
-    renderCards(sectionId, searchValue);
+    renderCards(sectionId, searchValue, subsectionId);
 
     const fefoContent = document.getElementById('fefoContent');
     fefoContent.style.display = 'none';
 
     document.querySelectorAll('.dropdown-content li button').forEach(btn => {
       btn.classList.remove('active');
-      if (btn.getAttribute('data-section') === sectionId) {
+      if (btn.getAttribute('data-section') === sectionId && (!subsectionId || btn.getAttribute('data-subsection') === subsectionId)) {
         btn.classList.add('active');
       }
     });
@@ -209,7 +226,8 @@
     searchBar.addEventListener('input', () => {
       const activeSection = document.querySelector('.form-section.active');
       if (activeSection) {
-        renderCards(activeSection.id, searchBar.value);
+        const subsectionId = document.querySelector('.dropdown-content li button.active')?.getAttribute('data-subsection') || '';
+        renderCards(activeSection.id, searchBar.value, subsectionId);
       }
     });
   }
@@ -333,7 +351,7 @@
         if (JSON.stringify(row) !== JSON.stringify(originalRow)) {
           const data = {
             rowIndex: i,
-            ubicacion: row.ubicacion || '', // Agregar ubicacion
+            ubicacion: row.ubicacion || '',
             codigo: row.codigo || '',
             material: row.material || '',
             cantidad: parseInt(row.cantidad) || 0,
@@ -345,21 +363,21 @@
             method: "POST",
             body: JSON.stringify(data),
             headers: { "Content-Type": "application/json" }
-           });
-            const responseText = await response.text(); // Capturar respuesta para depurar
-            console.log('Respuesta del servidor:', responseText);
-            if (!response.ok) {
-              throw new Error(`Error al guardar los cambios: ${response.status} - ${responseText}`);
-            }
+          });
+          const responseText = await response.text();
+          console.log('Respuesta del servidor:', responseText);
+          if (!response.ok) {
+            throw new Error(`Error al guardar los cambios: ${response.status} - ${responseText}`);
           }
         }
-        originalData = JSON.parse(JSON.stringify(locationsData));
-        alert("Cambios guardados con éxito");
-      } catch (error) {
-        console.error("Error al guardar los cambios:", error);
-        alert(`Error al guardar los cambios: ${error.message}`);
       }
+      originalData = JSON.parse(JSON.stringify(locationsData));
+      alert("Cambios guardados con éxito");
+    } catch (error) {
+      console.error("Error al guardar los cambios:", error);
+      alert(`Error al guardar los cambios: ${error.message}`);
     }
+  }
 
   function discardChanges() {
     locationsData = JSON.parse(JSON.stringify(originalData));
