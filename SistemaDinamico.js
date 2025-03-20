@@ -6,7 +6,7 @@
       { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Despachox.jpg", link: "#" },
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranelx.jpg", link: "#" },
       { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "ReporteCalidadx.jpg", link: "https://docs.google.com/spreadsheets/d/1Ht-r55btoKb7YiI7kHBrX-3N_t0cKQTSpngsZUtFTV4/edit?usp=sharing" },
-      { title: "Exportaciones", desc: "Registra las atenciones de exportaciones.", img: "Exportacionx.jpg", link: "#" }
+      { title: "Inventarios", desc: "Realiza la conciliacion de SAP vs Fisico.", img: "Exportacionx.jpg", link: "https://docs.google.com/spreadsheets/d/1SsoE1P-IZNOsW9pRPqJ0Aq-C8q58xp5o82scRU1ZlC0/edit?usp=drive_link" }
     ],
     ad: [
       { title: "Avance de Despachos", desc: "Registre el avance de despachos.", img: "Despachox.jpg", link: "#" },
@@ -14,7 +14,7 @@
       { title: "Liquidaciones", desc: "Registra las liquidaciones de los despachos.", img: "Ventas.jpeg", link: "#" }
     ],
     am: [
-      { title: "FEFO", desc: "Registra la rotación de productos por fecha de vencimiento.", img: "Fefox.jpg", link: "#" },
+      { title: "FEFO", desc: "Registra el movimiento de producto.", img: "Fefox.jpg", link: "https://docs.google.com/spreadsheets/d/1eagBtRYuWBIVVvvdCe8MnCB2xHDxGErIB9XImfPXO4g/edit?usp=drive_link" },
       { title: "Ingreso de Productos", desc: "Agrega nuevos productos al inventario.", img: "Produccion.jpg", link: "#" }
     ],
     so: [
