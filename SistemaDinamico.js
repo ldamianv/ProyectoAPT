@@ -57,11 +57,11 @@
     ],
     tpm: {
       "tarjetas-tpm": [
-        { title: "Tarjetas Azules-Rojas", desc: "Registra incidencias críticas.", img: "tarjetas_azules_rojas.jpg", link: "#" },
-        { title: "Tarjetas Verdes", desc: "Registra mejoras propuestas.", img: "tarjetas_verdes.jpg", link: "#" }
+        { title: "Tarjetas Azules-Rojas", desc: "Registra incidencias críticas.", img: "tarjetas_azules_rojas.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSdSHEobkCu9n4aH4Q-aOYkzIjhBRoM4MecYRCNKAqNFPr2CPw/viewform" },
+        { title: "Tarjetas Verdes", desc: "Registra mejoras propuestas.", img: "tarjetas_verdes.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSf5ZFf_AvHH80JRAS12x6IZPOI_HoIYQG5TC9eVCGiiHNn24w/viewform" }
       ],
       "matriz-habilidades": [
-        { title: "Matriz de Habilidades", desc: "Evalúa las competencias del equipo.", img: "matriz_habilidades.jpg", link: "#" }
+        { title: "Matriz de Habilidades", desc: "Evalúa las competencias del equipo.", img: "matriz_habilidades.jpg", link: "https://docs.google.com/spreadsheets/d/1oD5oajklPJOj99iKKMG_vqVF6WNCxwgEr0dPqKrniz8/edit?usp=sharing" }
       ],
       "instructivos": [
         { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "instructivos.jpg", link: "#" }
