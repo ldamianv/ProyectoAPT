@@ -69,16 +69,6 @@
     }
   };
 
-  const monthMap = {
-    '01': 'ene', '02': 'feb', '03': 'mar', '04': 'abr', '05': 'may', '06': 'jun',
-    '07': 'jul', '08': 'ago', '09': 'sep', '10': 'oct', '11': 'nov', '12': 'dic'
-  };
-
-  function getMonthAbbreviation(month) {
-    const numMonth = month.toString().padStart(2, '0');
-    return monthMap[numMonth] || month.toLowerCase().slice(0, 3);
-  }
-
   function renderCards(sectionId, filter = '', subsectionId = '') {
     const container = document.querySelector(`#${sectionId} .card-container`);
     let cards = sectionsData[sectionId] || [];
@@ -132,9 +122,7 @@
           </div>
           <h3>${card.title}</h3>
           <p>${card.desc}</p>
-          ${card.title === 'FEFO' && sectionId === 'am' 
-            ? `<a href="#" onclick="showFefoContent(); return false;">Registrar</a>` 
-            : `<a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>${card.link.startsWith('http') ? 'Ver Más' : 'Registrar'}</a>`}
+          <a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>Ver Más</a>
         </div>
       `).join('');
 
@@ -157,9 +145,6 @@
     document.getElementById(sectionId).classList.add('active');
     const searchValue = document.getElementById('search-bar').value;
     renderCards(sectionId, searchValue, subsectionId);
-
-    const fefoContent = document.getElementById('fefoContent');
-    fefoContent.style.display = 'none';
 
     document.querySelectorAll('.dropdown-content li button').forEach(btn => {
       btn.classList.remove('active');
@@ -232,165 +217,11 @@
     });
   }
 
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzq_I_PHfdW9HjmoTTOYHzKkj0LUe_paXz2V0U-0QwvnXPb50g87P7E8OW4szEOK4CX/exec";
-
-  let locationsData = [];
-  let materialsData = {};
-  let originalData = [];
-
-  async function loadFefoData() {
-    try {
-      const response = await fetch(GOOGLE_SCRIPT_URL);
-      if (!response.ok) {
-        throw new Error("No se pudo cargar los datos del Google Sheet");
-      }
-      const data = await response.json();
-      locationsData = data.locations.map(row => {
-        if (row.fechaProduccion) {
-          let date;
-          if (row.fechaProduccion.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
-            const [day, month, year] = row.fechaProduccion.split('/');
-            row.fechaProduccion = `${getMonthAbbreviation(month)}-${year}`;
-          }
-          else if (row.fechaProduccion.match(/^\d{4}-\d{2}-\d{2}$/)) {
-            const [year, month, day] = row.fechaProduccion.split('-');
-            row.fechaProduccion = `${getMonthAbbreviation(month)}-${year}`;
-          }
-          else if (row.fechaProduccion.match(/^[a-z]{3}-\d{4}$/i)) {
-            row.fechaProduccion = row.fechaProduccion.toLowerCase();
-          }
-        }
-        return row;
-      });
-      materialsData = data.materials;
-      originalData = JSON.parse(JSON.stringify(locationsData));
-      renderFefoRegisterTable();
-      applyFilters();
-    } catch (error) {
-      console.error("Error al cargar los datos:", error);
-      alert("Error al cargar los datos del almacén");
-    }
-  }
-
-  function showFefoContent() {
-    const activeSection = document.querySelector('.form-section.active');
-    const fefoContent = document.getElementById('fefoContent');
-    if (activeSection.id === 'am') {
-      fefoContent.style.display = fefoContent.style.display === 'none' ? 'block' : 'none';
-      showTab('fefo-register');
-    }
-  }
-
-  function showTab(tabId) {
-    document.querySelectorAll(".tab-content").forEach(tab => {
-      tab.classList.remove("active");
-      tab.style.display = "none";
-    });
-    document.querySelectorAll(".tab-button").forEach(button => {
-      button.classList.remove("active");
-    });
-    const selectedTab = document.getElementById(tabId);
-    selectedTab.style.display = "block";
-    selectedTab.classList.add("active");
-    const selectedButton = document.querySelector(`button[onclick="showTab('${tabId}')"]`);
-    selectedButton.classList.add("active");
-
-    if (tabId === "fefo-register") {
-      renderFefoRegisterTable();
-    }
-  }
-
-  function renderFefoRegisterTable() {
-    const tableBody = document.querySelector("#fefoRegisterTable tbody");
-    const filterBlock = document.getElementById("filter-block").value;
-    const filterSku = document.getElementById("filter-sku").value.toUpperCase();
-
-    let filteredData = locationsData;
-    if (filterBlock) {
-      filteredData = filteredData.filter(row => row.ubicacion.startsWith(filterBlock));
-    }
-    if (filterSku) {
-      filteredData = filteredData.filter(row => row.codigo && row.codigo.toUpperCase().includes(filterSku));
-    }
-
-    let html = "";
-    filteredData.forEach((row, index) => {
-      const globalIndex = locationsData.indexOf(row);
-      html += `
-        <tr>
-          <td>${row.ubicacion}</td>
-          <td><input type="text" value="${row.codigo || ''}" onchange="updateField(${globalIndex}, 'codigo', this.value)"></td>
-          <td><input type="text" value="${row.material || ''}" id="material-${globalIndex}" onchange="updateField(${globalIndex}, 'material', this.value)"></td>
-          <td><input type="number" value="${row.cantidad}" onchange="updateField(${globalIndex}, 'cantidad', this.value)"></td>
-          <td><input type="text" value="${row.fechaProduccion || ''}" placeholder="mes-año (ej. feb-2025)" pattern="^[a-z]{3}-\\d{4}$" onchange="updateField(${globalIndex}, 'fechaProduccion', this.value.toLowerCase())"></td>
-          <td><textarea onchange="updateField(${globalIndex}, 'observaciones', this.value)">${row.observaciones}</textarea></td>
-        </tr>
-      `;
-    });
-    tableBody.innerHTML = html;
-  }
-
-  function updateField(index, field, value) {
-    locationsData[index][field] = value;
-    if (field === "codigo") {
-      const materialInput = document.getElementById(`material-${index}`);
-      materialInput.value = materialsData[value] || "";
-      locationsData[index].material = materialsData[value] || "";
-    }
-  }
-
-  function applyFilters() {
-    renderFefoRegisterTable();
-  }
-
-  async function saveChanges() {
-    try {
-      for (let i = 0; i < locationsData.length; i++) {
-        const row = locationsData[i];
-        const originalRow = originalData[i];
-        if (JSON.stringify(row) !== JSON.stringify(originalRow)) {
-          const data = {
-            rowIndex: i,
-            ubicacion: row.ubicacion || '',
-            codigo: row.codigo || '',
-            material: row.material || '',
-            cantidad: parseInt(row.cantidad) || 0,
-            fechaProduccion: row.fechaProduccion || '',
-            observaciones: row.observaciones || ''
-          };
-          console.log('Enviando datos:', data);
-          const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: { "Content-Type": "application/json" }
-          });
-          const responseText = await response.text();
-          console.log('Respuesta del servidor:', responseText);
-          if (!response.ok) {
-            throw new Error(`Error al guardar los cambios: ${response.status} - ${responseText}`);
-          }
-        }
-      }
-      originalData = JSON.parse(JSON.stringify(locationsData));
-      alert("Cambios guardados con éxito");
-    } catch (error) {
-      console.error("Error al guardar los cambios:", error);
-      alert(`Error al guardar los cambios: ${error.message}`);
-    }
-  }
-
-  function discardChanges() {
-    locationsData = JSON.parse(JSON.stringify(originalData));
-    renderFefoRegisterTable();
-    alert("Cambios descartados");
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     renderCards('cp');
     createParticles();
     document.querySelector('button[data-section="cp"]').classList.add('active');
     setupSearch();
-    loadFefoData();
   });
 
   window.toggleDropdown = toggleDropdown;
@@ -398,10 +229,4 @@
   window.toggleSidebar = toggleSidebar;
   window.openMovimientoModal = openMovimientoModal;
   window.toggleTheme = toggleTheme;
-  window.showFefoContent = showFefoContent;
-  window.showTab = showTab;
-  window.updateField = updateField;
-  window.applyFilters = applyFilters;
-  window.saveChanges = saveChanges;
-  window.discardChanges = discardChanges;
 })();
