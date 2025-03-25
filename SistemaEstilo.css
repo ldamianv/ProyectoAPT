@@ -192,11 +192,12 @@ header {
   left: 0;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Empuja el footer al final */
   padding-top: 80px;
-  padding-bottom: 0;
   transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 2px 0 10px var(--shadow);
   z-index: 900;
+  overflow-y: auto; /* Permite scroll si el contenido es largo */
 }
 
 body.dark-theme .sidebar {
@@ -288,14 +289,13 @@ body.light-theme .sidebar {
 }
 
 .sidebar-footer {
-  margin-top: auto;
-  width: 180px;
-  text-align: center;
   padding: 1rem;
   background: var(--card-bg);
   border-radius: 8px;
-  box-shadow: 0 -2px 8px var(--shadow);
-  z-index: 950;
+  text-align: center;
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto 1rem auto; /* Centrado con espacio inferior */
 }
 
 .sidebar-footer img {
@@ -316,6 +316,11 @@ body.light-theme .sidebar {
   font-size: 0.9rem;
   color: var(--text);
   opacity: 0.8;
+}
+
+.sidebar-footer .highlight-name {
+  font-weight: 700; /* Negrita */
+  color: var(--primary); /* Color azul */
 }
 
 .container {
