@@ -193,7 +193,7 @@ header {
   display: flex;
   flex-direction: column;
   padding-top: 80px;
-  padding-bottom: 140px;
+  padding-bottom: 0;
   transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 2px 0 10px var(--shadow);
   z-index: 900;
@@ -288,9 +288,7 @@ body.light-theme .sidebar {
 }
 
 .sidebar-footer {
-  position: absolute;
-  bottom: 20px;
-  left: 10px;
+  margin-top: auto;
   width: 180px;
   text-align: center;
   padding: 1rem;
@@ -602,7 +600,6 @@ body.light-theme .sidebar {
 
   .sidebar-footer {
     width: 140px;
-    left: 5px;
   }
 
   .sidebar-footer img {
