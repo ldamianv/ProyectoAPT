@@ -287,8 +287,8 @@ body.light-theme .sidebar {
   font-weight: 700;
 }
 
-.logo-container {
-  position: fixed;
+.sidebar-footer {
+  position: absolute;
   bottom: 20px;
   left: 10px;
   width: 180px;
@@ -300,16 +300,24 @@ body.light-theme .sidebar {
   z-index: 950;
 }
 
-.logo-container img {
+.sidebar-footer img {
   width: 100%;
-  max-width: 160px;
+  max-width: 120px;
   height: auto;
   display: block;
+  margin: 0 auto 0.5rem auto;
   transition: transform 0.3s ease;
 }
 
-.logo-container img:hover {
+.sidebar-footer img:hover {
   transform: scale(1.1);
+}
+
+.sidebar-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text);
+  opacity: 0.8;
 }
 
 .container {
@@ -592,13 +600,17 @@ body.light-theme .sidebar {
     gap: 0.5rem;
   }
 
-  .logo-container {
+  .sidebar-footer {
     width: 140px;
     left: 5px;
   }
 
-  .logo-container img {
-    max-width: 120px;
+  .sidebar-footer img {
+    max-width: 100px;
+  }
+
+  .sidebar-footer p {
+    font-size: 0.8rem;
   }
 }
 
@@ -642,6 +654,7 @@ body.light-theme .sidebar {
   left: 0;
   width: 100%;
 }
+
 .loading-bar {
   position: fixed;
   top: 0;
