@@ -122,7 +122,7 @@
           </div>
           <h3>${card.title}</h3>
           <p>${card.desc}</p>
-          <a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank"' : ''}>Ver Más</a>
+          <a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank" onclick="showLoadingBar(this.href); return false;"' : ''}>Ver Más</a>
         </div>
       `).join('');
 
@@ -217,6 +217,18 @@
     });
   }
 
+  function showLoadingBar(url) {
+    const loadingBar = document.getElementById('loading-bar');
+    loadingBar.style.display = 'block';
+    loadingBar.classList.add('active');
+
+    setTimeout(() => {
+      loadingBar.classList.remove('active');
+      loadingBar.style.display = 'none';
+      window.open(url, '_blank');
+    }, 500); // Ajusta el tiempo si deseas más o menos retraso
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     renderCards('cp');
     createParticles();
@@ -229,4 +241,5 @@
   window.toggleSidebar = toggleSidebar;
   window.openMovimientoModal = openMovimientoModal;
   window.toggleTheme = toggleTheme;
+  window.showLoadingBar = showLoadingBar;
 })();
