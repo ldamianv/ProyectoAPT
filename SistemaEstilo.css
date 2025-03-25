@@ -192,12 +192,11 @@ header {
   left: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Empuja el footer al final */
   padding-top: 80px;
+  padding-bottom: 140px;
   transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 2px 0 10px var(--shadow);
   z-index: 900;
-  overflow-y: auto; /* Permite scroll si el contenido es largo */
 }
 
 body.dark-theme .sidebar {
@@ -288,39 +287,29 @@ body.light-theme .sidebar {
   font-weight: 700;
 }
 
-.sidebar-footer {
+.logo-container {
+  position: fixed;
+  bottom: 20px;
+  left: 10px;
+  width: 180px;
+  text-align: center;
   padding: 1rem;
   background: var(--card-bg);
   border-radius: 8px;
-  text-align: center;
-  width: 100%;
-  max-width: 180px;
-  margin: 0 auto 1rem auto; /* Centrado con espacio inferior */
+  box-shadow: 0 -2px 8px var(--shadow);
+  z-index: 950;
 }
 
-.sidebar-footer img {
+.logo-container img {
   width: 100%;
-  max-width: 120px;
+  max-width: 160px;
   height: auto;
   display: block;
-  margin: 0 auto 0.5rem auto;
   transition: transform 0.3s ease;
 }
 
-.sidebar-footer img:hover {
+.logo-container img:hover {
   transform: scale(1.1);
-}
-
-.sidebar-footer p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text);
-  opacity: 0.8;
-}
-
-.sidebar-footer .highlight-name {
-  font-weight: 700; /* Negrita */
-  color: var(--primary); /* Color azul */
 }
 
 .container {
@@ -603,16 +592,13 @@ body.light-theme .sidebar {
     gap: 0.5rem;
   }
 
-  .sidebar-footer {
+  .logo-container {
     width: 140px;
+    left: 5px;
   }
 
-  .sidebar-footer img {
-    max-width: 100px;
-  }
-
-  .sidebar-footer p {
-    font-size: 0.8rem;
+  .logo-container img {
+    max-width: 120px;
   }
 }
 
@@ -656,7 +642,6 @@ body.light-theme .sidebar {
   left: 0;
   width: 100%;
 }
-
 .loading-bar {
   position: fixed;
   top: 0;
