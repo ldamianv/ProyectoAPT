@@ -57,8 +57,8 @@
     ],
     tpm: {
       "tarjetas-tpm": [
-        { title: "Tarjetas Azules-Rojas", desc: "Registra incidencias críticas.", img: "tarjetas_azules_rojas.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSdSHEobkCu9n4aH4Q-aOYkzIjhBRoM4MecYRCNKAqNFPr2CPw/viewform" },
-        { title: "Tarjetas Verdes", desc: "Registra mejoras propuestas.", img: "tarjetas_verdes.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSf5ZFf_AvHH80JRAS12x6IZPOI_HoIYQG5TC9eVCGiiHNn24w/viewform" }
+        { title: "Tarjetas Azules-Rojas", desc: "Registra anomalias o inconveniencias.", img: "TarjetaTPMx.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSdSHEobkCu9n4aH4Q-aOYkzIjhBRoM4MecYRCNKAqNFPr2CPw/viewform" },
+        { title: "Tarjetas Verdes", desc: "Registra incidentes críticos que comprometan la seguridad.", img: "TarjetaVerdex.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSf5ZFf_AvHH80JRAS12x6IZPOI_HoIYQG5TC9eVCGiiHNn24w/viewform" }
       ],
       "matriz-habilidades": [
         { title: "Matriz de Habilidades", desc: "Evalúa las competencias del equipo.", img: "Matrizx.jpg", link: "https://docs.google.com/spreadsheets/d/1oD5oajklPJOj99iKKMG_vqVF6WNCxwgEr0dPqKrniz8/edit?usp=sharing" }
