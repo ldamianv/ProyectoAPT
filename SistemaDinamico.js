@@ -10,7 +10,7 @@
     ],
     ad: [
       { title: "Avance de Despachos", desc: "Registre el avance de despachos.", img: "Despachox.jpg", link: "#" },
-      { title: "Reporte de Descuentos Aplicados", desc: "Registre los descuentos aplicados en despachos.", img: "Trasladox.jpg", link: "https://docs.google.com/spreadsheets/d/1fAl_ITZg2fnINC9X9MXoB0Ci_47NI9e2eYX-gLWKc3U/edit?usp=sharing" },
+      { title: "Reporte de Traslados Atendidos", desc: "Registre el número de unidades atendidas diariamente.", img: "Trasladox.jpg", link: "#" },
       { title: "Liquidaciones", desc: "Registra las liquidaciones de los despachos.", img: "Ventas.jpeg", link: "#" }
     ],
     am: [
@@ -66,7 +66,15 @@
       "instructivos": [
         { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "Manualx.jpg", link: "https://drive.google.com/drive/folders/1NgVabT7hPyVlT8XpnmQFcLTpDKCOGTBP?usp=sharing" }
       ]
-    }
+    },
+    "tablero-rds": [
+      {
+        title: "Indicadores KPI",
+        desc: "Visualiza los indicadores KPI mensuales.",
+        img: "KPI.jpg",
+        link: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQXtNZ2NehkjVej7jF2b_c00U7bYK5BXqqQAE8h8yRNoO1ObG6atDuPtR6vb2VewFLER_0nVQAVnm6H/pubchart?oid=315860503&format=interactive"
+      }
+    ]
   };
 
   function renderCards(sectionId, filter = '', subsectionId = '') {
@@ -114,6 +122,16 @@
         `;
       });
       container.innerHTML = html;
+    } else if (sectionId === 'tablero-rds') {
+      container.innerHTML = filteredCards.map(card => `
+        <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
+          <h3>${card.title}</h3>
+          <p>${card.desc}</p>
+          <div class="chart-container">
+            <iframe src="${card.link}" width="100%" height="497" frameborder="0" style="border-radius: 8px;"></iframe>
+          </div>
+        </div>
+      `).join('');
     } else {
       container.innerHTML = filteredCards.map(card => `
         <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
@@ -226,7 +244,7 @@
       loadingBar.classList.remove('active');
       loadingBar.style.display = 'none';
       window.open(url, '_blank');
-    }, 500); // Ajusta el tiempo si deseas más o menos retraso
+    }, 500);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
