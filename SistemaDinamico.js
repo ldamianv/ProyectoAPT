@@ -10,7 +10,7 @@
     ],
     ad: [
       { title: "Avance de Despachos", desc: "Registre el avance de despachos.", img: "Despachox.jpg", link: "#" },
-      { title: "Reporte de Traslados Atendidos", desc: "Registre el número de unidades atendidas diariamente.", img: "Trasladox.jpg", link: "#" },
+      { title: "Reporte de Descuentos Aplicados", desc: "Registre los descuentos aplicados en despachos.", img: "Trasladox.jpg", link: "https://docs.google.com/spreadsheets/d/1fAl_ITZg2fnINC9X9MXoB0Ci_47NI9e2eYX-gLWKc3U/edit?usp=sharing" },
       { title: "Liquidaciones", desc: "Registra las liquidaciones de los despachos.", img: "Ventas.jpeg", link: "#" }
     ],
     am: [
