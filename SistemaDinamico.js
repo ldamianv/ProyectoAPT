@@ -1,4 +1,3 @@
-<DOCUMENT filename="SistemaDinamico.js">
 (function() {
   const sectionsData = {
     cp: [
@@ -66,14 +65,6 @@
       ],
       "instructivos": [
         { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "Manualx.jpg", link: "https://drive.google.com/drive/folders/1NgVabT7hPyVlT8XpnmQFcLTpDKCOGTBP?usp=sharing" }
-      ],
-      "tablero-rds": [
-        {
-          title: "Indicadores KPI",
-          desc: "Visualiza los indicadores KPI mensuales.",
-          img: "KPI.jpg",
-          link: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQXtNZ2NehkjVej7jF2b_c00U7bYK5BXqqQAE8h8yRNoO1ObG6atDuPtR6vb2VewFLER_0nVQAVnm6H/pubchart?oid=315860503&format=interactive"
-        }
       ]
     }
   };
@@ -123,16 +114,6 @@
         `;
       });
       container.innerHTML = html;
-    } else if (sectionId === 'tablero-rds') {
-      container.innerHTML = filteredCards.map(card => `
-        <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
-          <h3>${card.title}</h3>
-          <p>${card.desc}</p>
-          <div class="chart-container">
-            <iframe src="${card.link}" width="100%" height="497" frameborder="0" style="border-radius: 8px;"></iframe>
-          </div>
-        </div>
-      `).join('');
     } else {
       container.innerHTML = filteredCards.map(card => `
         <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
@@ -162,7 +143,7 @@
   function showSection(sectionId, subsectionId = '') {
     document.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
-    const searchValue = document.getElementById('search-bar') ? document.getElementById('search-bar').value : '';
+    const searchValue = document.getElementById('search-bar').value;
     renderCards(sectionId, searchValue, subsectionId);
 
     document.querySelectorAll('.dropdown-content li button').forEach(btn => {
@@ -245,7 +226,7 @@
       loadingBar.classList.remove('active');
       loadingBar.style.display = 'none';
       window.open(url, '_blank');
-    }, 500);
+    }, 500); // Ajusta el tiempo si deseas más o menos retraso
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -253,15 +234,6 @@
     createParticles();
     document.querySelector('button[data-section="cp"]').classList.add('active');
     setupSearch();
-
-    // Añadir eventos de clic a los botones de las secciones
-    document.querySelectorAll('.dropdown-content li button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const sectionId = btn.getAttribute('data-section');
-        const subsectionId = btn.getAttribute('data-subsection') || '';
-        showSection(sectionId, subsectionId);
-      });
-    });
   });
 
   window.toggleDropdown = toggleDropdown;
@@ -271,4 +243,3 @@
   window.toggleTheme = toggleTheme;
   window.showLoadingBar = showLoadingBar;
 })();
-</DOCUMENT>
