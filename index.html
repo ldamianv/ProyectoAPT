@@ -1,113 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APT Cañete-Supply Chain</title>
-    <link rel="stylesheet" href="SistemaEstilo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Softys Cañete</title>
+  <link rel="stylesheet" href="SistemaEstilo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
-    <div class="particles"></div>
-    <header>
-        <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-        <div class="header-title">☰ APT Cañete-Supply Chain</div>
-        <div class="header-controls">
-            <div class="search-container">
-                <input type="text" id="search-bar" placeholder="Buscar..." aria-label="Buscar">
-                <span class="search-icon"><i class="fas fa-search"></i></span>
-            </div>
-            <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-        </div>
-    </header>
-
-    <div class="sidebar">
-        <div class="dropdown">
-            <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')"><i class="fas fa-users"></i> Perfiles</button>
-            <ul class="dropdown-content" id="perfiles-menu">
-                <li><button data-section="cp" onclick="showSection('cp')"><i class="fas fa-shield-alt"></i> Control Patrimonial</button></li>
-                <li><button data-section="ad" onclick="showSection('ad')"><i class="fas fa-truck"></i> Asistente de Despachos</button></li>
-                <li><button data-section="am" onclick="showSection('am')"><i class="fas fa-warehouse"></i> Almacenero Montacarguista</button></li>
-                <li><button data-section="so" onclick="showSection('so')"><i class="fas fa-user-tie"></i> Supervisor de Operaciones</button></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button class="dropdown-btn" onclick="toggleDropdown('dashboard-menu')"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
-            <ul class="dropdown-content" id="dashboard-menu">
-                <li><button data-section="reportes-generales" onclick="showSection('reportes-generales')"><i class="fas fa-chart-bar"></i> Reportes Generales</button></li>
-                <li><button data-section="estadisticas" onclick="showSection('estadisticas')"><i class="fas fa-chart-line"></i> Estadísticas</button></li>
-                <li><button data-section="configuracion" onclick="showSection('configuracion')"><i class="fas fa-cog"></i> Configuración</button></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button class="dropdown-btn" onclick="toggleDropdown('cumpleanos-menu')"><i class="fas fa-birthday-cake"></i> Nuestros Cumpleaños</button>
-            <ul class="dropdown-content" id="cumpleanos-menu">
-                <li><button data-section="birthdays" onclick="showSection('birthdays')"><i class="fas fa-calendar"></i> Relación</button></li>
-                <li><button data-section="celebraciones" onclick="showSection('celebraciones')"><i class="fas fa-glass-cheers"></i> Celebraciones</button></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button class="dropdown-btn" onclick="toggleDropdown('tpm-menu')"><i class="fas fa-tools"></i> TPM</button>
-            <ul class="dropdown-content" id="tpm-menu">
-                <li><button data-section="tpm" data-subsection="tarjetas-tpm" onclick="showSection('tpm', 'tarjetas-tpm')"><i class="fas fa-id-card"></i> Tarjetas TPM</button></li>
-                <li><button data-section="tpm" data-subsection="matriz-habilidades" onclick="showSection('tpm', 'matriz-habilidades')"><i class="fas fa-table"></i> Matriz de Habilidades</button></li>
-                <li><button data-section="tpm" data-subsection="instructivos" onclick="showSection('tpm', 'instructivos')"><i class="fas fa-book"></i> Instructivos</button></li>
-                <li><button data-section="tablero-rds" onclick="showSection('tablero-rds')"><i class="fas fa-tachometer-alt"></i> Tablero RDS</button></li>
-            </ul>
-        </div>
+<body class="dark-theme">
+  <div class="particles"></div>
+  <div id="loading-bar" class="loading-bar" style="display: none;">
+    <div class="loading-progress"></div>
+  </div>
+  <header>
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
+    <span class="header-title">APT Cañete-Supply Chain</span>
+    <div class="header-controls">
+      <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Buscar reportes..." aria-label="Buscar">
+        <i class="fas fa-search search-icon"></i>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <i class="fas fa-sun"></i>
+      </button>
     </div>
+  </header>
 
-    <div class="container">
-        <div class="form-section active" id="cp">
-            <h1>Control Patrimonial</h1>
-            <div class="card-container"></div>
-        </div>
-        <div class="form-section" id="ad">
-            <h1>Asistente Despacho</h1>
-            <div class="card-container"></div>
-        </div>
-        <div class="form-section" id="am">
-            <h1>Almacenero Montacarguista</h1>
-            <div class="card-container"></div>
-        </div>
-        <div class="form-section" id="so">
-            <h1>Supervisor Operaciones</h1>
-            <div class="card-container"></div>
-        </div>
-        <div class="form-section" id="reportes-generales">
-            <h1>Reportes Generales</h1>
-            <div class="card-container"></div>
-        </div>
-        <div class="form-section" id="birthdays">
-            <h1>Nuestros Cumpleaños</h1>
-            <div class="card-container"></div>
-        </div>
-        <div class="form-section" id="celebraciones">
-            <h1>Celebraciones</h1>
-            <div class="card-container"></div>
-        </div>
-        <div class="form-section" id="tpm">
-            <h1>TPM</h1>
-            <div class="card-container"></div>
-        </div>
-        <div class="form-section" id="tablero-rds">
-            <h1>Tablero RDS</h1>
-            <div class="card-container"></div>
-        </div>
+  <nav class="sidebar">
+  <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-expanded="false" aria-controls="perfiles-menu"><i class="fas fa-users"></i> Perfiles</button>
+  <div id="perfiles-menu" class="dropdown-content">
+    <ul>
+      <li><button data-section="cp" onclick="showSection('cp')"><i class="fas fa-building"></i> Control Patrimonial</button></li>
+      <li><button data-section="ad" onclick="showSection('ad')"><i class="fas fa-truck"></i> Asistente de Despachos</button></li>
+      <li><button data-section="am" onclick="showSection('am')"><i class="fas fa-warehouse"></i> Almacenero Montacarguista</button></li>
+      <li><button data-section="so" onclick="showSection('so')"><i class="fas fa-user-tie"></i> Supervisor de Operaciones</button></li>
+    </ul>
+  </div>
+  <button class="dropdown-btn" onclick="toggleDropdown('dashboard-menu')" aria-expanded="false" aria-controls="dashboard-menu"><i class="fas fa-chart-line"></i> Dashboard</button>
+  <div id="dashboard-menu" class="dropdown-content">
+    <ul>
+      <li><button data-section="reportes-generales" onclick="showSection('reportes-generales')"><i class="fas fa-file-alt"></i> Reportes Generales</button></li>
+      <li><button onclick="alert('Abrir Estadísticas')"><i class="fas fa-chart-bar"></i> Estadísticas</button></li>
+      <li><button onclick="alert('Abrir Configuración')"><i class="fas fa-cog"></i> Configuración</button></li>
+    </ul>
+  </div>
+  <button class="dropdown-btn" onclick="toggleDropdown('birthdays-menu')" aria-expanded="false" aria-controls="birthdays-menu"><i class="fas fa-birthday-cake"></i> Nuestros Cumpleaños</button>
+  <div id="birthdays-menu" class="dropdown-content">
+    <ul id="birthdays-list">
+      <li><button data-section="birthdays" onclick="showSection('birthdays')"><i class="fas fa-users"></i> Relación</button></li>
+      <li><span>Celebraciones</span></li>
+    </ul>
+  </div>
+  <button class="dropdown-btn" onclick="toggleDropdown('tpm-menu')" aria-expanded="false" aria-controls="tpm-menu"><i class="fas fa-tools"></i> TPM</button>
+  <div id="tpm-menu" class="dropdown-content">
+    <ul>
+      <li><button data-section="tpm" data-subsection="tarjetas-tpm" onclick="showSection('tpm', 'tarjetas-tpm')"><i class="fas fa-ticket-alt"></i> Tarjetas TPM</button></li>
+      <li><button data-section="tpm" data-subsection="matriz-habilidades" onclick="showSection('tpm', 'matriz-habilidades')"><i class="fas fa-table"></i> Matriz de Habilidades</button></li>
+      <li><button data-section="tpm" data-subsection="instructivos" onclick="showSection('tpm', 'instructivos')"><i class="fas fa-book"></i> Instructivos</button></li>
+    </ul>
+  </div>
+    <div class="sidebar-footer">
+      <p>Softys Cañete - Por <span class="highlight-name">Luis Damián</span> 2025</p>
     </div>
+  </nav>
 
-    <div class="logo-container">
-        <img src="logo.png" alt="Logo Softys Cañete">
-    </div>
+  <main class="container">
+    <section id="cp" class="form-section active">
+      <h1>Control Patrimonial</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="ad" class="form-section">
+      <h1>Asistente Despacho</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="am" class="form-section">
+      <h1>Almacenero Montacarguista</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="so" class="form-section">
+      <h1>Supervisor Operaciones</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="reportes-generales" class="form-section">
+      <h1>Reportes Generales</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="birthdays" class="form-section">
+      <h1>Nuestros Cumpleaños</h1>
+      <div class="card-container"></div>
+    </section>
+    <section id="tpm" class="form-section">
+      <h1>TPM</h1>
+      <div class="card-container"></div>
+    </section>
+  </main>
 
-    <footer class="footer">
-        <p>Softys Cañete - Por Luis Damián 2025</p>
-    </footer>
-
-    <div class="loading-bar" id="loading-bar">
-        <div class="loading-progress"></div>
-    </div>
-
-    <script src="SistemaDinamico.js"></script>
+  <script src="SistemaDinamico.js" defer></script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'925bfdea5d0db062',t:'MTc0Mjg4MDM3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
