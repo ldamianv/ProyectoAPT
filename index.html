@@ -1,102 +1,254 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Softys Cañete</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APT Cañete - Supply Chain</title>
+  <link rel="icon" type="image/png" href="Imagenes/favicon.png">
   <link rel="stylesheet" href="SistemaEstilo.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body class="dark-theme">
+
+  <!-- Partículas de fondo -->
   <div class="particles"></div>
-  <div id="loading-bar" class="loading-bar" style="display: none;">
-    <div class="loading-progress"></div>
-  </div>
+
+  <!-- Encabezado -->
   <header>
-    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
-    <span class="header-title">APT Cañete-Supply Chain</span>
+    <button class="menu-toggle" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="header-title">APT Cañete - Supply Chain</h1>
     <div class="header-controls">
       <div class="search-container">
-        <input type="text" id="search-bar" placeholder="Buscar reportes..." aria-label="Buscar">
+        <input type="text" id="search-bar" placeholder="Buscar...">
         <i class="fas fa-search search-icon"></i>
       </div>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
-        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
       </button>
     </div>
   </header>
 
-  <nav class="sidebar">
-  <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-expanded="false" aria-controls="perfiles-menu"><i class="fas fa-users"></i> Perfiles</button>
-  <div id="perfiles-menu" class="dropdown-content">
-    <ul>
-      <li><button data-section="cp" onclick="showSection('cp')"><i class="fas fa-building"></i> Control Patrimonial</button></li>
-      <li><button data-section="ad" onclick="showSection('ad')"><i class="fas fa-truck"></i> Asistente de Despachos</button></li>
-      <li><button data-section="am" onclick="showSection('am')"><i class="fas fa-warehouse"></i> Almacenero Montacarguista</button></li>
-      <li><button data-section="so" onclick="showSection('so')"><i class="fas fa-user-tie"></i> Supervisor de Operaciones</button></li>
+  <!-- Barra lateral -->
+  <div class="sidebar">
+
+    <!-- Inicio -->
+    <button class="dropdown-btn" onclick="showSection('home')" data-section="home" aria-label="Ir a la página de inicio">
+      <i class="fas fa-home"></i> Inicio
+    </button>
+
+    <!-- Perfiles -->
+    <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-label="Expandir menú de perfiles">
+      <i class="fas fa-users"></i> Perfiles <i class="fas fa-chevron-down"></i>
+    </button>
+    <ul id="perfiles-menu" class="dropdown-content">
+      <li>
+        <button data-section="cp" onclick="showSection('cp')" aria-label="Ir a Control Patrimonial">
+          <i class="fas fa-box"></i> Control Patrimonial
+        </button>
+      </li>
+      <li>
+        <button data-section="ad" onclick="showSection('ad')" aria-label="Ir a Asistente de Despachos">
+          <i class="fas fa-truck"></i> Asistente de Despachos
+        </button>
+      </li>
+      <li>
+        <button data-section="am" onclick="showSection('am')" aria-label="Ir a Almacenero Montacarguista">
+          <i class="fas fa-warehouse"></i> Almacenero Montacarguista
+        </button>
+      </li>
+      <li>
+        <button data-section="so" onclick="showSection('so')" aria-label="Ir a Supervisor de Operaciones">
+          <i class="fas fa-user-tie"></i> Supervisor de Operaciones
+        </button>
+      </li>
     </ul>
-  </div>
-  <button class="dropdown-btn" onclick="toggleDropdown('dashboard-menu')" aria-expanded="false" aria-controls="dashboard-menu"><i class="fas fa-chart-line"></i> Dashboard</button>
-  <div id="dashboard-menu" class="dropdown-content">
-    <ul>
-      <li><button data-section="reportes-generales" onclick="showSection('reportes-generales')"><i class="fas fa-file-alt"></i> Reportes Generales</button></li>
-      <li><button onclick="alert('Abrir Estadísticas')"><i class="fas fa-chart-bar"></i> Estadísticas</button></li>
-      <li><button onclick="alert('Abrir Configuración')"><i class="fas fa-cog"></i> Configuración</button></li>
+
+    <!-- Dashboard -->
+    <button class="dropdown-btn" onclick="toggleDropdown('dashboard-menu')" aria-label="Expandir menú de dashboard">
+      <i class="fas fa-tachometer-alt"></i> Dashboard <i class="fas fa-chevron-down"></i>
+    </button>
+    <ul id="dashboard-menu" class="dropdown-content">
+      <li>
+        <button data-section="reportes-generales" onclick="showSection('reportes-generales')" aria-label="Ir a Reportes Generales">
+          <i class="fas fa-chart-bar"></i> Reportes Generales
+        </button>
+      </li>
+      <li>
+        <button data-section="estadisticas" onclick="showSection('estadisticas')" aria-label="Ir a Estadísticas">
+          <i class="fas fa-chart-line"></i> Estadísticas
+        </button>
+      </li>
+      <li>
+        <button data-section="configuracion" onclick="showSection('configuracion')" aria-label="Ir a Configuración">
+          <i class="fas fa-cog"></i> Configuración
+        </button>
+      </li>
     </ul>
-  </div>
-  <button class="dropdown-btn" onclick="toggleDropdown('birthdays-menu')" aria-expanded="false" aria-controls="birthdays-menu"><i class="fas fa-birthday-cake"></i> Nuestros Cumpleaños</button>
-  <div id="birthdays-menu" class="dropdown-content">
-    <ul id="birthdays-list">
-      <li><button data-section="birthdays" onclick="showSection('birthdays')"><i class="fas fa-users"></i> Relación</button></li>
-      <li><span>Celebraciones</span></li>
+
+    <!-- Cumpleaños -->
+    <button class="dropdown-btn" onclick="toggleDropdown('birthdays-menu')" aria-label="Expandir menú de cumpleaños">
+      <i class="fas fa-birthday-cake"></i> Nuestros Cumpleaños <i class="fas fa-chevron-down"></i>
+    </button>
+    <ul id="birthdays-menu" class="dropdown-content">
+      <li>
+        <button data-section="birthdays" onclick="showSection('birthdays')" aria-label="Ir a Nuestros Cumpleaños">
+          <i class="fas fa-calendar-alt"></i> Relación
+        </button>
+      </li>
+      <li>
+        <button data-section="celebraciones" onclick="showSection('celebraciones')" aria-label="Ir a Celebraciones">
+          <i class="fas fa-gift"></i> Celebraciones
+        </button>
+      </li>
     </ul>
-  </div>
-  <button class="dropdown-btn" onclick="toggleDropdown('tpm-menu')" aria-expanded="false" aria-controls="tpm-menu"><i class="fas fa-tools"></i> TPM</button>
-  <div id="tpm-menu" class="dropdown-content">
-    <ul>
-      <li><button data-section="tpm" data-subsection="tarjetas-tpm" onclick="showSection('tpm', 'tarjetas-tpm')"><i class="fas fa-ticket-alt"></i> Tarjetas TPM</button></li>
-      <li><button data-section="tpm" data-subsection="matriz-habilidades" onclick="showSection('tpm', 'matriz-habilidades')"><i class="fas fa-table"></i> Matriz de Habilidades</button></li>
-      <li><button data-section="tpm" data-subsection="instructivos" onclick="showSection('tpm', 'instructivos')"><i class="fas fa-book"></i> Instructivos</button></li>
+
+    <!-- TPM -->
+    <button class="dropdown-btn" onclick="toggleDropdown('tpm-menu')" aria-label="Expandir menú de TPM">
+      <i class="fas fa-tools"></i> TPM <i class="fas fa-chevron-down"></i>
+    </button>
+    <ul id="tpm-menu" class="dropdown-content">
+      <li>
+        <button data-section="tpm" data-subsection="tarjetas-tpm" onclick="showSection('tpm', 'tarjetas-tpm')" aria-label="Ir a Tarjetas TPM">
+          <i class="fas fa-ticket-alt"></i> Tarjetas TPM
+        </button>
+      </li>
+      <li>
+        <button data-section="tpm" data-subsection="matriz-habilidades" onclick="showSection('tpm', 'matriz-habilidades')" aria-label="Ir a Matriz de Habilidades">
+          <i class="fas fa-table"></i> Matriz de Habilidades
+        </button>
+      </li>
+      <li>
+        <button data-section="tpm" data-subsection="instructivos" onclick="showSection('tpm', 'instructivos')" aria-label="Ir a Instructivos TPM">
+          <i class="fas fa-book"></i> Instructivos
+        </button>
+      </li>
     </ul>
-  </div>
-    <div class="sidebar-footer">
-      <p>Softys Cañete - Por <span class="highlight-name">Luis Damián</span> 2025</p>
+
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="Imagenes/logo.png" alt="Logo Softys Cañete">
+      <p>Softys Cañete - Por Luis Damián 2025</p>
     </div>
-  </nav>
 
-  <main class="container">
-    <section id="cp" class="form-section active">
-      <h1>Control Patrimonial</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="ad" class="form-section">
-      <h1>Asistente Despacho</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="am" class="form-section">
-      <h1>Almacenero Montacarguista</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="so" class="form-section">
-      <h1>Supervisor Operaciones</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="reportes-generales" class="form-section">
-      <h1>Reportes Generales</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="birthdays" class="form-section">
-      <h1>Nuestros Cumpleaños</h1>
-      <div class="card-container"></div>
-    </section>
-    <section id="tpm" class="form-section">
-      <h1>TPM</h1>
-      <div class="card-container"></div>
-    </section>
-  </main>
+  </div>
 
-  <script src="SistemaDinamico.js" defer></script>
-  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'925bfdea5d0db062',t:'MTc0Mjg4MDM3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+  <!-- Contenido principal -->
+  <div class="container">
+    <main>
+
+      <!-- Página de inicio -->
+      <section id="home" class="form-section active">
+        <h1>Bienvenidos a APT Cañete - Supply Chain</h1>
+        <div class="landing-container">
+          <p>En APT Cañete garantizamos calidad y seguridad en cada uno de nuestros procesos.</p>
+          <div class="cards-container">
+            <div class="card vision-card">
+              <i class="fas fa-eye card-icon"></i>
+              <h2>Visión</h2>
+              <p>Alcanzar y sostener la mejor eficiencia en la región en la operación de traslados Interplantas, manteniendo "0" accidentes, lograr reducir a "0" los reclamos externos e internos y siendo referentes de TPM No-Manufactura.</p>
+            </div>
+            <div class="card mission-card">
+              <i class="fas fa-bullseye card-icon"></i>
+              <h2>Misión</h2>
+              <p>Hacer que el proceso de Traslados Interplantas sea estable y fluido, estandarizando nuestros procesos a través de la metodología TPM, priorizando en todo momento la Seguridad, Calidad y Productividad en las operaciones.</p>
+            </div>
+            <div class="card objectives-card">
+              <i class="fas fa-list-ol card-icon"></i>
+              <h2>Objetivos</h2>
+              <ol>
+                <li>Promover la cultura de "0" accidentes de personal propio y tercero al 2025.</li>
+                <li>Optimizar el tiempo de la atención de unidades interplantas en un tiempo menor o igual a 70 minutos (proyectado hasta el primer semestre del 2025).</li>
+                <li>Lograr reducir los bultos dañados en operaciones logísticas a 10 bultos por mes.</li>
+                <li>Cumplir con la matriz de habilidades con un resultado mayor o igual al 80% de capacitaciones a todo el Grupo Autónomo.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Control Patrimonial -->
+      <section id="cp" class="form-section">
+        <h1>Control Patrimonial</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Asistente Despacho -->
+      <section id="ad" class="form-section">
+        <h1>Asistente Despacho</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Almacenero Montacarguista -->
+      <section id="am" class="form-section">
+        <h1>Almacenero Montacarguista</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Supervisor Operaciones -->
+      <section id="so" class="form-section">
+        <h1>Supervisor Operaciones</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Reportes Generales -->
+      <section id="reportes-generales" class="form-section">
+        <h1>Reportes Generales</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Nuestros Cumpleaños -->
+      <section id="birthdays" class="form-section">
+        <h1>Nuestros Cumpleaños</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- TPM -->
+      <section id="tpm" class="form-section">
+        <h1>TPM</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Estadísticas -->
+      <section id="estadisticas" class="form-section">
+        <h1>Estadísticas</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Configuración -->
+      <section id="configuracion" class="form-section">
+        <h1>Configuración</h1>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Celebraciones -->
+      <section id="celebraciones" class="form-section">
+        <h1>Celebraciones</h1>
+        <div class="card-container"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="footer">
+    <p>© 2025 APT Cañete - Supply Chain. Desarrollado por Luis Damián.</p>
+    <div class="footer-links">
+      <a href="#" aria-label="Política de Privacidad">Política de Privacidad</a> |
+      <a href="#" aria-label="Términos de Uso">Términos de Uso</a> |
+      <a href="#" aria-label="Contacto">Contacto</a>
+    </div>
+  </footer>
+
+  <!-- Barra de carga -->
+  <div id="loading-bar" class="loading-bar">
+    <div class="loading-progress"></div>
+  </div>
+
+  <script src="SistemaDinamico.js"></script>
 </body>
+
 </html>
