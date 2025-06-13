@@ -1,4 +1,5 @@
 (function() {
+  // Objeto que contiene todos los datos de las tarjetas para cada sección.
   const sectionsData = {
     cp: [
       { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1KnZfYkNolj9k9X3qIyj89ebLdXGW1w7CNQ5GV7lBHJg/edit?usp=sharing" },
@@ -66,157 +67,172 @@
       "instructivos": [
         { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "Manualx.jpg", link: "https://drive.google.com/drive/folders/1NgVabT7hPyVlT8XpnmQFcLTpDKCOGTBP?usp=sharing" }
       ]
-    }
+    },
+    // Secciones sin datos aún
+    "estadisticas": [],
+    "configuracion": [],
+    "celebraciones": []
   };
 
+  /**
+   * Renderiza las tarjetas en una sección específica, opcionalmente filtradas por un término de búsqueda.
+   * @param {string} sectionId - El ID de la sección a renderizar.
+   * @param {string} [filter=''] - El texto para filtrar las tarjetas.
+   * @param {string} [subsectionId=''] - El ID de una subsección (usado para TPM).
+   */
   function renderCards(sectionId, filter = '', subsectionId = '') {
     const container = document.querySelector(`#${sectionId} .card-container`);
-    let cards = sectionsData[sectionId] || [];
+    if (!container) return;
+
+    let cardsData = sectionsData[sectionId] || [];
     
-    if (subsectionId && typeof cards === 'object' && !Array.isArray(cards)) {
-      cards = cards[subsectionId] || [];
+    // Manejo de subsecciones como en TPM
+    if (subsectionId && typeof cardsData === 'object' && !Array.isArray(cardsData)) {
+      cardsData = cardsData[subsectionId] || [];
+    }
+    
+    // MEJORA: Manejar secciones sin datos
+    if (!cardsData || cardsData.length === 0 && sectionId !== 'birthdays') {
+        const message = sectionsData[sectionId] ? 'No hay elementos para mostrar.' : 'Próximamente...';
+        container.innerHTML = `<p class="coming-soon">${message}</p>`;
+        return;
     }
 
     const filteredCards = filter 
-      ? cards.filter(card => 
+      ? cardsData.filter(card => 
           card.title?.toLowerCase().includes(filter.toLowerCase()) || 
           card.desc?.toLowerCase().includes(filter.toLowerCase()) ||
           card.name?.toLowerCase().includes(filter.toLowerCase()) || 
           card.month?.toLowerCase().includes(filter.toLowerCase()))
-      : cards;
+      : cardsData;
 
     if (filteredCards.length === 0) {
-      container.innerHTML = '<p class="no-results">No se encontraron resultados.</p>';
+      container.innerHTML = '<p class="no-results">No se encontraron resultados para tu búsqueda.</p>';
       return;
     }
 
     if (sectionId === 'birthdays') {
-      const months = [
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-      ];
-
+      const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
       let html = '';
       months.forEach((month, monthIndex) => {
         const monthCards = filteredCards.filter(card => card.month === month);
-        html += `
-          <div class="month-card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${monthIndex * 0.1}s;">
-            <h3>${month}</h3>
-            <div class="person-cards">
-              ${monthCards.map((card, index) => {
-                const day = card.date.split('-')[0];
-                return `
-                  <div class="person-card">
-                    <div class="day-circle">
-                      <span>${day}</span>
-                    </div>
-                    <p>${card.name.toUpperCase()}</p>
-                  </div>
-                `;
-              }).join('')}
-            </div>
-          </div>
-        `;
+        if (monthCards.length > 0) {
+          html += `
+            <div class="month-card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${monthIndex * 0.1}s;">
+              <h3>${month}</h3>
+              <div class="person-cards">
+                ${monthCards.map((card) => {
+                  const day = card.date.split('-')[0];
+                  return `
+                    <div class="person-card">
+                      <div class="day-circle"><span>${day}</span></div>
+                      <p>${card.name.toUpperCase()}</p>
+                    </div>`;
+                }).join('')}
+              </div>
+            </div>`;
+        }
       });
-      container.innerHTML = html;
+      container.innerHTML = html || '<p class="no-results">No hay cumpleaños para mostrar.</p>';
     } else {
-      container.innerHTML = filteredCards.map(card => `
-        <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
+      container.innerHTML = filteredCards.map((card, index) => `
+        <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
           <div class="card-image-container">
             <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150" loading="lazy">
           </div>
           <h3>${card.title}</h3>
           <p>${card.desc}</p>
-          <a href="${card.link}" aria-label="Ver ${card.title}" ${card.link.startsWith('http') ? 'target="_blank" onclick="showLoadingBar(this.href); return false;"' : ''}>Ver Más</a>
+          <a href="${card.link}" aria-label="Ver ${card.title}" ${card.link.startsWith('http') ? 'target="_blank" rel="noopener noreferrer" onclick="showLoadingBar(event, this.href)"' : ''}>Ver Más</a>
         </div>
       `).join('');
-
-      const cardElements = container.querySelectorAll('.card');
-      cardElements.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-      });
     }
   }
 
+  /**
+   * Muestra u oculta el contenido de un menú desplegable.
+   * @param {string} menuId - El ID del menú a controlar.
+   */
   function toggleDropdown(menuId) {
     const dropdown = document.getElementById(menuId);
-    dropdown.classList.toggle('active');
+    const isActive = dropdown.classList.toggle('active');
     const btn = dropdown.previousElementSibling;
-    btn.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+    btn.setAttribute('aria-expanded', isActive);
   }
 
+  /**
+   * Muestra una sección principal y oculta las demás.
+   * @param {string} sectionId - El ID de la sección a mostrar.
+   * @param {string} [subsectionId=''] - El ID de la subsección.
+   */
   function showSection(sectionId, subsectionId = '') {
     document.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
-    document.getElementById(sectionId).classList.add('active');
+    
+    const sectionElement = document.getElementById(sectionId);
+    if (sectionElement) {
+        sectionElement.classList.add('active');
+    }
     
     if (sectionId !== 'home') {
       const searchValue = document.getElementById('search-bar').value;
       renderCards(sectionId, searchValue, subsectionId);
     }
 
-    document.querySelectorAll('.dropdown-btn, .dropdown-content li button').forEach(btn => {
+    // Actualiza el estado activo de los botones del menú
+    document.querySelectorAll('.sidebar button').forEach(btn => {
       btn.classList.remove('active');
-      if (btn.getAttribute('data-section') === sectionId && (!subsectionId || btn.getAttribute('data-subsection') === subsectionId)) {
-        btn.classList.add('active');
-      } else if (btn.getAttribute('data-section') === sectionId && !btn.getAttribute('data-subsection')) {
-        btn.classList.add('active');
-      }
     });
+    document.querySelector(`button[data-section="${sectionId}"]`)?.classList.add('active');
+    if(subsectionId) {
+        document.querySelector(`button[data-subsection="${subsectionId}"]`)?.classList.add('active');
+    }
   }
 
+  /**
+   * Muestra u oculta la barra lateral (en vista móvil).
+   */
   function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
-    const dropdowns = document.querySelectorAll('.dropdown-content');
-    const dropdownButtons = document.querySelectorAll('.dropdown-btn');
-  
     sidebar.classList.toggle('active');
-  
-    if (!sidebar.classList.contains('active')) {
-      dropdowns.forEach(dropdown => {
-        dropdown.classList.remove('active');
-      });
-      dropdownButtons.forEach(btn => {
-        btn.setAttribute('aria-expanded', 'false');
-      });
-    }
-  
-    document.querySelector('.container').classList.toggle('sidebar-active');
   }
 
-  function openMovimientoModal() {
-    alert('Abrir modal para registrar movimiento');
-  }
-
+  /**
+   * Crea partículas animadas en el fondo (solo para pantallas grandes).
+   */
   function createParticles() {
-    if (window.innerWidth <= 768) return; // No crear partículas en móviles
+    if (window.innerWidth <= 768) return;
     const particlesContainer = document.querySelector('.particles');
     const particleCount = 50;
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.classList.add('particle');
-      particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.top = Math.random() * 100 + 'vh';
-      particle.style.animationDuration = Math.random() * 5 + 5 + 's';
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
       particlesContainer.appendChild(particle);
     }
   }
-
+  
+  /**
+   * Cambia entre el tema oscuro y claro.
+   */
   function toggleTheme() {
     const body = document.body;
-    const themeButton = document.querySelector('.theme-toggle i');
+    const themeButtonIcon = document.querySelector('.theme-toggle i');
+    body.classList.toggle('dark-theme');
+    body.classList.toggle('light-theme');
+
     if (body.classList.contains('dark-theme')) {
-      body.classList.remove('dark-theme');
-      body.classList.add('light-theme');
-      themeButton.classList.remove('fa-sun');
-      themeButton.classList.add('fa-moon');
+      themeButtonIcon.classList.remove('fa-moon');
+      themeButtonIcon.classList.add('fa-sun');
     } else {
-      body.classList.remove('light-theme');
-      body.classList.add('dark-theme');
-      themeButton.classList.remove('fa-moon');
-      themeButton.classList.add('fa-sun');
+      themeButtonIcon.classList.remove('fa-sun');
+      themeButtonIcon.classList.add('fa-moon');
     }
   }
 
+  /**
+   * Configura el listener para la barra de búsqueda.
+   */
   function setupSearch() {
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('input', () => {
@@ -228,34 +244,45 @@
     });
   }
 
-  function showLoadingBar(url) {
+  /**
+   * Muestra una barra de carga antes de abrir un enlace externo.
+   * @param {Event} event - El evento del clic.
+   * @param {string} url - La URL a abrir.
+   */
+  function showLoadingBar(event, url) {
+    event.preventDefault(); // Previene la navegación inmediata
     const loadingBar = document.getElementById('loading-bar');
     loadingBar.style.display = 'block';
+    
+    // Forzar un reflujo para reiniciar la animación
+    loadingBar.classList.remove('active');
+    void loadingBar.offsetWidth;
     loadingBar.classList.add('active');
 
     setTimeout(() => {
-      loadingBar.classList.remove('active');
+      window.open(url, '_blank', 'noopener,noreferrer');
       loadingBar.style.display = 'none';
-      window.open(url, '_blank');
+      loadingBar.classList.remove('active');
     }, 500);
   }
 
+  // Se ejecuta cuando el DOM está completamente cargado.
   document.addEventListener('DOMContentLoaded', () => {
-    if (!localStorage.getItem('welcomeShown')) {
-      setTimeout(() => {
-        alert('¡Bienvenido a APT Cañete - Supply Chain! Explora nuestras herramientas.');
-        localStorage.setItem('welcomeShown', 'true');
-      }, 1000);
+    // Inicia en el tema oscuro por defecto si no hay preferencia
+    if (!document.body.classList.contains('light-theme')) {
+        document.body.classList.add('dark-theme');
+        document.querySelector('.theme-toggle i').classList.add('fa-sun');
     }
+  
     showSection('home');
     createParticles();
     setupSearch();
   });
 
+  // Expone las funciones al ámbito global para que puedan ser llamadas desde el HTML.
   window.toggleDropdown = toggleDropdown;
   window.showSection = showSection;
   window.toggleSidebar = toggleSidebar;
-  window.openMovimientoModal = openMovimientoModal;
   window.toggleTheme = toggleTheme;
   window.showLoadingBar = showLoadingBar;
 })();
