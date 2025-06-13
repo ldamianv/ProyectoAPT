@@ -108,9 +108,6 @@ header {
   flex-grow: 1;
   text-align: left;
   padding-left: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .header-controls {
@@ -162,22 +159,6 @@ header {
 }
 
 .theme-toggle:hover {
-  transform: scale(1.2);
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.music-toggle {
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50%;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.music-toggle:hover {
   transform: scale(1.2);
   background: rgba(255, 255, 255, 0.2);
 }
@@ -287,6 +268,15 @@ body.light-theme .sidebar {
   font-weight: 700;
 }
 
+.sidebar button[data-section="home"] {
+  font-weight: 600;
+}
+
+.sidebar button[data-section="home"].active {
+  background: rgba(0, 163, 255, 0.2);
+  color: var(--primary);
+}
+
 .logo-container {
   position: fixed;
   bottom: 20px;
@@ -316,11 +306,11 @@ body.light-theme .sidebar {
   margin-left: 200px;
   margin-top: 60px;
   padding: 2rem;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px - 60px); /* Ajuste para footer */
   transition: margin-left 0.3s ease-in-out;
   position: relative;
   z-index: 1;
-  margin-bottom: 20px;
+  margin-bottom: 0; /* Footer manejado fuera del contenedor */
 }
 
 .form-section {
@@ -347,8 +337,10 @@ body.light-theme .sidebar {
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  gap: 5rem; /* Aumentado a 4rem para mayor separación */
   padding: 0 1rem;
+  grid-auto-rows: minmax(400px, auto); /* Altura mínima uniforme */
+  align-items: start; /* Alinea el inicio de las tarjetas */
 }
 
 .month-card {
@@ -458,7 +450,7 @@ body.light-theme .sidebar {
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 2rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background 0.3s ease;
   animation: cardFadeIn 0.5s ease forwards;
@@ -468,7 +460,8 @@ body.light-theme .sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 300px;
+  min-height: 400px;
+  width: 100%;
 }
 
 .card:hover {
@@ -483,7 +476,7 @@ body.light-theme .sidebar {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .card img {
@@ -493,24 +486,23 @@ body.light-theme .sidebar {
   border-radius: 8px;
 }
 
-.card h3 {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
+.card h2 {
+  font-size: 1.8rem;
+  margin: 1rem 0;
   color: var(--primary);
 }
 
-.card p {
+.card p, .card ol {
+  font-size: 1.1rem;
   color: var(--text);
-  font-size: 0.9rem;
   margin: 0.5rem 0;
-  opacity: 0.8;
+  line-height: 1.6;
 }
 
 .card a {
   display: inline-block;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
   background: var(--primary);
   color: var(--text);
   text-decoration: none;
@@ -542,6 +534,86 @@ body.light-theme .sidebar {
   background: var(--secondary);
 }
 
+.landing-container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.landing-container p {
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.card-icon {
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-card h2, .vision-card h2, .objectives-card h2 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin: 1rem 0;
+}
+
+.mission-card p, .vision-card p, .objectives-card ol {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.objectives-card ol {
+  text-align: left;
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.objectives-card li {
+  margin-bottom: 0.75rem;
+}
+
+.no-results {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text);
+  opacity: 0.7;
+  margin: 2rem 0;
+}
+
+.footer {
+  background: var(--header-bg);
+  color: var(--text);
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.footer-links a {
+  color: var(--primary);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.footer-links a:hover {
+  color: var(--secondary);
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -569,7 +641,7 @@ body.light-theme .sidebar {
   }
 
   .header-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
     white-space: normal;
     line-height: 1.2;
     padding-left: 0.5rem;
@@ -583,8 +655,7 @@ body.light-theme .sidebar {
     width: 120px;
   }
 
-  .theme-toggle,
-  .music-toggle {
+  .theme-toggle {
     font-size: 1.2rem;
   }
 
@@ -600,14 +671,37 @@ body.light-theme .sidebar {
   .logo-container img {
     max-width: 120px;
   }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+  }
 }
 
-.dropdown-content {
-  display: none;
+@media (max-width: 480px) {
+  .card {
+    min-height: 300px;
+    padding: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+  }
+
+  .card p, .card ol {
+    font-size: 0.9rem;
+  }
 }
 
-.dropdown-content.active {
-  display: block;
+@media (min-width: 769px) and (max-width: 1200px) {
+  .card-container {
+    grid-template-columns: repeat(3, minmax(300px, 1fr)); /* Máximo 3 columnas */
+    max-width: 1200px; /* Limita el ancho total */
+    margin: 0 auto; /* Centra el contenedor */
+  }
 }
 
 .particle {
@@ -634,14 +728,6 @@ body.light-theme .sidebar {
   }
 }
 
-.footer {
-  text-align: center;
-  padding: 1rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
 .loading-bar {
   position: fixed;
   top: 0;
