@@ -85,6 +85,11 @@
           card.month?.toLowerCase().includes(filter.toLowerCase()))
       : cards;
 
+    if (filteredCards.length === 0) {
+      container.innerHTML = '<p class="no-results">No se encontraron resultados.</p>';
+      return;
+    }
+
     if (sectionId === 'birthdays') {
       const months = [
         "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -118,11 +123,11 @@
       container.innerHTML = filteredCards.map(card => `
         <div class="card" style="animation: cardFadeIn 0.5s ease forwards;">
           <div class="card-image-container">
-            <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150">
+            <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150" loading="lazy">
           </div>
           <h3>${card.title}</h3>
           <p>${card.desc}</p>
-          <a href="${card.link}" ${card.link.startsWith('http') ? 'target="_blank" onclick="showLoadingBar(this.href); return false;"' : ''}>Ver Más</a>
+          <a href="${card.link}" aria-label="Ver ${card.title}" ${card.link.startsWith('http') ? 'target="_blank" onclick="showLoadingBar(this.href); return false;"' : ''}>Ver Más</a>
         </div>
       `).join('');
 
@@ -143,12 +148,17 @@
   function showSection(sectionId, subsectionId = '') {
     document.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
-    const searchValue = document.getElementById('search-bar').value;
-    renderCards(sectionId, searchValue, subsectionId);
+    
+    if (sectionId !== 'home') {
+      const searchValue = document.getElementById('search-bar').value;
+      renderCards(sectionId, searchValue, subsectionId);
+    }
 
-    document.querySelectorAll('.dropdown-content li button').forEach(btn => {
+    document.querySelectorAll('.dropdown-btn, .dropdown-content li button').forEach(btn => {
       btn.classList.remove('active');
       if (btn.getAttribute('data-section') === sectionId && (!subsectionId || btn.getAttribute('data-subsection') === subsectionId)) {
+        btn.classList.add('active');
+      } else if (btn.getAttribute('data-section') === sectionId && !btn.getAttribute('data-subsection')) {
         btn.classList.add('active');
       }
     });
@@ -178,6 +188,7 @@
   }
 
   function createParticles() {
+    if (window.innerWidth <= 768) return; // No crear partículas en móviles
     const particlesContainer = document.querySelector('.particles');
     const particleCount = 50;
     for (let i = 0; i < particleCount; i++) {
@@ -210,7 +221,7 @@
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('input', () => {
       const activeSection = document.querySelector('.form-section.active');
-      if (activeSection) {
+      if (activeSection && activeSection.id !== 'home') {
         const subsectionId = document.querySelector('.dropdown-content li button.active')?.getAttribute('data-subsection') || '';
         renderCards(activeSection.id, searchBar.value, subsectionId);
       }
@@ -226,13 +237,18 @@
       loadingBar.classList.remove('active');
       loadingBar.style.display = 'none';
       window.open(url, '_blank');
-    }, 500); // Ajusta el tiempo si deseas más o menos retraso
+    }, 500);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    renderCards('cp');
+    if (!localStorage.getItem('welcomeShown')) {
+      setTimeout(() => {
+        alert('¡Bienvenido a APT Cañete - Supply Chain! Explora nuestras herramientas.');
+        localStorage.setItem('welcomeShown', 'true');
+      }, 1000);
+    }
+    showSection('home');
     createParticles();
-    document.querySelector('button[data-section="cp"]').classList.add('active');
     setupSearch();
   });
 
