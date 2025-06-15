@@ -4,11 +4,9 @@
   --shadow: rgba(0, 163, 255, 0.2);
 }
 
-/* --- INICIO DE LA MEJORA --- */
 *, *::before, *::after {
   box-sizing: border-box;
 }
-/* --- FIN DE LA MEJORA --- */
 
 body.dark-theme {
   --background: #1A1A1A;
@@ -180,7 +178,7 @@ header {
   display: flex;
   flex-direction: column;
   padding-top: 80px;
-  padding-bottom: 140px;
+  padding-bottom: 1rem;
   transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 2px 0 10px var(--shadow);
   z-index: 900;
@@ -206,9 +204,10 @@ body.light-theme .sidebar {
   width: 100%;
   padding: 1rem;
   position: relative;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
   display: flex;
   align-items: center;
+  border-radius: 8px;
 }
 
 .dropdown-btn i {
@@ -217,24 +216,13 @@ body.light-theme .sidebar {
 
 .dropdown-btn:hover {
   color: var(--text);
+  background-color: rgba(0, 163, 255, 0.1);
   transform: translateX(5px);
 }
 
-.dropdown-btn::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  opacity: 0.5;
-  transition: width 0.3s ease;
-  z-index: -1;
-}
-
-.dropdown-btn:hover::after {
-  width: 100%;
+.dropdown-btn.active {
+    background-color: rgba(0, 163, 255, 0.2);
+    color: var(--primary);
 }
 
 .dropdown-content {
@@ -255,10 +243,11 @@ body.light-theme .sidebar {
   cursor: pointer;
   width: 100%;
   text-align: left;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
   transition: color 0.3s ease, background 0.3s ease;
   display: flex;
   align-items: center;
+  border-radius: 8px;
 }
 
 .dropdown-content li button i {
@@ -267,6 +256,7 @@ body.light-theme .sidebar {
 
 .dropdown-content li button:hover {
   color: var(--primary);
+  background-color: rgba(0, 163, 255, 0.1);
 }
 
 .dropdown-content li button.active {
@@ -283,7 +273,6 @@ body.light-theme .sidebar {
   background: rgba(0, 163, 255, 0.2);
   color: var(--primary);
 }
-
 
 .container {
   margin-left: 200px;
@@ -305,10 +294,10 @@ body.light-theme .sidebar {
 }
 
 .form-section h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
   color: var(--primary);
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
 }
 
@@ -319,7 +308,7 @@ body.light-theme .sidebar {
   align-items: stretch;
 }
 
-#birthdays .card-container {
+#nuestra-gente .card-container {
     align-items: start;
 }
 
@@ -372,11 +361,6 @@ body.light-theme .sidebar {
   text-align: center;
 }
 
-.person-card:hover {
-  border: 1px solid var(--secondary);
-  background: var(--birthday-card-bg);
-}
-
 .person-card .day-circle {
   width: 30px;
   height: 30px;
@@ -406,19 +390,6 @@ body.light-theme .sidebar {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-.month-card:nth-child(1) { animation-delay: 0.1s; }
-.month-card:nth-child(2) { animation-delay: 0.2s; }
-.month-card:nth-child(3) { animation-delay: 0.3s; }
-.month-card:nth-child(4) { animation-delay: 0.4s; }
-.month-card:nth-child(5) { animation-delay: 0.5s; }
-.month-card:nth-child(6) { animation-delay: 0.6s; }
-.month-card:nth-child(7) { animation-delay: 0.7s; }
-.month-card:nth-child(8) { animation-delay: 0.8s; }
-.month-card:nth-child(9) { animation-delay: 0.9s; }
-.month-card:nth-child(10) { animation-delay: 1.0s; }
-.month-card:nth-child(11) { animation-delay: 1.1s; }
-.month-card:nth-child(12) { animation-delay: 1.2s; }
 
 .card {
   background: var(--card-bg);
@@ -471,7 +442,7 @@ body.light-theme .sidebar {
   color: var(--text);
   margin: 0.5rem 0;
   line-height: 1.6;
-  flex-grow: 1; /* Permite que el contenido crezca */
+  flex-grow: 1;
 }
 
 .card a {
@@ -548,8 +519,48 @@ body.light-theme .sidebar {
   margin-bottom: 0.75rem;
 }
 
+/* --- ESTILOS PARA EL TABLERO RDS --- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+.dashboard-item {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-item h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 75%; /* Proporción 4:3. Cambiar a 56.25% para 16:9 */
+  border-radius: 8px;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 .no-results, .coming-soon {
-  grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+  grid-column: 1 / -1;
   text-align: center;
   font-size: 1.2rem;
   color: var(--text);
@@ -581,9 +592,15 @@ body.light-theme .sidebar {
   color: var(--secondary);
 }
 
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
   .menu-toggle { display: block; }
-  .sidebar { transform: translateX(-100%); width: 250px; } /* Ancho fijo para cuando esté activo */
+  .sidebar { transform: translateX(-100%); width: 250px; }
   .sidebar.active { transform: translateX(0); }
   .container { margin-left: 0; padding: 1rem; }
   .header-title { font-size: 1.2rem; white-space: normal; line-height: 1.2; padding-left: 0.5rem; }
