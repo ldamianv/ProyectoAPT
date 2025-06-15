@@ -284,30 +284,6 @@ body.light-theme .sidebar {
   color: var(--primary);
 }
 
-.logo-container {
-  position: fixed;
-  bottom: 20px;
-  left: 10px;
-  width: 180px;
-  text-align: center;
-  padding: 1rem;
-  background: var(--card-bg);
-  border-radius: 8px;
-  box-shadow: 0 -2px 8px var(--shadow);
-  z-index: 950;
-}
-
-.logo-container img {
-  width: 100%;
-  max-width: 160px;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.logo-container img:hover {
-  transform: scale(1.1);
-}
 
 .container {
   margin-left: 200px;
