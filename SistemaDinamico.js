@@ -165,26 +165,42 @@
    * @param {string} [subsectionId=''] - El ID de la subsección.
    */
   function showSection(sectionId, subsectionId = '') {
+    // Ocultar todas las secciones
     document.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
     
+    // Mostrar la sección seleccionada
     const sectionElement = document.getElementById(sectionId);
     if (sectionElement) {
         sectionElement.classList.add('active');
     }
     
+    // Limpiar la búsqueda y renderizar las tarjetas si no es la página de inicio
+    const searchBar = document.getElementById('search-bar');
     if (sectionId !== 'home') {
-      const searchValue = document.getElementById('search-bar').value;
-      renderCards(sectionId, searchValue, subsectionId);
+      renderCards(sectionId, searchBar.value, subsectionId);
+    } else {
+      // Opcional: limpiar la búsqueda al volver al inicio para una UX más limpia
+      searchBar.value = '';
     }
+
+    // --- INICIO DE LA MEJORA ---
+    // Si estamos en vista móvil (cuando el botón del menú es visible), oculta el sidebar
+    const sidebar = document.querySelector('.sidebar');
+    if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+      sidebar.classList.remove('active');
+    }
+    // --- FIN DE LA MEJORA ---
 
     // Actualiza el estado activo de los botones del menú
     document.querySelectorAll('.sidebar button').forEach(btn => {
       btn.classList.remove('active');
     });
-    document.querySelector(`button[data-section="${sectionId}"]`)?.classList.add('active');
-    if(subsectionId) {
-        document.querySelector(`button[data-subsection="${subsectionId}"]`)?.classList.add('active');
-    }
+    // Marca como activo el botón principal o de submenú correspondiente
+    const mainButton = document.querySelector(`button[data-section="${sectionId}"]:not([data-subsection])`);
+    if(mainButton) mainButton.classList.add('active');
+    
+    const subMenuButton = document.querySelector(`button[data-section="${sectionId}"][data-subsection="${subsectionId}"]`);
+    if(subMenuButton) subMenuButton.classList.add('active');
   }
 
   /**
@@ -221,6 +237,7 @@
     body.classList.toggle('dark-theme');
     body.classList.toggle('light-theme');
 
+    // Actualiza el icono y guarda la preferencia
     if (body.classList.contains('dark-theme')) {
       themeButtonIcon.classList.remove('fa-moon');
       themeButtonIcon.classList.add('fa-sun');
@@ -251,19 +268,21 @@
    */
   function showLoadingBar(event, url) {
     event.preventDefault(); // Previene la navegación inmediata
-    const loadingBar = document.getElementById('loading-bar');
-    loadingBar.style.display = 'block';
+    const loadingBarContainer = document.getElementById('loading-bar');
+    const loadingBar = loadingBarContainer.querySelector('.loading-progress');
+    
+    loadingBarContainer.style.display = 'block';
     
     // Forzar un reflujo para reiniciar la animación
-    loadingBar.classList.remove('active');
-    void loadingBar.offsetWidth;
-    loadingBar.classList.add('active');
+    loadingBar.style.width = '0%';
+    void loadingBar.offsetWidth; // Trigger reflow
+    loadingBar.style.width = '100%';
 
     setTimeout(() => {
       window.open(url, '_blank', 'noopener,noreferrer');
-      loadingBar.style.display = 'none';
-      loadingBar.classList.remove('active');
-    }, 500);
+      loadingBarContainer.style.display = 'none';
+      loadingBar.style.width = '0%';
+    }, 500); // Duración de la animación de la barra
   }
 
   // Se ejecuta cuando el DOM está completamente cargado.
