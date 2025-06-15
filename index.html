@@ -36,6 +36,7 @@
       <i class="fas fa-home"></i> Inicio
     </button>
 
+    <!-- INICIO DE LA MODIFICACIÓN: Orden del menú -->
     <button class="dropdown-btn" onclick="toggleDropdown('perfiles-menu')" aria-expanded="false" aria-controls="perfiles-menu" aria-label="Expandir menú de perfiles">
       <i class="fas fa-users"></i> Perfiles <i class="fas fa-chevron-down"></i>
     </button>
@@ -83,22 +84,6 @@
       </li>
     </ul>
 
-    <button class="dropdown-btn" onclick="toggleDropdown('birthdays-menu')" aria-expanded="false" aria-controls="birthdays-menu" aria-label="Expandir menú de cumpleaños">
-      <i class="fas fa-birthday-cake"></i> Nuestros Cumpleaños <i class="fas fa-chevron-down"></i>
-    </button>
-    <ul id="birthdays-menu" class="dropdown-content">
-      <li>
-        <button data-section="birthdays" onclick="showSection('birthdays')" aria-label="Ir a Nuestros Cumpleaños">
-          <i class="fas fa-calendar-alt"></i> Relación
-        </button>
-      </li>
-      <li>
-        <button data-section="celebraciones" onclick="showSection('celebraciones')" aria-label="Ir a Celebraciones">
-          <i class="fas fa-gift"></i> Celebraciones
-        </button>
-      </li>
-    </ul>
-
     <button class="dropdown-btn" onclick="toggleDropdown('tpm-menu')" aria-expanded="false" aria-controls="tpm-menu" aria-label="Expandir menú de TPM">
       <i class="fas fa-tools"></i> TPM <i class="fas fa-chevron-down"></i>
     </button>
@@ -118,7 +103,29 @@
           <i class="fas fa-book"></i> Instructivos
         </button>
       </li>
+      <li>
+        <button data-section="tpm" data-subsection="tablero-rds" onclick="showSection('tpm', 'tablero-rds')" aria-label="Ir a Tablero RDS">
+          <i class="fas fa-chalkboard-teacher"></i> Tablero RDS
+        </button>
+      </li>
     </ul>
+    
+    <button class="dropdown-btn" onclick="toggleDropdown('nuestra-gente-menu')" aria-expanded="false" aria-controls="nuestra-gente-menu" aria-label="Expandir menú de Nuestra Gente">
+      <i class="fas fa-user-friends"></i> Nuestra Gente <i class="fas fa-chevron-down"></i>
+    </button>
+    <ul id="nuestra-gente-menu" class="dropdown-content">
+      <li>
+        <button data-section="nuestra-gente" onclick="showSection('nuestra-gente')" aria-label="Ir a Cumpleaños">
+          <i class="fas fa-birthday-cake"></i> Cumpleaños
+        </button>
+      </li>
+      <li>
+        <button data-section="celebraciones" onclick="showSection('celebraciones')" aria-label="Ir a Celebraciones">
+          <i class="fas fa-gift"></i> Celebraciones
+        </button>
+      </li>
+    </ul>
+    <!-- FIN DE LA MODIFICACIÓN -->
 
   </nav>
 
@@ -159,8 +166,9 @@
       <section id="am" class="form-section"><h1>Almacenero Montacarguista</h1><div class="card-container"></div></section>
       <section id="so" class="form-section"><h1>Supervisor Operaciones</h1><div class="card-container"></div></section>
       <section id="reportes-generales" class="form-section"><h1>Reportes Generales</h1><div class="card-container"></div></section>
-      <section id="birthdays" class="form-section"><h1>Nuestros Cumpleaños</h1><div class="card-container"></div></section>
       <section id="tpm" class="form-section"><h1>TPM</h1><div class="card-container"></div></section>
+      <!-- MODIFICACIÓN: ID de la sección y H1 -->
+      <section id="nuestra-gente" class="form-section"><h1>Nuestra Gente</h1><div class="card-container"></div></section>
       <section id="estadisticas" class="form-section"><h1>Estadísticas</h1><div class="card-container"></div></section>
       <section id="configuracion" class="form-section"><h1>Configuración</h1><div class="card-container"></div></section>
       <section id="celebraciones" class="form-section"><h1>Celebraciones</h1><div class="card-container"></div></section>
