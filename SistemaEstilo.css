@@ -4,6 +4,12 @@
   --shadow: rgba(0, 163, 255, 0.2);
 }
 
+/* --- INICIO DE LA MEJORA --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/* --- FIN DE LA MEJORA --- */
+
 body.dark-theme {
   --background: #1A1A1A;
   --card-bg: #404040;
@@ -333,9 +339,8 @@ body.light-theme .sidebar {
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 5rem; /* REDUCIDO para mejor espaciado */
-  padding: 0 1rem;
-  align-items: stretch; /* AÑADIDO para alinear tarjetas */
+  gap: 3rem; 
+  align-items: stretch;
 }
 
 #birthdays .card-container {
@@ -545,10 +550,9 @@ body.light-theme .sidebar {
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 5rem;
+  gap: 3rem;
   justify-content: center;
-  padding: 0 1rem;
-  align-items: stretch; /* AÑADIDO para alinear tarjetas */
+  align-items: stretch;
 }
 
 .card-icon {
@@ -603,20 +607,18 @@ body.light-theme .sidebar {
 
 @media (max-width: 768px) {
   .menu-toggle { display: block; }
-  .sidebar { transform: translateX(-100%); width: 0; }
-  .sidebar.active { width: 200px; transform: translateX(0); }
+  .sidebar { transform: translateX(-100%); width: 250px; } /* Ancho fijo para cuando esté activo */
+  .sidebar.active { transform: translateX(0); }
   .container { margin-left: 0; padding: 1rem; }
-  .container.sidebar-active { margin-left: 0; } /* Evita el empuje del contenido */
   .header-title { font-size: 1.2rem; white-space: normal; line-height: 1.2; padding-left: 0.5rem; }
   #search-bar { width: 100px; }
   #search-bar:focus { width: 120px; }
   .theme-toggle { font-size: 1.2rem; }
   .header-controls { gap: 0.5rem; }
-  .logo-container { width: 140px; left: 5px; }
-  .logo-container img { max-width: 120px; }
-  .cards-container { grid-template-columns: 1fr; }
-  .card-container { grid-template-columns: 1fr; }
-  .card { min-height: auto; } /* Altura flexible en móvil */
+  .logo-container { width: calc(100% - 20px); left: 10px; } /* Ajuste del logo en móvil */
+  .logo-container img { max-width: 120px; margin: 0 auto; }
+  .cards-container, .card-container { grid-template-columns: 1fr; }
+  .card { min-height: auto; }
 }
 
 .particle {
@@ -644,15 +646,12 @@ body.light-theme .sidebar {
   background: rgba(255, 255, 255, 0.1);
   z-index: 2000;
   display: none;
+  overflow: hidden;
 }
 
 .loading-progress {
   width: 0;
   height: 100%;
   background: var(--primary);
-  transition: width 0.5s ease-out;
-}
-
-.loading-bar.active .loading-progress {
-  width: 100%;
+  transition: width 0.45s ease-out;
 }
