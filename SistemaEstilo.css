@@ -591,8 +591,6 @@ body.light-theme .sidebar {
   #search-bar:focus { width: 120px; }
   .theme-toggle { font-size: 1.2rem; }
   .header-controls { gap: 0.5rem; }
-  .logo-container { width: calc(100% - 20px); left: 10px; } /* Ajuste del logo en móvil */
-  .logo-container img { max-width: 120px; margin: 0 auto; }
   .cards-container, .card-container { grid-template-columns: 1fr; }
   .card { min-height: auto; }
 }
