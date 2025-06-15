@@ -23,6 +23,7 @@
       { title: "Ocupabilidad", desc: "Agrega nuevos productos al inventario.", img: "Ocupabilidadx.jpg", link: "#" },
       { title: "Horario", desc: "Programa el rol de turnos de tu equipo.", img: "Horariox.jpg", link: "#" }
     ],
+    // INICIO DE LA CORRECCIÓN: Se restauran las tarjetas faltantes
     "reportes-generales": [
       { title: "Evolución de Ventas", desc: "Visualiza el progreso de las ventas.", img: "Ventas.jpeg", link: "#" },
       { title: "Costos de Estibaje", desc: "Visualiza los costos asociados al estibaje.", img: "Estibajex.jpg", link: "#" },
@@ -33,29 +34,7 @@
       { title: "Sloting", desc: "Optimiza la ubicación de productos.", img: "Slotingx.jpg", link: "#" },
       { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", link: "#" }
     ],
-    birthdays: [
-      { month: "Enero", name: "Luis Damián", date: "02-01", img: "cumpleanos.jpg" },
-      { month: "Febrero", name: "José Loza", date: "12-02", img: "cumpleanos.jpg" },
-      { month: "Febrero", name: "Juan Cossio", date: "21-02", img: "cumpleanos.jpg" },
-      { month: "Marzo", name: "Fabian Laura", date: "15-03", img: "cumpleanos.jpg" },
-      { month: "Marzo", name: "Alejandro Evangelista", date: "19-03", img: "cumpleanos.jpg" },
-      { month: "Abril", name: "Iomar Bendezú", date: "14-04", img: "cumpleanos.jpg" },
-      { month: "Mayo", name: "Jhon Gutierrez", date: "01-05", img: "cumpleanos.jpg" },
-      { month: "Mayo", name: "Johana Yactayo", date: "19-05", img: "cumpleanos.jpg" },
-      { month: "Mayo", name: "Carlos Barillas", date: "25-05", img: "cumpleanos.jpg" },
-      { month: "Mayo", name: "Manuel Magallanes", date: "31-05", img: "cumpleanos.jpg" },
-      { month: "Junio", name: "Julio Pachas", date: "01-06", img: "cumpleanos.jpg" },
-      { month: "Junio", name: "Hugo Chavez", date: "25-06", img: "cumpleanos.jpg" },
-      { month: "Julio", name: "Florencio Vilca", date: "07-07", img: "cumpleanos.jpg" },
-      { month: "Julio", name: "Josemaria Chumpitaz", date: "12-07", img: "cumpleanos.jpg" },
-      { month: "Julio", name: "Giancarlo Nolasco", date: "15-07", img: "cumpleanos.jpg" },
-      { month: "Julio", name: "Luis Medina", date: "22-07", img: "cumpleanos.jpg" },
-      { month: "Septiembre", name: "Miguel Pachas", date: "09-09", img: "cumpleanos.jpg" },
-      { month: "Septiembre", name: "James Villanueva", date: "17-09", img: "cumpleanos.jpg" },
-      { month: "Octubre", name: "Mario Magallanes", date: "18-10", img: "cumpleanos.jpg" },
-      { month: "Noviembre", name: "Jesus Llanos", date: "09-11", img: "cumpleanos.jpg" },
-      { month: "Diciembre", name: "Ener Cipriano", date: "12-12", img: "cumpleanos.jpg" }
-    ],
+    // FIN DE LA CORRECCIÓN
     tpm: {
       "tarjetas-tpm": [
         { title: "Tarjetas Azules-Rojas", desc: "Registra anomalias o inconveniencias.", img: "TarjetaTPMx.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSdSHEobkCu9n4aH4Q-aOYkzIjhBRoM4MecYRCNKAqNFPr2CPw/viewform" },
@@ -66,56 +45,121 @@
       ],
       "instructivos": [
         { title: "Instructivos TPM", desc: "Consulta los manuales de TPM.", img: "Manualx.jpg", link: "https://drive.google.com/drive/folders/1NgVabT7hPyVlT8XpnmQFcLTpDKCOGTBP?usp=sharing" }
-      ]
+      ],
+      "tablero-rds": [
+        { title: "Indicador RDS 1",  src: "https://lookerstudio.google.com/embed/reporting/2e533845-1568-4a8b-bc19-1bf0ccddcffa/page/sLkNF" },
+        { title: "Indicador RDS 2",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_2" },
+        { title: "Indicador RDS 3",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_3" },
+        { title: "Indicador RDS 4",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_4" },
+        { title: "Indicador RDS 5",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_5" },
+        { title: "Indicador RDS 6",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_6" },
+        { title: "Indicador RDS 7",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_7" },
+        { title: "Indicador RDS 8",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_8" },
+        { title: "Indicador RDS 9",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_9" },
+        { title: "Indicador RDS 10", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_10" },
+        { title: "Indicador RDS 11", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_11" },
+        { title: "Indicador RDS 12", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_12" },
+        { title: "Indicador RDS 13", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_13" },
+        { title: "Indicador RDS 14", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_14" },
+        { title: "Indicador RDS 15", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_15" },
+        { title: "Indicador RDS 16", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_16" },
+        { title: "Indicador RDS 17", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_17" },
+        { title: "Indicador RDS 18", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_18" },
+        { title: "Indicador RDS 19", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_19" },
+        { title: "Indicador RDS 20", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_20" }
+      ],
     },
-    // Secciones sin datos aún
+    "nuestra-gente": [
+      { month: "Enero", name: "Luis Damián", date: "02-01" },
+      { month: "Febrero", name: "José Loza", date: "12-02" },
+      { month: "Febrero", name: "Juan Cossio", date: "21-02" },
+      { month: "Marzo", name: "Fabian Laura", date: "15-03" },
+      { month: "Marzo", name: "Alejandro Evangelista", date: "19-03" },
+      { month: "Abril", name: "Iomar Bendezú", date: "14-04" },
+      { month: "Mayo", name: "Jhon Gutierrez", date: "01-05" },
+      { month: "Mayo", name: "Johana Yactayo", date: "19-05" },
+      { month: "Mayo", name: "Carlos Barillas", date: "25-05" },
+      { month: "Mayo", name: "Manuel Magallanes", date: "31-05" },
+      { month: "Junio", name: "Julio Pachas", date: "01-06" },
+      { month: "Junio", name: "Hugo Chavez", date: "25-06" },
+      { month: "Julio", name: "Florencio Vilca", date: "07-07" },
+      { month: "Julio", name: "Josemaria Chumpitaz", date: "12-07" },
+      { month: "Julio", name: "Giancarlo Nolasco", date: "15-07" },
+      { month: "Julio", name: "Luis Medina", date: "22-07" },
+      { month: "Septiembre", name: "Miguel Pachas", date: "09-09" },
+      { month: "Septiembre", name: "James Villanueva", date: "17-09" },
+      { month: "Octubre", name: "Mario Magallanes", date: "18-10" },
+      { month: "Noviembre", name: "Jesus Llanos", date: "09-11" },
+      { month: "Diciembre", name: "Ener Cipriano", date: "12-12" }
+    ],
     "estadisticas": [],
     "configuracion": [],
     "celebraciones": []
   };
 
   /**
-   * Renderiza las tarjetas en una sección específica, opcionalmente filtradas por un término de búsqueda.
-   * @param {string} sectionId - El ID de la sección a renderizar.
-   * @param {string} [filter=''] - El texto para filtrar las tarjetas.
-   * @param {string} [subsectionId=''] - El ID de una subsección (usado para TPM).
+   * Renderiza el contenido de una sección.
    */
   function renderCards(sectionId, filter = '', subsectionId = '') {
     const container = document.querySelector(`#${sectionId} .card-container`);
     if (!container) return;
 
-    let cardsData = sectionsData[sectionId] || [];
+    let dataToShow = sectionsData[sectionId] || [];
     
-    // Manejo de subsecciones como en TPM
-    if (subsectionId && typeof cardsData === 'object' && !Array.isArray(cardsData)) {
-      cardsData = cardsData[subsectionId] || [];
+    if (subsectionId && typeof dataToShow === 'object' && !Array.isArray(dataToShow)) {
+      dataToShow = dataToShow[subsectionId] || [];
     }
     
-    // MEJORA: Manejar secciones sin datos
-    if (!cardsData || cardsData.length === 0 && sectionId !== 'birthdays') {
+    const titleElement = document.querySelector(`#${sectionId} h1`);
+    if (titleElement) {
+        if (subsectionId) {
+            const subMenuButton = document.querySelector(`button[data-subsection="${subsectionId}"]`);
+            titleElement.textContent = subMenuButton ? subMenuButton.textContent.trim() : "Detalles";
+        } else {
+            const mainMenuButton = document.querySelector(`.sidebar button[data-section="${sectionId}"]`);
+            titleElement.textContent = mainMenuButton ? mainMenuButton.textContent.replace(/<i.*i>/, '').replace(/<.*>/, '').trim() : "Sección";
+        }
+    }
+
+    if (!dataToShow || dataToShow.length === 0 && sectionId !== 'nuestra-gente') {
         const message = sectionsData[sectionId] ? 'No hay elementos para mostrar.' : 'Próximamente...';
         container.innerHTML = `<p class="coming-soon">${message}</p>`;
         return;
     }
 
-    const filteredCards = filter 
-      ? cardsData.filter(card => 
-          card.title?.toLowerCase().includes(filter.toLowerCase()) || 
-          card.desc?.toLowerCase().includes(filter.toLowerCase()) ||
-          card.name?.toLowerCase().includes(filter.toLowerCase()) || 
-          card.month?.toLowerCase().includes(filter.toLowerCase()))
-      : cardsData;
+    const filteredData = filter 
+      ? dataToShow.filter(item => 
+          item.title?.toLowerCase().includes(filter.toLowerCase()) || 
+          item.desc?.toLowerCase().includes(filter.toLowerCase()) ||
+          item.name?.toLowerCase().includes(filter.toLowerCase()) || 
+          item.month?.toLowerCase().includes(filter.toLowerCase()))
+      : dataToShow;
 
-    if (filteredCards.length === 0) {
+    if (filteredData.length === 0) {
       container.innerHTML = '<p class="no-results">No se encontraron resultados para tu búsqueda.</p>';
       return;
     }
+    
+    if (subsectionId === 'tablero-rds') {
+      container.innerHTML = `
+        <div class="dashboard-grid">
+          ${filteredData.map(item => `
+            <div class="dashboard-item">
+              <h3>${item.title}</h3>
+              <div class="iframe-container">
+                <iframe src="${item.src}" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </div>
+          `).join('')}
+        </div>`;
+      return;
+    }
 
-    if (sectionId === 'birthdays') {
+    if (sectionId === 'nuestra-gente') {
       const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
       let html = '';
       months.forEach((month, monthIndex) => {
-        const monthCards = filteredCards.filter(card => card.month === month);
+        const monthCards = filteredData.filter(card => card.month === month);
         if (monthCards.length > 0) {
           html += `
             <div class="month-card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${monthIndex * 0.1}s;">
@@ -135,7 +179,7 @@
       });
       container.innerHTML = html || '<p class="no-results">No hay cumpleaños para mostrar.</p>';
     } else {
-      container.innerHTML = filteredCards.map((card, index) => `
+      container.innerHTML = filteredData.map((card, index) => `
         <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
           <div class="card-image-container">
             <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150" loading="lazy">
@@ -148,75 +192,65 @@
     }
   }
 
-  /**
-   * Muestra u oculta el contenido de un menú desplegable.
-   * @param {string} menuId - El ID del menú a controlar.
-   */
   function toggleDropdown(menuId) {
+    document.querySelectorAll('.dropdown-content').forEach(menu => {
+        if(menu.id !== menuId) {
+            menu.classList.remove('active');
+            menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+        }
+    });
     const dropdown = document.getElementById(menuId);
     const isActive = dropdown.classList.toggle('active');
-    const btn = dropdown.previousElementSibling;
-    btn.setAttribute('aria-expanded', isActive);
+    dropdown.previousElementSibling.setAttribute('aria-expanded', isActive);
   }
 
-  /**
-   * Muestra una sección principal y oculta las demás.
-   * @param {string} sectionId - El ID de la sección a mostrar.
-   * @param {string} [subsectionId=''] - El ID de la subsección.
-   */
   function showSection(sectionId, subsectionId = '') {
-    // Ocultar todas las secciones
     document.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
     
-    // Mostrar la sección seleccionada
     const sectionElement = document.getElementById(sectionId);
     if (sectionElement) {
         sectionElement.classList.add('active');
     }
     
-    // Limpiar la búsqueda y renderizar las tarjetas si no es la página de inicio
     const searchBar = document.getElementById('search-bar');
     if (sectionId !== 'home') {
       renderCards(sectionId, searchBar.value, subsectionId);
     } else {
-      // Opcional: limpiar la búsqueda al volver al inicio para una UX más limpia
       searchBar.value = '';
+      document.querySelector('#home h1').textContent = "Bienvenidos a APT Cañete - Supply Chain";
     }
 
-    // --- INICIO DE LA MEJORA ---
-    // Si estamos en vista móvil (cuando el botón del menú es visible), oculta el sidebar
     const sidebar = document.querySelector('.sidebar');
     if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
       sidebar.classList.remove('active');
     }
-    // --- FIN DE LA MEJORA ---
 
-    // Actualiza el estado activo de los botones del menú
     document.querySelectorAll('.sidebar button').forEach(btn => {
       btn.classList.remove('active');
     });
-    // Marca como activo el botón principal o de submenú correspondiente
-    const mainButton = document.querySelector(`button[data-section="${sectionId}"]:not([data-subsection])`);
-    if(mainButton) mainButton.classList.add('active');
     
-    const subMenuButton = document.querySelector(`button[data-section="${sectionId}"][data-subsection="${subsectionId}"]`);
-    if(subMenuButton) subMenuButton.classList.add('active');
+    const buttonToActivate = subsectionId 
+        ? document.querySelector(`button[data-subsection="${subsectionId}"]`)
+        : document.querySelector(`button[data-section="${sectionId}"]`);
+
+    if(buttonToActivate) {
+        buttonToActivate.classList.add('active');
+        const parentMenu = buttonToActivate.closest('.dropdown-content');
+        if(parentMenu) {
+            parentMenu.previousElementSibling.classList.add('active');
+        }
+    }
   }
 
-  /**
-   * Muestra u oculta la barra lateral (en vista móvil).
-   */
   function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('active');
   }
 
-  /**
-   * Crea partículas animadas en el fondo (solo para pantallas grandes).
-   */
   function createParticles() {
     if (window.innerWidth <= 768) return;
     const particlesContainer = document.querySelector('.particles');
+    if(particlesContainer.children.length > 0) return;
     const particleCount = 50;
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
@@ -228,16 +262,12 @@
     }
   }
   
-  /**
-   * Cambia entre el tema oscuro y claro.
-   */
   function toggleTheme() {
     const body = document.body;
     const themeButtonIcon = document.querySelector('.theme-toggle i');
     body.classList.toggle('dark-theme');
     body.classList.toggle('light-theme');
 
-    // Actualiza el icono y guarda la preferencia
     if (body.classList.contains('dark-theme')) {
       themeButtonIcon.classList.remove('fa-moon');
       themeButtonIcon.classList.add('fa-sun');
@@ -247,47 +277,38 @@
     }
   }
 
-  /**
-   * Configura el listener para la barra de búsqueda.
-   */
   function setupSearch() {
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('input', () => {
-      const activeSection = document.querySelector('.form-section.active');
-      if (activeSection && activeSection.id !== 'home') {
-        const subsectionId = document.querySelector('.dropdown-content li button.active')?.getAttribute('data-subsection') || '';
-        renderCards(activeSection.id, searchBar.value, subsectionId);
+      const activeSectionEl = document.querySelector('.form-section.active');
+      if (activeSectionEl && activeSectionEl.id) {
+          const activeSectionId = activeSectionEl.id;
+          const activeSubSectionButton = document.querySelector(`.sidebar button.active[data-subsection]`);
+          const subSectionId = activeSubSectionButton ? activeSubSectionButton.dataset.subsection : '';
+          renderCards(activeSectionId, searchBar.value, subSectionId);
       }
     });
   }
 
-  /**
-   * Muestra una barra de carga antes de abrir un enlace externo.
-   * @param {Event} event - El evento del clic.
-   * @param {string} url - La URL a abrir.
-   */
   function showLoadingBar(event, url) {
-    event.preventDefault(); // Previene la navegación inmediata
+    event.preventDefault();
     const loadingBarContainer = document.getElementById('loading-bar');
     const loadingBar = loadingBarContainer.querySelector('.loading-progress');
     
     loadingBarContainer.style.display = 'block';
     
-    // Forzar un reflujo para reiniciar la animación
     loadingBar.style.width = '0%';
-    void loadingBar.offsetWidth; // Trigger reflow
+    void loadingBar.offsetWidth;
     loadingBar.style.width = '100%';
 
     setTimeout(() => {
       window.open(url, '_blank', 'noopener,noreferrer');
       loadingBarContainer.style.display = 'none';
       loadingBar.style.width = '0%';
-    }, 500); // Duración de la animación de la barra
+    }, 500);
   }
 
-  // Se ejecuta cuando el DOM está completamente cargado.
   document.addEventListener('DOMContentLoaded', () => {
-    // Inicia en el tema oscuro por defecto si no hay preferencia
     if (!document.body.classList.contains('light-theme')) {
         document.body.classList.add('dark-theme');
         document.querySelector('.theme-toggle i').classList.add('fa-sun');
@@ -298,7 +319,6 @@
     setupSearch();
   });
 
-  // Expone las funciones al ámbito global para que puedan ser llamadas desde el HTML.
   window.toggleDropdown = toggleDropdown;
   window.showSection = showSection;
   window.toggleSidebar = toggleSidebar;
