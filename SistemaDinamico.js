@@ -315,7 +315,7 @@
     }
   
     showSection('home');
-    createParticles();
+    //createParticles();//
     setupSearch();
   });
 
