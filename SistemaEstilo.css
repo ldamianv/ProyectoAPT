@@ -10,7 +10,7 @@
 
 body.dark-theme {
   --background: #1A1A1A;
-  --card-bg: #404040;
+  --card-bg: #1F2937;
   --text: #FFFFFF;
   --modal-bg: #404040;
   --input-bg: rgba(255, 255, 255, 0.1);
@@ -20,7 +20,7 @@ body.dark-theme {
   --secondary: #007ACC;
   --shadow: rgba(0, 163, 255, 0.2);
   --birthday-card-bg: #1E3A8A;
-  --month-card-bg: #404040;
+  --month-card-bg: #1A202C;
   --divider-color: #87CEEB;
 }
 
@@ -48,10 +48,7 @@ body {
   line-height: 1.6;
   position: relative;
   overflow-x: hidden;
-  background: linear-gradient(45deg, var(--background), #0A2A4A);
-  background-size: 200% 200%;
-  animation: gradientMove 10s ease infinite;
-  transition: background 0.5s ease, color 0.5s ease;
+  background-color: #111827; /* Un azul oscuro y sólido como el de la imagen */
 }
 
 body.light-theme {
@@ -168,7 +165,7 @@ header {
 }
 
 .sidebar {
-  width: 200px;
+  width: 260px;
   color: var(--text);
   padding: 1rem;
   height: 100vh;
@@ -186,7 +183,7 @@ header {
 }
 
 body.dark-theme .sidebar {
-  background-color: #1E2A3C;
+  background-color: #111827; /* Mismo color que el fondo del body */
 }
 
 body.light-theme .sidebar {
@@ -198,7 +195,7 @@ body.light-theme .sidebar {
   border: none;
   color: var(--primary);
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   text-align: left;
   width: 100%;
@@ -239,7 +236,8 @@ body.light-theme .sidebar {
   background: none;
   border: none;
   color: var(--text);
-  font-size: 1rem;
+  font-size: 0.80rem;
+  font-weight: 400; /* Peso de fuente normal */
   cursor: pointer;
   width: 100%;
   text-align: left;
@@ -275,7 +273,7 @@ body.light-theme .sidebar {
 }
 
 .container {
-  margin-left: 200px;
+  margin-left: 260px;
   margin-top: 60px;
   padding: 2rem;
   min-height: calc(100vh - 120px);
@@ -303,8 +301,8 @@ body.light-theme .sidebar {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem; 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem; 
   align-items: stretch;
 }
 
@@ -395,7 +393,7 @@ body.light-theme .sidebar {
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background 0.3s ease;
   animation: cardFadeIn 0.5s ease forwards;
@@ -496,8 +494,8 @@ body.light-theme .sidebar {
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(365px, 1fr));
+  gap: 1.5rem;
   justify-content: center;
   align-items: stretch;
 }
@@ -645,4 +643,27 @@ body.light-theme .sidebar {
   height: 100%;
   background: var(--primary);
   transition: width 0.45s ease-out;
+}
+/* --- AÑADE ESTE CÓDIGO AL FINAL DEL ARCHIVO CSS --- */
+
+/* Ajuste para las tarjetas de la página de Inicio (Visión, Misión, Objetivos) */
+.cards-container .card {
+  height: 400px; /* Puedes ajustar el valor 360px al que te parezca mejor */
+}
+/* Reduce el tamaño del texto de los párrafos y de la lista de objetivos */
+.cards-container .card p,
+.cards-container .card ol {
+  font-size: 0.95rem; /* El valor original es 1.1rem */
+}
+/* Puedes modificar la regla que agregamos antes o añadir esta al final del CSS */
+
+.cards-container .card {
+  padding: 1rem; /* Aumenta este valor para dar más altura. Por ejemplo, 2.5rem o 3rem */
+  /* También podrías usar una altura mínima si prefieres un tamaño fijo */
+  /* min-height: 450px; */
+}
+/* Estilo específico para el título principal de la página de inicio */
+#home h1 {
+  font-size: 3.5rem;   /* Aumenta el tamaño (el original es 2.5rem) */
+  font-weight: 800;    /* Aumenta el grosor para un look más robusto (el original es 700) */
 }
