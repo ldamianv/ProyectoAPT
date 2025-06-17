@@ -520,7 +520,7 @@ body.light-theme .sidebar {
 /* --- ESTILOS PARA EL TABLERO RDS --- */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr; /* <-- Cambia a "1fr" para crear una sola columna */
   gap: 2rem;
   width: 100%;
 }
