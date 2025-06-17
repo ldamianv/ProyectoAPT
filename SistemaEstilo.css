@@ -523,6 +523,7 @@ body.light-theme .sidebar {
   grid-template-columns: 1fr; /* <-- Cambia a "1fr" para crear una sola columna */
   gap: 2rem;
   width: 100%;
+  justify-items: center; /* <-- AÑADE ESTA LÍNEA para centrar los gráficos */
 }
 
 .dashboard-item {
@@ -531,6 +532,8 @@ body.light-theme .sidebar {
   border-radius: 12px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%; /* Asegura que sea responsive en pantallas más pequeñas */
+  max-width: 1000px; /* <-- AÑADE ESTA LÍNEA para limitar el ancho máximo */
 }
 
 .dashboard-item h3 {
