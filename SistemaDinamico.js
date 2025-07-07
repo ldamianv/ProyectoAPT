@@ -8,7 +8,7 @@
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranelx.jpg", link: "#" },
       // MODIFICADO: Se cambió 'link' por 'embedUrl' para usar el modal.
       // Recuerda: esta URL es de SOLO LECTURA. Para editar, usa un link de Formulario o el link /edit de la hoja.
-      { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "ReporteCalidadx.jpg", embedUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRqQVPBrThW2OcXIG6L_4OkOE0lP0oGFa_98xV3S6T2rSCEZRzfzAS6VySMT-3244Y-RVlucMkcpHv1/pubhtml?widget=true&headers=false" },
+      { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "ReporteCalidadx.jpg", embedUrl: "https://docs.google.com/spreadsheets/d/1KnZfYkNolj9k9X3qIyj89ebLdXGW1w7CNQ5GV7lBHJg/edit?usp=sharing" },
       { title: "Inventarios", desc: "Realiza la conciliacion de SAP vs Fisico.", img: "Exportacionx.jpg", link: "https://docs.google.com/spreadsheets/d/1SsoE1P-IZNOsW9pRPqJ0Aq-C8q58xp5o82scRU1ZlC0/edit?usp=drive_link" } ,
       { title: "Descuentos", desc: "Registra los descuentos aplicados a despachos.", img: "TrasladoGranelx.jpg", link: "https://docs.google.com/spreadsheets/d/1fAl_ITZg2fnINC9X9MXoB0Ci_47NI9e2eYX-gLWKc3U/edit?usp=sharing" }
     ],
