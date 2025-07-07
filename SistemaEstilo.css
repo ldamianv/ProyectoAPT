@@ -720,9 +720,9 @@ body.light-theme .sidebar {
   padding: 20px;
   border: 1px solid var(--primary); /* Usa el color primario de tu tema para el borde. */
   border-radius: 12px;
-  width: 90%;
-  max-width: 1200px; /* Ancho máximo para pantallas grandes. */
-  height: 90%;
+  width: 95%;
+  max-width: 1400px; /* Ancho máximo para pantallas grandes. */
+  height: 95%;
   position: relative;
   display: flex;
   flex-direction: column;
