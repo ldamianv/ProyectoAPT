@@ -443,21 +443,40 @@ body.light-theme .sidebar {
 
 }
 
-.card a {
+/* === ALINEACIÓN VERTICAL DE BOTONES EN TARJETAS === */
+
+/* 1. Contenedor que empuja el botón hacia abajo */
+.card .card-button-container {
+  margin-top: auto; /* ¡Esta es la propiedad clave que alinea los botones! */
+  padding-top: 1rem; /* Agrega un espacio para que el botón no esté pegado al texto */
+}
+
+/* 2. Estilo unificado para CUALQUIER botón o enlace dentro de una tarjeta */
+.card .card-button {
   display: inline-block;
-  margin-top: auto;
   padding: 0.75rem 1.5rem;
   background: var(--primary);
-  color: white;
+  color: white !important; /* Asegura que el texto siempre sea blanco */
   text-decoration: none;
   border-radius: 5px;
+  border: none; /* Quita el borde por defecto de los elementos <button> */
+  cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
-  flex-shrink: 0;
+  font-family: inherit; /* Hereda la fuente del resto de la página */
+  font-size: 0.9rem; /* Unificamos el tamaño de la fuente */
+  text-align: center;
+  width: 100%; /* <-- AÑADE ESTA LÍNEA PARA UNIFICAR EL ANCHO */
 }
 
-.card a::after {
+/* 3. Efecto de hover para el botón/enlace unificado */
+.card .card-button:hover {
+  background: var(--secondary);
+}
+
+/* 4. Efecto de onda al pasar el mouse (ripple effect) */
+.card .card-button::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -470,7 +489,7 @@ body.light-theme .sidebar {
   transition: width 0.3s ease, height 0.3s ease;
 }
 
-.card a:hover::after {
+.card .card-button:hover::after {
   width: 200%;
   height: 200%;
 }
@@ -689,6 +708,7 @@ body.light-theme .sidebar {
 .card-container .card p {
   font-size: 0.9rem; /* El valor original es 1.1rem */
    margin-top: 1rem; /* <-- AÑADE ESTA LÍNEA para empujar el texto hacia abajo */
+   flex-grow: 1; /* <-- AÑADE ESTA LÍNEA PARA EL RELLENO FLEXIBLE */
 }
 /* --- ESTILO ESPECIAL PARA EL TÍTULO DE LA PÁGINA DE INICIO --- */
 
@@ -700,34 +720,49 @@ body.light-theme .sidebar {
 /* --- ESTILOS PARA EL MODAL DE CONTENIDO EMBEBIDO --- */
 
 /* El contenedor principal que oscurece la pantalla */
+/* --- ESTILOS PARA EL MODAL (MODIFICADO CON TRANSICIÓN) --- */
 .embed-modal {
-  display: none; /* Oculto por defecto. JavaScript lo hará visible. */
-  position: fixed; /* Se queda fijo incluso si haces scroll. */
-  z-index: 2000; /* Se asegura de que esté por encima de todo lo demás. */
+  display: flex; /* Cambiamos a flex para centrar mejor */
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  position: fixed;
+  z-index: 2000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; /* Permite scroll si el contenido es muy grande. */
-  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semitransparente. */
-  padding-top: 60px; /* Espacio para que no quede pegado al header. */
+  background-color: rgba(0, 0, 0, 0); /* Inicia transparente */
+  transition: background-color 0.4s ease; /* Transición para el fondo */
+  opacity: 0; /* Inicia invisible */
+  pointer-events: none; /* No se puede hacer clic cuando está oculto */
+  transition: opacity 0.4s ease;
+}
+
+/* NUEVA REGLA: Estado visible del modal */
+.embed-modal.visible {
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro final */
+  opacity: 1; /* Se vuelve visible */
+  pointer-events: auto; /* Se puede hacer clic */
 }
 
 /* La ventana o caja blanca donde va el contenido */
 .embed-modal-content {
-  background-color: var(--card-bg); /* Usa el color de fondo de las tarjetas de tu tema. */
-  margin: 2% auto; /* Centra la ventana vertical y horizontalmente. */
-  padding: 20px;
-  border: 1px solid var(--primary); /* Usa el color primario de tu tema para el borde. */
-  border-radius: 12px;
+  /* ... (todas las propiedades que ya tienes: background-color, padding, etc.) ... */
   width: 95%;
-  max-width: 1400px; /* Ancho máximo para pantallas grandes. */
+  max-width: 1400px;
   height: 95%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  /* ... (resto de propiedades) ... */
+
+  /* AÑADIMOS ESTO PARA LA ANIMACIÓN */
+  transform: translateY(-50px); /* Inicia 50px arriba, fuera de la vista */
+  transition: transform 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra para efecto 3D */
 }
 
+/* NUEVA REGLA: Posición final del contenido del modal */
+.embed-modal.visible .embed-modal-content {
+  transform: translateY(0); /* Vuelve a su posición original */
+}
 /* El botón de cerrar (la 'X') */
 .embed-modal-close {
   color: var(--text); /* Usa el color de texto de tu tema. */
@@ -752,4 +787,87 @@ body.light-theme .sidebar {
   height: 100%; /* El iframe ocupa todo el espacio disponible en el modal. */
   border: none;
   border-radius: 8px; /* Bordes redondeados para el contenido. */
+}
+/* AÑADIDO: Estilo para el indicador de carga */
+.loader {
+  border: 8px solid var(--card-bg); /* Un gris claro */
+  border-top: 8px solid var(--primary); /* El azul de tu tema */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -30px; /* Mitad del ancho */
+  margin-top: -30px; /* Mitad del alto */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* ============================================== */
+/* === MEJORA VISUAL PARA TARJETAS DE INICIO === */
+/* ============================================== */
+
+/* 1. Hacemos que las 3 tarjetas de la sección "home" se muestren en una sola fila. */
+#home .cards-container {
+  grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual tamaño */
+  align-items: stretch; /* Asegura que todas las tarjetas tengan la misma altura */
+}
+
+/* 2. Eliminamos la altura fija para que se adapten a su contenido. */
+#home .cards-container .card {
+  height: auto; /* Quitamos la altura fija de 400px */
+  min-height: 420px; /* Establecemos una altura mínima para mantener la estética */
+}
+
+/* 3. Hacemos que el contenido interno se distribuya mejor. */
+#home .cards-container .card p,
+#home .cards-container .card ol {
+  flex-grow: 1; /* Permite que el párrafo/lista crezca para ocupar el espacio disponible */
+}
+
+/* 4. Para pantallas más pequeñas (tablets y móviles), volvemos a una sola columna. */
+@media (max-width: 1024px) {
+  #home .cards-container {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+
+  #home .cards-container .card {
+    min-height: auto; /* En móvil, la altura mínima no es necesaria */
+  }
+}
+/* ================================================ */
+/* === ESTILO DEFINITIVO PARA BOTONES DE TARJETA === */
+/* ================================================ */
+
+/* Contenedor del botón: lo empuja al fondo de la tarjeta */
+.card-container .card .card-button-container {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* Botón: unifica ancho, altura y apariencia */
+.card-container .card .card-button {
+  /* --- Dimensiones y alineación --- */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  box-sizing: border-box;
+
+  /* --- Apariencia --- */
+  padding: 0.5rem 1rem;
+  background: var(--primary);
+  color: white !important;
+  font-size: 0.9rem;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
