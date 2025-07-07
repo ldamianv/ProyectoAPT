@@ -1,3 +1,4 @@
+
 (function() {
   // Objeto que contiene todos los datos de las tarjetas para cada sección.
   const sectionsData = {
@@ -98,25 +99,37 @@
     "celebraciones": []
   };
 
-  // NUEVA FUNCIÓN: Abre el modal y carga la URL en el iframe.
-  function openEmbedModal(url) {
-    const modal = document.getElementById('embed-modal');
-    const iframe = document.getElementById('embed-iframe');
-    if (modal && iframe) {
-      iframe.src = url;
-      modal.style.display = 'block';
-    }
-  }
+function openEmbedModal(url) {
+  const modal = document.getElementById('embed-modal');
+  const iframe = document.getElementById('embed-iframe');
+  const loader = modal.querySelector('.loader');
 
-  // NUEVA FUNCIÓN: Cierra el modal y limpia el iframe.
-  function closeEmbedModal() {
-    const modal = document.getElementById('embed-modal');
-    const iframe = document.getElementById('embed-iframe');
-    if (modal && iframe) {
-      modal.style.display = 'none';
-      iframe.src = '';
-    }
+  if (modal && iframe && loader) {
+    loader.style.display = 'block'; // Muestra el loader
+    iframe.src = url;
+    modal.classList.add('visible');
+
+    // Oculta el loader cuando el iframe haya cargado
+    iframe.onload = function() {
+      loader.style.display = 'none';
+    };
   }
+}
+
+function closeEmbedModal() {
+  const modal = document.getElementById('embed-modal');
+  const iframe = document.getElementById('embed-iframe');
+  const loader = modal.querySelector('.loader');
+
+  if (modal && iframe && loader) {
+    modal.classList.remove('visible');
+    setTimeout(() => {
+      iframe.src = '';
+      iframe.onload = null; // Limpia el evento onload
+      loader.style.display = 'block'; // Restablece el loader para la próxima vez
+    }, 400);
+  }
+}
 
   /**
    * Renderiza el contenido de una sección.
@@ -211,7 +224,7 @@
                 card.link && card.link.startsWith('http') 
                 ? 'target="_blank" rel="noopener noreferrer" onclick="showLoadingBar(event, this.href)"' 
                 : ''
-              }>Ver Más</a>`;
+              }>Abrir Reporte</a>`;
 
         // Construye el HTML de la tarjeta usando la variable buttonHtml
         return `
@@ -374,3 +387,10 @@
   window.openEmbedModal = openEmbedModal;
   window.closeEmbedModal = closeEmbedModal;
 })();
+// AÑADIDO: Cerrar el modal con la tecla Escape
+window.addEventListener('keydown', function (event) {
+  const modal = document.getElementById('embed-modal');
+  if (event.key === 'Escape' && modal.classList.contains('visible')) {
+    closeEmbedModal();
+  }
+});
