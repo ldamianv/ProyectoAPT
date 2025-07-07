@@ -697,3 +697,59 @@ body.light-theme .sidebar {
   color: var(--primary);    /* Le devolvemos el color azul primario */
   text-align: center;     /* Lo volvemos a centrar */
 }
+/* --- ESTILOS PARA EL MODAL DE CONTENIDO EMBEBIDO --- */
+
+/* El contenedor principal que oscurece la pantalla */
+.embed-modal {
+  display: none; /* Oculto por defecto. JavaScript lo hará visible. */
+  position: fixed; /* Se queda fijo incluso si haces scroll. */
+  z-index: 2000; /* Se asegura de que esté por encima de todo lo demás. */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Permite scroll si el contenido es muy grande. */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semitransparente. */
+  padding-top: 60px; /* Espacio para que no quede pegado al header. */
+}
+
+/* La ventana o caja blanca donde va el contenido */
+.embed-modal-content {
+  background-color: var(--card-bg); /* Usa el color de fondo de las tarjetas de tu tema. */
+  margin: 2% auto; /* Centra la ventana vertical y horizontalmente. */
+  padding: 20px;
+  border: 1px solid var(--primary); /* Usa el color primario de tu tema para el borde. */
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1200px; /* Ancho máximo para pantallas grandes. */
+  height: 90%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* El botón de cerrar (la 'X') */
+.embed-modal-close {
+  color: var(--text); /* Usa el color de texto de tu tema. */
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 35px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.embed-modal-close:hover,
+.embed-modal-close:focus {
+  color: var(--primary); /* Cambia al color primario al pasar el mouse. */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* El iframe donde se carga el reporte o formulario */
+#embed-iframe {
+  width: 100%;
+  height: 100%; /* El iframe ocupa todo el espacio disponible en el modal. */
+  border: none;
+  border-radius: 8px; /* Bordes redondeados para el contenido. */
+}
