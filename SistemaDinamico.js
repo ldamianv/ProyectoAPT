@@ -6,7 +6,9 @@
       { title: "Control de Film", desc: "Registre el consumo de film en los despachos.", img: "ControlFilmx.jpg", link: "https://docs.google.com/spreadsheets/d/1SfJHz2OElh5yetJ_NDWTOysi1ctVMya69_VwJ_vGvXk/edit?usp=sharing" },
       { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Despachox.jpg", link: "https://docs.google.com/spreadsheets/d/1Wi28zNueNaSyhNhU8LE4q1c-H_GpvHeEs86LXOFFYa0/edit?usp=sharing" },
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranelx.jpg", link: "#" },
-      { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "ReporteCalidadx.jpg", link: "https://docs.google.com/spreadsheets/d/1Ht-r55btoKb7YiI7kHBrX-3N_t0cKQTSpngsZUtFTV4/edit?usp=sharing" },
+      // MODIFICADO: Se cambió 'link' por 'embedUrl' para usar el modal.
+      // Recuerda: esta URL es de SOLO LECTURA. Para editar, usa un link de Formulario o el link /edit de la hoja.
+      { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "ReporteCalidadx.jpg", embedUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRqQVPBrThW2OcXIG6L_4OkOE0lP0oGFa_98xV3S6T2rSCEZRzfzAS6VySMT-3244Y-RVlucMkcpHv1/pubhtml?widget=true&headers=false" },
       { title: "Inventarios", desc: "Realiza la conciliacion de SAP vs Fisico.", img: "Exportacionx.jpg", link: "https://docs.google.com/spreadsheets/d/1SsoE1P-IZNOsW9pRPqJ0Aq-C8q58xp5o82scRU1ZlC0/edit?usp=drive_link" } ,
       { title: "Descuentos", desc: "Registra los descuentos aplicados a despachos.", img: "TrasladoGranelx.jpg", link: "https://docs.google.com/spreadsheets/d/1fAl_ITZg2fnINC9X9MXoB0Ci_47NI9e2eYX-gLWKc3U/edit?usp=sharing" }
     ],
@@ -24,7 +26,6 @@
       { title: "Ocupabilidad", desc: "Agrega nuevos productos al inventario.", img: "Ocupabilidadx.jpg", link: "#" },
       { title: "Horario", desc: "Programa el rol de turnos de tu equipo.", img: "Horariox.jpg", link: "#" }
     ],
-    // INICIO DE LA CORRECCIÓN: Se restauran las tarjetas faltantes
     "reportes-generales": [
       { title: "Evolución de Ventas", desc: "Visualiza el progreso de las ventas.", img: "Ventas.jpeg", link: "#" },
       { title: "Costos de Estibaje", desc: "Visualiza los costos asociados al estibaje.", img: "Estibajex.jpg", link: "#" },
@@ -35,7 +36,6 @@
       { title: "Sloting", desc: "Optimiza la ubicación de productos.", img: "Slotingx.jpg", link: "#" },
       { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", link: "#" }
     ],
-    // FIN DE LA CORRECCIÓN
     tpm: {
       "tarjetas-tpm": [
         { title: "Tarjetas Azules-Rojas", desc: "Registra anomalias o inconveniencias.", img: "TarjetaTPMx.jpg", link: "https://docs.google.com/forms/d/e/1FAIpQLSdSHEobkCu9n4aH4Q-aOYkzIjhBRoM4MecYRCNKAqNFPr2CPw/viewform" },
@@ -97,6 +97,26 @@
     "configuracion": [],
     "celebraciones": []
   };
+
+  // NUEVA FUNCIÓN: Abre el modal y carga la URL en el iframe.
+  function openEmbedModal(url) {
+    const modal = document.getElementById('embed-modal');
+    const iframe = document.getElementById('embed-iframe');
+    if (modal && iframe) {
+      iframe.src = url;
+      modal.style.display = 'block';
+    }
+  }
+
+  // NUEVA FUNCIÓN: Cierra el modal y limpia el iframe.
+  function closeEmbedModal() {
+    const modal = document.getElementById('embed-modal');
+    const iframe = document.getElementById('embed-iframe');
+    if (modal && iframe) {
+      modal.style.display = 'none';
+      iframe.src = '';
+    }
+  }
 
   /**
    * Renderiza el contenido de una sección.
@@ -180,16 +200,33 @@
       });
       container.innerHTML = html || '<p class="no-results">No hay cumpleaños para mostrar.</p>';
     } else {
-      container.innerHTML = filteredData.map((card, index) => `
-        <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
-          <div class="card-image-container">
-            <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150" loading="lazy">
-          </div>
-          <h3>${card.title}</h3>
-          <p>${card.desc}</p>
-          <a href="${card.link}" aria-label="Ver ${card.title}" ${card.link.startsWith('http') ? 'target="_blank" rel="noopener noreferrer" onclick="showLoadingBar(event, this.href)"' : ''}>Ver Más</a>
-        </div>
-      `).join('');
+      // MODIFICADO: Bloque completo para renderizar tarjetas con lógica de modal.
+      container.innerHTML = filteredData.map((card, index) => {
+        // Decide qué tipo de botón o enlace crear para cada tarjeta
+        const buttonHtml = card.embedUrl
+            // Si la tarjeta tiene 'embedUrl', crea un BOTÓN que abre el modal
+            ? `<button class="card-button" onclick="openEmbedModal('${card.embedUrl}')" aria-label="Ver ${card.title}">Ver Reporte</button>`
+            // Si no, crea un ENLACE tradicional. Se incluye la corrección del bug.
+            : `<a href="${card.link}" class="card-button" aria-label="Ver ${card.title}" ${
+                card.link && card.link.startsWith('http') 
+                ? 'target="_blank" rel="noopener noreferrer" onclick="showLoadingBar(event, this.href)"' 
+                : ''
+              }>Ver Más</a>`;
+
+        // Construye el HTML de la tarjeta usando la variable buttonHtml
+        return `
+            <div class="card" style="animation: cardFadeIn 0.5s ease forwards; animation-delay: ${index * 0.1}s;">
+                <div class="card-image-container">
+                    <img src="Imagenes/${card.img}" alt="${card.title}" width="250" height="150" loading="lazy">
+                </div>
+                <h3>${card.title}</h3>
+                <p>${card.desc}</p>
+                <div class="card-button-container">
+                    ${buttonHtml}
+                </div>
+            </div>
+        `;
+      }).join('');
     }
   }
 
@@ -316,13 +353,24 @@
     }
   
     showSection('home');
-    //createParticles();//
+    //createParticles();
     setupSearch();
   });
 
+  // AÑADIDO: Event listener para cerrar el modal al hacer clic fuera de él.
+  window.onclick = function(event) {
+    const modal = document.getElementById('embed-modal');
+    if (event.target == modal) {
+        closeEmbedModal();
+    }
+  }
+
+  // AÑADIDO: Hacer las funciones accesibles globalmente desde el HTML.
   window.toggleDropdown = toggleDropdown;
   window.showSection = showSection;
   window.toggleSidebar = toggleSidebar;
   window.toggleTheme = toggleTheme;
   window.showLoadingBar = showLoadingBar;
+  window.openEmbedModal = openEmbedModal;
+  window.closeEmbedModal = closeEmbedModal;
 })();
