@@ -91,7 +91,7 @@
       { month: "Septiembre", name: "Miguel Pachas", date: "09-09" },
       { month: "Septiembre", name: "James Villanueva", date: "17-09" },
       { month: "Octubre", name: "Mario Magallanes", date: "18-10" },
-      { month: "Noviembre", name: "Jesus Llanos", date: "09-11" },
+      { month: "Noviembre", name: "Jesus Llanos", date: "09-12" },
       { month: "Diciembre", name: "Ener Cipriano", date: "12-12" }
     ],
     "estadisticas": [],
