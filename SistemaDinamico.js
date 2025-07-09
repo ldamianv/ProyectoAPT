@@ -51,7 +51,7 @@
       "tablero-rds": [
         { title: "Indicador RDS 1",  src: "https://lookerstudio.google.com/embed/reporting/2e533845-1568-4a8b-bc19-1bf0ccddcffa/page/sLkNF" },
         { title: "Indicador RDS 2",  src: "https://lookerstudio.google.com/embed/reporting/5ecb2b09-f66b-47e5-947d-dd17fe97a4a5/page/LXtOF" },
-        { title: "Indicador RDS 3",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_3" },
+        { title: "Indicador RDS 3",  src: "https://lookerstudio.google.com/embed/reporting/247045b9-6b48-40e3-9df6-097435524ae9/page/nFeQF" },
         { title: "Indicador RDS 4",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_4" },
         { title: "Indicador RDS 5",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_5" },
         { title: "Indicador RDS 6",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_6" },
@@ -91,7 +91,7 @@
       { month: "Septiembre", name: "Miguel Pachas", date: "09-09" },
       { month: "Septiembre", name: "James Villanueva", date: "17-09" },
       { month: "Octubre", name: "Mario Magallanes", date: "18-10" },
-      { month: "Noviembre", name: "Jesus Llanos", date: "09-12" },
+      { month: "Diciembre", name: "Jesus Llanos", date: "09-12" },
       { month: "Diciembre", name: "Ener Cipriano", date: "12-12" }
     ],
     "estadisticas": [],
