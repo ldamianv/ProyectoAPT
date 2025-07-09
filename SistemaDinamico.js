@@ -5,7 +5,7 @@
     cp: [
       { title: "Traslados Interplantas", desc: "Registre los tiempos de atención de las unidades.", img: "Traslados.jpeg", link: "https://docs.google.com/spreadsheets/d/1KnZfYkNolj9k9X3qIyj89ebLdXGW1w7CNQ5GV7lBHJg/edit?usp=sharing" },
       { title: "Control de Film", desc: "Registre el consumo de film en los despachos.", img: "ControlFilmx.jpg", link: "https://docs.google.com/spreadsheets/d/1SfJHz2OElh5yetJ_NDWTOysi1ctVMya69_VwJ_vGvXk/edit?usp=sharing" },
-      { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Despachox.jpg", link: "https://docs.google.com/spreadsheets/d/1Wi28zNueNaSyhNhU8LE4q1c-H_GpvHeEs86LXOFFYa0/edit?usp=sharing" },
+      { title: "Control de Despachos", desc: "Registre el detalle de los despachos programados.", img: "Despachox.jpg", embedrUrl: "https://docs.google.com/spreadsheets/d/1Wi28zNueNaSyhNhU8LE4q1c-H_GpvHeEs86LXOFFYa0/edit?usp=sharing" },
       { title: "Traslados Granel", desc: "Atención de unidades cargadas con film.", img: "TrasladoGranelx.jpg", link: "#" },
       // MODIFICADO: Se cambió 'link' por 'embedUrl' para usar el modal.
       // Recuerda: esta URL es de SOLO LECTURA. Para editar, usa un link de Formulario o el link /edit de la hoja.
