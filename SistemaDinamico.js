@@ -11,7 +11,7 @@
       // Recuerda: esta URL es de SOLO LECTURA. Para editar, usa un link de Formulario o el link /edit de la hoja.
       { title: "Reportes de Calidad", desc: "Bultos observados por calidad o daño.", img: "ReporteCalidadx.jpg", embedUrl: "https://docs.google.com/spreadsheets/d/1Ht-r55btoKb7YiI7kHBrX-3N_t0cKQTSpngsZUtFTV4/edit?usp=sharing" },
       { title: "Inventarios", desc: "Realiza la conciliacion de SAP vs Fisico.", img: "Exportacionx.jpg", link: "https://docs.google.com/spreadsheets/d/1SsoE1P-IZNOsW9pRPqJ0Aq-C8q58xp5o82scRU1ZlC0/edit?usp=drive_link" } ,
-      { title: "Descuentos", desc: "Registra los descuentos aplicados a despachos.", img: "TrasladoGranelx.jpg", embedrUrl: "https://docs.google.com/spreadsheets/d/1fAl_ITZg2fnINC9X9MXoB0Ci_47NI9e2eYX-gLWKc3U/edit?usp=sharing" }
+      { title: "Descuentos", desc: "Registra los descuentos aplicados a despachos.", img: "TrasladoGranelx.jpg", embedUrl: "https://docs.google.com/spreadsheets/d/1fAl_ITZg2fnINC9X9MXoB0Ci_47NI9e2eYX-gLWKc3U/edit?usp=sharing" }
     ],
     ad: [
       { title: "Avance de Despachos", desc: "Registre el avance de despachos.", img: "Despachox.jpg", link: "#" },
