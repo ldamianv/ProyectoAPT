@@ -40,6 +40,10 @@ body.light-theme {
   --divider-color: #87CEEB;
 }
 
+/* ================================================= */
+/* === INICIO DE LAS MODIFICACIONES DE LAYOUT === */
+/* ================================================= */
+
 body {
   font-family: 'Inter', Arial, sans-serif;
   margin: 0;
@@ -48,8 +52,46 @@ body {
   line-height: 1.6;
   position: relative;
   overflow-x: hidden;
-  background-color: #111827; /* Un azul oscuro y sólido como el de la imagen */
+  background-color: #111827;
+  /* MODIFICACIÓN: Se oculta el scroll vertical principal */
+  overflow-y: hidden;
 }
+
+.container {
+  margin-left: 245px;
+  margin-top: 60px;
+  padding: 1rem;
+  transition: margin-left 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
+  /* MODIFICACIÓN: Se le da una altura calculada y su propio scroll */
+  height: calc(100vh - 110px); /* Altura de ventana - header(60) - footer(50) */
+  overflow-y: auto;
+}
+
+.footer {
+  background: var(--header-bg);
+  color: var(--text);
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  /* MODIFICACIÓN: Se fija en la parte inferior de la pantalla */
+  position: fixed;
+  bottom: 0;
+  left: 245px; /* Alineado con el contenedor, dejando espacio para el sidebar */
+  width: calc(100% - 245px); /* Ocupa el ancho restante */
+  height: 50px; /* MODIFICACIÓN: Altura aumentada para que quepa el texto */
+  z-index: 950;
+  /* Mejoras visuales para centrar el contenido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.3rem;
+}
+
+/* ================================================= */
+/* === FIN DE LAS MODIFICACIONES DE LAYOUT === */
+/* ================================================= */
 
 body.light-theme {
   background: var(--background);
@@ -183,7 +225,7 @@ header {
 }
 
 body.dark-theme .sidebar {
-  background-color: #111827; /* Mismo color que el fondo del body */
+  background-color: #111827;
 }
 
 body.light-theme .sidebar {
@@ -237,7 +279,7 @@ body.light-theme .sidebar {
   border: none;
   color: var(--text);
   font-size: 0.80rem;
-  font-weight: 400; /* Peso de fuente normal */
+  font-weight: 400;
   cursor: pointer;
   width: 100%;
   text-align: left;
@@ -272,17 +314,6 @@ body.light-theme .sidebar {
   color: var(--primary);
 }
 
-.container {
-  margin-left: 245px;
-  margin-top: 60px;
-  padding: 2rem;
-  min-height: calc(100vh - 120px);
-  transition: margin-left 0.3s ease-in-out;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 0;
-}
-
 .form-section {
   display: none;
 }
@@ -293,16 +324,16 @@ body.light-theme .sidebar {
 
 .form-section h1 {
   font-size: 2rem;
-  margin-bottom: 2rem;
-  color: var(--text);
+  margin-bottom: 1.5rem;
+  color: var(--primary);
   font-weight: 700;
-  text-align: left;
+  text-align: center;
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* <-- Solución: 4 columnas fijas */
-  gap: 1.5rem; /* Reducimos el espacio para un look más compacto */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   align-items: stretch;
 }
 
@@ -402,7 +433,6 @@ body.light-theme .sidebar {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-
   width: 100%;
 }
 
@@ -414,7 +444,7 @@ body.light-theme .sidebar {
 }
 
 .card-image-container {
-  height: 20px;
+  height: 20px; /* MODIFICADO: Reducido para tarjetas más compactas */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -435,47 +465,59 @@ body.light-theme .sidebar {
   color: var(--primary);
 }
 
+.card-container .card h3 {
+  font-size: 1rem; /* MODIFICADO: Título más compacto */
+  margin-top: 1rem; 
+  min-height: 2em; /* MODIFICADO: Altura mínima ajustada */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .card p, .card ol {
   font-size: 1.1rem;
   color: var(--text);
   margin: 0.5rem 0;
   line-height: 1.6;
-
 }
 
-/* === ALINEACIÓN VERTICAL DE BOTONES EN TARJETAS === */
+.card-container .card p {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  flex-grow: 1;
+}
 
-/* 1. Contenedor que empuja el botón hacia abajo */
 .card .card-button-container {
-  margin-top: auto; /* ¡Esta es la propiedad clave que alinea los botones! */
-  padding-top: 1rem; /* Agrega un espacio para que el botón no esté pegado al texto */
+  margin-top: auto;
+  padding-top: 1rem;
 }
 
-/* 2. Estilo unificado para CUALQUIER botón o enlace dentro de una tarjeta */
 .card .card-button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
   background: var(--primary);
-  color: white !important; /* Asegura que el texto siempre sea blanco */
+  color: white !important;
+  font-size: 0.9rem;
+  font-family: inherit;
+  text-align: center;
   text-decoration: none;
+  border: none;
   border-radius: 5px;
-  border: none; /* Quita el borde por defecto de los elementos <button> */
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
-  font-family: inherit; /* Hereda la fuente del resto de la página */
-  font-size: 0.9rem; /* Unificamos el tamaño de la fuente */
-  text-align: center;
-  width: 100%; /* <-- AÑADE ESTA LÍNEA PARA UNIFICAR EL ANCHO */
 }
 
-/* 3. Efecto de hover para el botón/enlace unificado */
 .card .card-button:hover {
   background: var(--secondary);
 }
 
-/* 4. Efecto de onda al pasar el mouse (ripple effect) */
 .card .card-button::after {
   content: '';
   position: absolute;
@@ -494,10 +536,6 @@ body.light-theme .sidebar {
   height: 200%;
 }
 
-.card a:hover {
-  background: var(--secondary);
-}
-
 .landing-container {
   text-align: center;
   padding: 2rem 0;
@@ -513,7 +551,7 @@ body.light-theme .sidebar {
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(385px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   justify-content: center;
   align-items: stretch;
@@ -536,13 +574,57 @@ body.light-theme .sidebar {
   margin-bottom: 0.75rem;
 }
 
-/* --- ESTILOS PARA EL TABLERO RDS --- */
+
+/* ================================================= */
+/* === INICIO: MEJORAS VISUALES PARA PÁGINA DE INICIO === */
+/* ================================================= */
+
+#home .card {
+  background: linear-gradient(145deg, #2a3a50, #1f2937);
+  border: 1px solid #3e4f6b;
+  min-height: 360px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#home .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: var(--primary);
+}
+
+#home .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#home .card h2 {
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+#home .card p, #home .card ol {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  color: #cdd6f4;
+  line-height: 1.5;
+}
+
+/* ================================================= */
+/* === FIN: MEJORAS VISUALES PARA PÁGINA DE INICIO === */
+/* ================================================= */
+
+
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr; /* <-- Cambia a "1fr" para crear una sola columna */
+  grid-template-columns: 1fr;
   gap: 2rem;
   width: 100%;
-  justify-items: center; /* <-- AÑADE ESTA LÍNEA para centrar los gráficos */
+  justify-items: center;
 }
 
 .dashboard-item {
@@ -551,8 +633,8 @@ body.light-theme .sidebar {
   border-radius: 12px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%; /* Asegura que sea responsive en pantallas más pequeñas */
-  max-width: 1000px; /* <-- AÑADE ESTA LÍNEA para limitar el ancho máximo */
+  width: 100%;
+  max-width: 1000px;
 }
 
 .dashboard-item h3 {
@@ -566,7 +648,7 @@ body.light-theme .sidebar {
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding-top: 75%; /* Proporción 4:3. Cambiar a 56.25% para 16:9 */
+  padding-top: 75%;
   border-radius: 8px;
 }
 
@@ -591,15 +673,11 @@ body.light-theme .sidebar {
   border-radius: 12px;
 }
 
-.footer {
-  background: var(--header-bg);
-  color: var(--text);
-  padding: 0.3rem;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  width: 100%;
-  margin-top: 2rem;
+/* MODIFICACIÓN: Se añade esta regla para el texto del footer */
+.footer p, .footer-links {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 
 .footer-links a {
@@ -616,6 +694,9 @@ body.light-theme .sidebar {
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -630,6 +711,12 @@ body.light-theme .sidebar {
   .header-controls { gap: 0.5rem; }
   .cards-container, .card-container { grid-template-columns: 1fr; }
   .card { min-height: auto; }
+  
+  /* MODIFICACIÓN: Ajuste del footer para móviles */
+  .footer {
+    left: 0;
+    width: 100%;
+  }
 }
 
 .particle {
@@ -666,132 +753,73 @@ body.light-theme .sidebar {
   background: var(--primary);
   transition: width 0.45s ease-out;
 }
-/* --- AÑADE ESTE CÓDIGO AL FINAL DEL ARCHIVO CSS --- */
 
-/* Ajuste para las tarjetas de la página de Inicio (Visión, Misión, Objetivos) */
-.cards-container .card {
-  height: 400px; /* Puedes ajustar el valor 360px al que te parezca mejor */
-}
-/* Reduce el tamaño del texto de los párrafos y de la lista de objetivos */
-.cards-container .card p,
-.cards-container .card ol {
-  font-size: 0.85rem; /* El valor original es 1.1rem */
-   line-height: 1.4;   /* <-- AÑADIMOS ESTA LÍNEA para juntar las líneas */
-}
-/* Puedes modificar la regla que agregamos antes o añadir esta al final del CSS */
-
-.cards-container .card {
-  padding: 1rem; /* Aumenta este valor para dar más altura. Por ejemplo, 2.5rem o 3rem */
-  /* También podrías usar una altura mínima si prefieres un tamaño fijo */
-  /* min-height: 450px; */
-}
-/* Estilo específico para el título principal de la página de inicio */
-#home h1 {
-  font-size: 2.8rem;   /* Aumenta el tamaño (el original es 2.5rem) */
-  font-weight: 700;    /* Aumenta el grosor para un look más robusto (el original es 700) */
-   margin-bottom: 0.3rem; /* <-- AÑADE ESTA LÍNEA para reducir la separación */
-}
-/* --- AJUSTE DE TAMAÑO DE LETRA PARA TARJETAS (CARD CONTAINER) --- */
-
-/* Reduce el tamaño del nombre de cada tarjeta */
-/* Reduce el tamaño del nombre, lo empuja hacia abajo y alinea su contenido */
-.card-container .card h3 {
-  font-size: 1.2rem; /* <-- Título más compacto */
-  margin-top: 1rem; 
-  min-height: 2.4em; /* Ajustamos la altura mínima al nuevo tamaño de fuente */
+.embed-modal {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Reduce el tamaño de la descripción de cada tarjeta */
-.card-container .card p {
-  font-size: 0.9rem; /* El valor original es 1.1rem */
-   margin-top: 1rem; /* <-- AÑADE ESTA LÍNEA para empujar el texto hacia abajo */
-   flex-grow: 1; /* <-- AÑADE ESTA LÍNEA PARA EL RELLENO FLEXIBLE */
-}
-/* --- ESTILO ESPECIAL PARA EL TÍTULO DE LA PÁGINA DE INICIO --- */
-
-#home h1 {
-  font-size: 2.8rem;      /* Le devolvemos su tamaño grande original */
-  color: var(--primary);    /* Le devolvemos el color azul primario */
-  text-align: center;     /* Lo volvemos a centrar */
-}
-/* --- ESTILOS PARA EL MODAL DE CONTENIDO EMBEBIDO --- */
-
-/* El contenedor principal que oscurece la pantalla */
-/* --- ESTILOS PARA EL MODAL (MODIFICADO CON TRANSICIÓN) --- */
-.embed-modal {
-  display: flex; /* Cambiamos a flex para centrar mejor */
-  align-items: center; /* Centra verticalmente */
-  justify-content: center; /* Centra horizontalmente */
   position: fixed;
   z-index: 2000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0); /* Inicia transparente */
-  transition: background-color 0.4s ease; /* Transición para el fondo */
-  opacity: 0; /* Inicia invisible */
-  pointer-events: none; /* No se puede hacer clic cuando está oculto */
-  transition: opacity 0.4s ease;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, background-color 0.4s ease;
 }
 
-/* NUEVA REGLA: Estado visible del modal */
 .embed-modal.visible {
-  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro final */
-  opacity: 1; /* Se vuelve visible */
-  pointer-events: auto; /* Se puede hacer clic */
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+  pointer-events: auto;
 }
 
-/* La ventana o caja blanca donde va el contenido */
 .embed-modal-content {
-  /* ... (todas las propiedades que ya tienes: background-color, padding, etc.) ... */
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem;
   width: 95%;
   max-width: 1400px;
   height: 95%;
-  /* ... (resto de propiedades) ... */
-
-  /* AÑADIMOS ESTO PARA LA ANIMACIÓN */
-  transform: translateY(-50px); /* Inicia 50px arriba, fuera de la vista */
+  transform: translateY(-50px);
   transition: transform 0.4s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra para efecto 3D */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
-/* NUEVA REGLA: Posición final del contenido del modal */
 .embed-modal.visible .embed-modal-content {
-  transform: translateY(0); /* Vuelve a su posición original */
+  transform: translateY(0);
 }
-/* El botón de cerrar (la 'X') */
+
 .embed-modal-close {
-  color: var(--text); /* Usa el color de texto de tu tema. */
+  color: var(--text);
   position: absolute;
   top: 5px;
   right: 15px;
   font-size: 35px;
   font-weight: bold;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .embed-modal-close:hover,
 .embed-modal-close:focus {
-  color: var(--primary); /* Cambia al color primario al pasar el mouse. */
+  color: var(--primary);
   text-decoration: none;
-  cursor: pointer;
 }
 
-/* El iframe donde se carga el reporte o formulario */
 #embed-iframe {
   width: 100%;
-  height: 100%; /* El iframe ocupa todo el espacio disponible en el modal. */
+  height: 100%;
   border: none;
-  border-radius: 8px; /* Bordes redondeados para el contenido. */
+  border-radius: 8px;
 }
-/* AÑADIDO: Estilo para el indicador de carga */
+
 .loader {
-  border: 8px solid var(--card-bg); /* Un gris claro */
-  border-top: 8px solid var(--primary); /* El azul de tu tema */
+  border: 8px solid var(--card-bg);
+  border-top: 8px solid var(--primary);
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -799,81 +827,11 @@ body.light-theme .sidebar {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -30px; /* Mitad del ancho */
-  margin-top: -30px; /* Mitad del alto */
+  margin-left: -30px;
+  margin-top: -30px;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-/* ============================================== */
-/* === MEJORA VISUAL PARA TARJETAS DE INICIO === */
-/* ============================================== */
-
-/* 1. Hacemos que las 3 tarjetas de la sección "home" se muestren en una sola fila. */
-#home .cards-container {
-  grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual tamaño */
-  align-items: stretch; /* Asegura que todas las tarjetas tengan la misma altura */
-}
-
-/* 2. Eliminamos la altura fija para que se adapten a su contenido. */
-#home .cards-container .card {
-  height: auto; /* Quitamos la altura fija de 400px */
-  min-height: 420px; /* Establecemos una altura mínima para mantener la estética */
-}
-
-/* 3. Hacemos que el contenido interno se distribuya mejor. */
-#home .cards-container .card p,
-#home .cards-container .card ol {
-  flex-grow: 1; /* Permite que el párrafo/lista crezca para ocupar el espacio disponible */
-}
-/* --- COMPORTAMIENTO PARA TABLETS --- */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .card-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas para tablets */
-  }
-}
-
-/* 4. Para pantallas más pequeñas (tablets y móviles), volvemos a una sola columna. */
-@media (max-width: 1024px) {
-  #home .cards-container {
-    grid-template-columns: 1fr; /* Una sola columna */
-  }
-
-  #home .cards-container .card {
-    min-height: auto; /* En móvil, la altura mínima no es necesaria */
-  }
-}
-/* ================================================ */
-/* === ESTILO DEFINITIVO PARA BOTONES DE TARJETA === */
-/* ================================================ */
-
-/* Contenedor del botón: lo empuja al fondo de la tarjeta */
-.card-container .card .card-button-container {
-  margin-top: auto;
-  padding-top: 1rem;
-}
-
-/* Botón: unifica ancho, altura y apariencia */
-.card-container .card .card-button {
-  /* --- Dimensiones y alineación --- */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 50px;
-  box-sizing: border-box;
-
-  /* --- Apariencia --- */
-  padding: 0.5rem 1rem;
-  background: var(--primary);
-  color: white !important;
-  font-size: 0.9rem;
-  font-family: inherit;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
