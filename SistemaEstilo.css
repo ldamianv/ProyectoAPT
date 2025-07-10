@@ -448,7 +448,7 @@ body.light-theme .sidebar {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   flex-shrink: 0;
 }
 
