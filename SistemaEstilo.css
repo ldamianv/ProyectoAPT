@@ -444,7 +444,7 @@ body.light-theme .sidebar {
 }
 
 .card-image-container {
-  height: 60px; /* MODIFICADO: Reducido para tarjetas más compactas */
+  height: 40px; /* MODIFICADO: Reducido para tarjetas más compactas */
   display: flex;
   align-items: center;
   justify-content: center;
