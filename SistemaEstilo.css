@@ -444,11 +444,11 @@ body.light-theme .sidebar {
 }
 
 .card-image-container {
-  height: 20px; /* MODIFICADO: Reducido para tarjetas más compactas */
+  height: 100px; /* MODIFICADO: Reducido para tarjetas más compactas */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   flex-shrink: 0;
 }
 
