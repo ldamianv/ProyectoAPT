@@ -444,11 +444,11 @@ body.light-theme .sidebar {
 }
 
 .card-image-container {
-  height: 40px; /* MODIFICADO: Reducido para tarjetas más compactas */
+  height: 100px; /* MODIFICADO: Reducido para tarjetas más compactas */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   flex-shrink: 0;
 }
 
@@ -467,7 +467,7 @@ body.light-theme .sidebar {
 
 .card-container .card h3 {
   font-size: 1rem; /* MODIFICADO: Título más compacto */
-  margin-top: 0.5rem; 
+  margin-top: 0.3rem; 
   min-height: 2em; /* MODIFICADO: Altura mínima ajustada */
   display: flex;
   align-items: center;
@@ -483,7 +483,7 @@ body.light-theme .sidebar {
 
 .card-container .card p {
   font-size: 0.85rem;
-  margin-top: 0.65rem;
+  margin-top: 0.5rem;
   flex-grow: 1;
 }
 
@@ -497,9 +497,9 @@ body.light-theme .sidebar {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 50px;
+  min-height: 40px;
   box-sizing: border-box;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   background: var(--primary);
   color: white !important;
   font-size: 0.9rem;
