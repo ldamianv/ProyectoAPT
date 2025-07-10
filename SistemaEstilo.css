@@ -482,8 +482,8 @@ body.light-theme .sidebar {
 }
 
 .card-container .card p {
-  font-size: 0.9rem;
-  margin-top: 1rem;
+  font-size: 0.85rem;
+  margin-top: 0.65rem;
   flex-grow: 1;
 }
 
