@@ -467,7 +467,7 @@ body.light-theme .sidebar {
 
 .card-container .card h3 {
   font-size: 1rem; /* MODIFICADO: Título más compacto */
-  margin-top: 1rem; 
+  margin-top: 0.5rem; 
   min-height: 2em; /* MODIFICADO: Altura mínima ajustada */
   display: flex;
   align-items: center;
