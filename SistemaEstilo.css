@@ -751,6 +751,12 @@ body.light-theme .sidebar {
     min-width: unset;
     max-width: unset;
     margin: 1.5rem 0;
+    display: none;
+  }
+  .marquee-track .card:nth-of-type(1),
+  .marquee-track .card:nth-of-type(2),
+  .marquee-track .card:nth-of-type(3) {
+    display: block;
   }
 }
 
@@ -951,5 +957,11 @@ body.light-theme .sidebar {
     min-width: unset;
     max-width: unset;
     margin: 1.5rem 0;
+    display: none;
+  }
+  .marquee-track .vision-card:first-of-type,
+  .marquee-track .mission-card:first-of-type,
+  .marquee-track .objectives-card:first-of-type {
+    display: block;
   }
 }
