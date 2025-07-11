@@ -738,6 +738,20 @@ body.light-theme .sidebar {
   .container {
     padding-bottom: 60px; /* igual o mayor al alto del footer */
   }
+  .marquee-container {
+    overflow: visible;
+  }
+  .marquee-track {
+    display: block;
+    animation: none;
+    gap: 0;
+  }
+  .marquee-track .card {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+    margin: 1.5rem 0;
+  }
 }
 
 /* Breakpoint adicional para móviles muy pequeños */
@@ -884,4 +898,58 @@ body.light-theme .sidebar {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  height: auto;
+}
+
+.marquee-track {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem; /* Puedes ajustar el espacio entre tarjetas */
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-container:hover .marquee-track,
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-track .card {
+  min-width: 440px;
+  max-width: 460px;
+  width: 440px;
+  margin: 1rem 0;
+  flex: 0 0 auto;
+  height: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .marquee-container {
+    overflow: visible;
+    height: auto;
+  }
+  .marquee-track {
+    display: block;
+    animation: none;
+    gap: 0;
+  }
+  .marquee-track .card {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+    margin: 1.5rem 0;
+  }
 }
