@@ -1,4 +1,5 @@
 
+
 (function() {
   // Objeto que contiene todos los datos de las tarjetas para cada sección.
   const sectionsData = {
@@ -31,11 +32,12 @@
       { title: "Evolución de Ventas", desc: "Visualiza el progreso de las ventas.", img: "Ventas.jpeg", link: "#" },
       { title: "Costos de Estibaje", desc: "Visualiza los costos asociados al estibaje.", img: "Estibajex.jpg", link: "#" },
       { title: "Tiempos de Atención", desc: "Consulta los tiempos de atención de unidades.", img: "Traslados.jpeg", link: "https://lookerstudio.google.com/reporting/c65e2dde-10fe-441b-ba64-61a973faad94/page/d55wE/edit" },
-      { title: "Descuentos Acumulados", desc: "Consulta los descuentos aplicados.", img: "KPI.jpg", link: "https://lookerstudio.google.com/reporting/2e533845-1568-4a8b-bc19-1bf0ccddcffa" },
+      { title: "Descuentos Acumulados", desc: "Consulta los descuentos aplicados.", img: "KPI.jpg", embedUrl: "https://lookerstudio.google.com/embed/reporting/2e533845-1568-4a8b-bc19-1bf0ccddcffa/page/sLkNF" },
       { title: "Avance de Ocupabilidad", desc: "Evalúa la ocupación del almacén.", img: "Produccion.jpg", link: "#" },
       { title: "Reporte de Lento Movimiento", desc: "Identifica productos de lento movimiento.", img: "Movimientosx.jpg", link: "#" },
       { title: "Sloting", desc: "Optimiza la ubicación de productos.", img: "Slotingx.jpg", link: "#" },
-      { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", link: "#" }
+      { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", link: "#" },
+      { title: "Horas de Arribo Despachos", desc: "Visualiza la puntualidad de los opradores logísticos.", img: "Arribox.jpg", embedUrl: "https://lookerstudio.google.com/embed/reporting/247045b9-6b48-40e3-9df6-097435524ae9/page/nFeQF" }
     ],
     tpm: {
       "tarjetas-tpm": [
@@ -54,21 +56,8 @@
         { title: "Indicador RDS 3",  src: "https://lookerstudio.google.com/embed/reporting/247045b9-6b48-40e3-9df6-097435524ae9/page/nFeQF" },
         { title: "Indicador RDS 4",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_4" },
         { title: "Indicador RDS 5",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_5" },
-        { title: "Indicador RDS 6",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_6" },
-        { title: "Indicador RDS 7",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_7" },
-        { title: "Indicador RDS 8",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_8" },
-        { title: "Indicador RDS 9",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_9" },
-        { title: "Indicador RDS 10", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_10" },
-        { title: "Indicador RDS 11", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_11" },
-        { title: "Indicador RDS 12", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_12" },
-        { title: "Indicador RDS 13", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_13" },
-        { title: "Indicador RDS 14", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_14" },
-        { title: "Indicador RDS 15", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_15" },
-        { title: "Indicador RDS 16", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_16" },
-        { title: "Indicador RDS 17", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_17" },
-        { title: "Indicador RDS 18", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_18" },
-        { title: "Indicador RDS 19", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_19" },
-        { title: "Indicador RDS 20", src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_20" }
+        { title: "Indicador RDS 6",  src: "AQUÍ_VA_TU_ENLACE_DEL_GRAFICO_6" }
+
       ],
     },
     "nuestra-gente": [
