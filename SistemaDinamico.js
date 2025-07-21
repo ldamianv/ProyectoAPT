@@ -36,7 +36,7 @@
       { title: "Avance de Ocupabilidad", desc: "Evalúa la ocupación del almacén.", img: "Produccion.jpg", link: "#" },
       { title: "Reporte de Lento Movimiento", desc: "Identifica productos de lento movimiento.", img: "Movimientosx.jpg", link: "#" },
       { title: "Sloting", desc: "Optimiza la ubicación de productos.", img: "Slotingx.jpg", link: "#" },
-      { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", link: "#" },
+      { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", embedUrl: "https://lookerstudio.google.com/embed/reporting/80fae913-2562-4cf4-ad90-917037783f82/page/ml7RF" },
       { title: "Horas de Arribo Despachos", desc: "Visualiza la puntualidad de los opradores logísticos.", img: "Arribox.jpg", embedUrl: "https://lookerstudio.google.com/embed/reporting/247045b9-6b48-40e3-9df6-097435524ae9/page/nFeQF" }
     ],
     tpm: {
