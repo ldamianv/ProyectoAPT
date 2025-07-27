@@ -29,7 +29,7 @@
       { title: "Horario", desc: "Programa el rol de turnos de tu equipo.", img: "Horariox.jpg", link: "#" }
     ],
     "reportes-generales": [
-      { title: "Evolución de Ventas", desc: "Visualiza el progreso de las ventas.", img: "Ventas.jpeg", link: "#" },
+      { title: "Evolución de Ventas", desc: "Visualiza el progreso de las ventas.", img: "Ventas.jpeg", embedUrl: "https://lookerstudio.google.com/embed/reporting/94e0e801-e7df-4845-ada5-e31f4d2217d3/page/6zXD" },
       { title: "Costos de Estibaje", desc: "Visualiza los costos asociados al estibaje.", img: "Estibajex.jpg", link: "#" },
       { title: "Tiempos de Atención", desc: "Consulta los tiempos de atención de unidades.", img: "Traslados.jpeg", link: "https://lookerstudio.google.com/reporting/c65e2dde-10fe-441b-ba64-61a973faad94/page/d55wE/edit" },
       { title: "Descuentos Acumulados", desc: "Consulta los descuentos aplicados.", img: "KPI.jpg", embedUrl: "https://lookerstudio.google.com/embed/reporting/2e533845-1568-4a8b-bc19-1bf0ccddcffa/page/sLkNF" },
