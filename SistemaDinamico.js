@@ -15,7 +15,7 @@
       { title: "Descuentos", desc: "Registra los descuentos aplicados a despachos.", img: "TrasladoGranelx.jpg", embedUrl: "https://docs.google.com/spreadsheets/d/1fAl_ITZg2fnINC9X9MXoB0Ci_47NI9e2eYX-gLWKc3U/edit?usp=sharing" }
     ],
     ad: [
-      { title: "Avance de Despachos", desc: "Registre el avance de despachos.", img: "Despachox.jpg", link: "#" },
+      { title: "Avance de Despachos", desc: "Registre el avance de despachos.", img: "Despachox.jpg", embedUrl: "https://docs.google.com/spreadsheets/d/1cdh4I8TtxEWJyKLJ4a4T0GDvCzK9tZYImmPYsVRNaWY/edit?usp=sharing" },
       { title: "Reporte de Traslados Atendidos", desc: "Registre el número de unidades atendidas diariamente.", img: "Trasladox.jpg", link: "#" },
       { title: "Liquidaciones", desc: "Registra las liquidaciones de los despachos.", img: "Ventas.jpeg", link: "#" }
     ],
