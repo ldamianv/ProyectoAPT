@@ -72,6 +72,7 @@
       { month: "Mayo", name: "Carlos Barillas", date: "25-05" },
       { month: "Mayo", name: "Manuel Magallanes", date: "31-05" },
       { month: "Junio", name: "Julio Pachas", date: "01-06" },
+      { month: "Junio", name: "Milagros Quispe", date: "14-06" },
       { month: "Junio", name: "Hugo Chavez", date: "25-06" },
       { month: "Julio", name: "Florencio Vilca", date: "07-07" },
       { month: "Julio", name: "Josemaria Chumpitaz", date: "12-07" },
