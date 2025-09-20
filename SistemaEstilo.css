@@ -850,9 +850,9 @@ body.light-theme .sidebar {
   background-color: var(--card-bg);
   border-radius: 12px;
   padding: 1rem;
-  width: 95%;
-  max-width: 1400px;
-  height: 95%;
+  width: 100%;
+  max-width: 1600px;
+  height: 98%;
   transform: translateY(-50px);
   transition: transform 0.4s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
