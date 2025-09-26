@@ -34,7 +34,7 @@
       { title: "Tiempos de Atención", desc: "Consulta los tiempos de atención de unidades.", img: "Traslados.jpeg", link: "https://lookerstudio.google.com/reporting/c65e2dde-10fe-441b-ba64-61a973faad94/page/d55wE/edit" },
       { title: "Descuentos Acumulados", desc: "Consulta los descuentos aplicados.", img: "KPI.jpg", embedUrl: "https://lookerstudio.google.com/embed/reporting/2e533845-1568-4a8b-bc19-1bf0ccddcffa/page/sLkNF" },
       { title: "Avance de Ocupabilidad", desc: "Evalúa la ocupación del almacén.", img: "Produccion.jpg", link: "#" },
-      { title: "Reporte de Lento Movimiento", desc: "Identifica productos de lento movimiento.", img: "Movimientosx.jpg", link: "#" },
+      { title: "Reporte de Lento Movimiento", desc: "Identifica productos de lento movimiento.", img: "Movimientosx.jpg", link: "https://lookerstudio.google.com/embed/reporting/d1810314-dd34-4910-b0f4-1d687b1fa447/page/fmSTF" },
       { title: "Sloting", desc: "Optimiza la ubicación de productos.", img: "Slotingx.jpg", link: "#" },
       { title: "Muestreo de Tarimas", desc: "Visualiza los resultados del muestreo de tarimas.", img: "Traslados.jpeg", embedUrl: "https://lookerstudio.google.com/embed/reporting/80fae913-2562-4cf4-ad90-917037783f82/page/ml7RF" },
       { title: "Horas de Arribo Despachos", desc: "Visualiza la puntualidad de los opradores logísticos.", img: "Arribox.jpg", embedUrl: "https://lookerstudio.google.com/embed/reporting/247045b9-6b48-40e3-9df6-097435524ae9/page/nFeQF" }
