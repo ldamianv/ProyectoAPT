@@ -252,11 +252,18 @@ function closeEmbedModal() {
     if (sectionElement) {
         sectionElement.classList.add('active');
     // --- INICIO DEL CÓDIGO PARA EL GRÁFICO ---
+// --- REEMPLAZA EL BLOQUE ANTERIOR POR ESTE ---
 if (sectionId === 'estadisticas') {
-    if (typeof drawChart === 'function') {
-        drawChart();
-    }
+    // Usamos un pequeño retraso (setTimeout) para asegurar que la sección
+    // sea visible en el DOM antes de que Google Charts intente dibujar.
+    // 1 milisegundo es suficiente.
+    setTimeout(function() {
+        if (typeof drawChart === 'function') {
+            drawChart();
+        }
+    }, 1);
 }
+// --- FIN DEL BLOQUE MEJORADO ---
 // --- FIN DEL CÓDIGO PARA EL GRÁFICO ---  
     }
     
