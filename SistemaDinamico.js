@@ -251,6 +251,13 @@ function closeEmbedModal() {
     const sectionElement = document.getElementById(sectionId);
     if (sectionElement) {
         sectionElement.classList.add('active');
+    // --- INICIO DEL CÓDIGO PARA EL GRÁFICO ---
+if (sectionId === 'estadisticas') {
+    if (typeof drawChart === 'function') {
+        drawChart();
+    }
+}
+// --- FIN DEL CÓDIGO PARA EL GRÁFICO ---  
     }
     
     const searchBar = document.getElementById('search-bar');
