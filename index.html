@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,6 +8,46 @@
   <link rel="icon" type="image/png" href="Imagenes/favicon.png">
   <link rel="stylesheet" href="SistemaEstilo.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- =============================================================================== -->
+  <!-- PASO 1: CÓDIGO DE GOOGLE CHARTS (AÑADIDO AQUÍ) -->
+  <!-- =============================================================================== -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Carga la librería con el paquete 'corechart'
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+
+    // Llama a la función drawChart cuando la librería esté lista
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Esta es la función que dibuja el gráfico
+    function drawChart() {
+
+      // 1. Tus Datos
+      // Reemplaza estos datos de ejemplo con los tuyos.
+      var data = google.visualization.arrayToDataTable([
+        ['Estado', 'Cantidad'],
+        ['Entregas a Tiempo', 150],
+        ['Entregas con Retraso', 25],
+        ['Pedidos Pendientes', 45],
+        ['Pedidos Cancelados', 10]
+      ]);
+
+      // 2. Opciones de Personalización
+      var options = {
+        title: 'Rendimiento de Entregas del Mes',
+        // Puedes cambiar el tipo de gráfico a 'BarChart', 'LineChart', etc.
+        // También puedes añadir 'is3D': true para un efecto 3D
+      };
+
+      // 3. Creación del Gráfico
+      // Dibuja el gráfico en el div con id 'mi_primer_grafico'
+      var chart = new google.visualization.PieChart(document.getElementById('mi_primer_grafico'));
+      chart.draw(data, options);
+    }
+  </script>
 </head>
 
 <body class="dark-theme">
@@ -171,9 +209,19 @@
       <section id="so" class="form-section"><h1>Supervisor Operaciones</h1><div class="card-container"></div></section>
       <section id="reportes-generales" class="form-section"><h1>Reportes Generales</h1><div class="card-container"></div></section>
       <section id="tpm" class="form-section"><h1>TPM</h1><div class="card-container"></div></section>
-      <!-- MODIFICACIÓN: ID de la sección y H1 -->
+      
       <section id="nuestra-gente" class="form-section"><h1>Nuestra Gente</h1><div class="card-container"></div></section>
-      <section id="estadisticas" class="form-section"><h1>Estadísticas</h1><div class="card-container"></div></section>
+      
+      <section id="estadisticas" class="form-section">
+        <h1>Estadísticas</h1>
+        <!-- =============================================================================== -->
+        <!-- PASO 2: CONTENEDOR DEL GRÁFICO (AÑADIDO AQUÍ) -->
+        <!-- =============================================================================== -->
+        <div class="card-container">
+            <div id="mi_primer_grafico" style="width: 100%; height: 500px;"></div>
+        </div>
+      </section>
+
       <section id="configuracion" class="form-section"><h1>Configuración</h1><div class="card-container"></div></section>
       <section id="celebraciones" class="form-section"><h1>Celebraciones</h1><div class="card-container"></div></section>
 
